@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Joe · Trading Dashboard</title>
+<style>
+  :root{
+    --bg:#020617; --panel:#0b1220; --panel2:#111c30; --line:#1e293b;
+    --text:#f8fafc; --muted:#94a3b8; --pos:#22c55e; --neg:#f43f5e;
+    --accent:#38bdf8;
+    --mono:ui-monospace,"SF Mono","Cascadia Code","Fira Code",Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:
+      radial-gradient(1200px 600px at 80% -10%,rgba(56,189,248,.08),transparent),
+      var(--bg);color:var(--text);font-family:var(--sans);
+      -webkit-font-smoothing:antialiased;line-height:1.5}
+  .wrap{max-width:1200px;margin:0 auto;padding:32px 20px 64px}
+  header{display:flex;align-items:flex-end;justify-content:space-between;
+      gap:16px;flex-wrap:wrap;margin-bottom:28px}
+  .brand{display:flex;align-items:center;gap:14px}
+  .mark{font-size:38px;line-height:1;filter:drop-shadow(0 0 14px rgba(56,189,248,.35))}
+  h1{font-family:var(--mono);font-size:30px;margin:0;letter-spacing:-.5px;
+      text-shadow:0 0 18px rgba(248,250,252,.12)}
+  .sub{color:var(--muted);font-size:13px;margin-top:2px}
+  .updated{color:var(--muted);font-size:12px;font-family:var(--mono);text-align:right}
+  .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      margin-bottom:22px}
+  .card{background:linear-gradient(180deg,var(--panel2),var(--panel));
+      border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .kpi .label{color:var(--muted);font-size:11px;text-transform:uppercase;
+      letter-spacing:.08em;margin-bottom:8px}
+  .kpi .value{font-family:var(--mono);font-size:24px;font-weight:600}
+  .kpi .delta{font-family:var(--mono);font-size:13px;margin-top:4px}
+  .pos{color:var(--pos)} .neg{color:var(--neg)} .muted{color:var(--muted)}
+  .panel{background:linear-gradient(180deg,var(--panel2),var(--panel));
+      border:1px solid var(--line);border-radius:16px;padding:20px;margin-bottom:22px}
+  .panel h2{font-family:var(--mono);font-size:14px;font-weight:600;margin:0 0 14px;
+      color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{text-align:left;color:var(--muted);font-weight:500;font-size:11px;
+      text-transform:uppercase;letter-spacing:.06em;padding:8px 10px;
+      border-bottom:1px solid var(--line)}
+  td{padding:10px;border-bottom:1px solid rgba(30,41,59,.5);font-family:var(--mono)}
+  tr:last-child td{border-bottom:none}
+  .num{text-align:right}
+  .badge{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:600;
+      padding:2px 8px;border-radius:6px}
+  .badge.buy{background:rgba(34,197,94,.14);color:var(--pos)}
+  .badge.sell{background:rgba(244,63,94,.14);color:var(--neg)}
+  .badge.hold{background:rgba(148,163,184,.14);color:var(--muted)}
+  .feed{display:flex;flex-direction:column;gap:0}
+  .item{display:grid;grid-template-columns:84px 1fr;gap:14px;padding:12px 0;
+      border-bottom:1px solid rgba(30,41,59,.5)}
+  .item:last-child{border-bottom:none}
+  .item .sym{font-family:var(--mono);font-weight:600}
+  .item .rsn{color:var(--muted);font-size:13px}
+  .item .meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
+  .empty{color:var(--muted);font-size:13px;padding:8px 2px}
+  .chartwrap{position:relative;width:100%}
+  svg{width:100%;height:auto;display:block}
+  .axis{fill:var(--muted);font-family:var(--mono);font-size:11px}
+  @media(max-width:560px){.kpi .value{font-size:20px}h1{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">
+      <div class="mark">&#129433;</div>
+      <div>
+        <h1>Joe</h1>
+        <div class="sub">Autonomous Swing Trader &middot; Paper Account</div>
+      </div>
+    </div>
+    <div class="updated" id="updated"></div>
+  </header>
+
+  <div class="grid" id="kpis"></div>
+
+  <div class="panel">
+    <h2>Equity Curve</h2>
+    <div class="chartwrap" id="chart"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Open Positions</h2>
+    <div id="positions"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Recent Trades</h2>
+    <div id="trades"></div>
+  </div>
+
+  <div class="panel">
+    <h2>Joe's Decision Feed</h2>
+    <div class="feed" id="decisions"></div>
+  </div>
+</div>
+
+<script>
+const D = {"generated": "2026-06-02T04:01:51.596296+00:00", "start_equity": 10000.0, "equity": 10000.0, "cash": 10000.0, "day_pl": 0.0, "day_pct": 0.0, "total_pl": 0.0, "total_pct": 0.0, "open_count": 0, "win_rate": null, "winners": 0, "positions": [], "curve": [{"t": "start", "v": 10000.0}, {"t": "2026-06-02T02:36:53.177376+00:00", "v": 10000.0}, {"t": "2026-06-02T04:01:51.596287+00:00", "v": 10000.0}], "trades": [{"ts": "2026-06-02T02:37:04.044157+00:00", "symbol": "MSFT", "side": "buy", "qty": null, "notional": 800.0, "status": "OrderStatus.ACCEPTED", "reason": "brain_buy", "conviction": 4}, {"ts": "2026-06-02T02:37:03.993546+00:00", "symbol": "CRDO", "side": "buy", "qty": null, "notional": 800.0, "status": "OrderStatus.ACCEPTED", "reason": "brain_buy", "conviction": 4}, {"ts": "2026-06-02T02:37:03.941183+00:00", "symbol": "AVGO", "side": "buy", "qty": null, "notional": 800.0, "status": "OrderStatus.ACCEPTED", "reason": "brain_buy", "conviction": 4}], "decisions": [{"ts": "2026-06-02T02:37:03.806590+00:00", "symbol": "SMCI", "action": "hold", "reasoning": "RSI 81.3 is dangerously overbought; +73% 20-day is parabolic, +31.8% 5-day is a trap. Too extended; high risk of sharp pullback.", "conviction": 1, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.806375+00:00", "symbol": "NVDA", "action": "hold", "reasoning": "Above SMAs, RSI 53.9 neutral, but MACD is bearish (signal line above histogram). Mixed signals; wait for MACD to turn up or pull back to base.", "conviction": 2, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.806176+00:00", "symbol": "MSFT", "action": "buy", "reasoning": "Above both SMAs, RSI 76.1 elevated, MACD bullish, +10% 5-day and +11% 20-day. Strong trend momentum; slight negative sentiment is noise against technicals.", "conviction": 4, "target_pct": 0.08}, {"ts": "2026-06-02T02:37:03.805967+00:00", "symbol": "META", "action": "hold", "reasoning": "Below both SMAs, slight downside momentum over 5d/20d, though MACD is at inflection. Not ready; wait for close above 20-day SMA.", "conviction": 2, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.805742+00:00", "symbol": "MCHP", "action": "hold", "reasoning": "Below 20-day SMA, RSI 35.8, MACD bearish. Weak technicals; positive sentiment not enough without price confirmation.", "conviction": 2, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.805417+00:00", "symbol": "HPE", "action": "hold", "reasoning": "RSI 86.3 is severely overbought (extreme risk of pullback); +64.5% 20-day is parabolic. Too extended; chasing would violate playbook.", "conviction": 1, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.805141+00:00", "symbol": "GOOGL", "action": "hold", "reasoning": "Below 20-day SMA, MACD bearish crossover despite positive sentiment; technicals do not confirm. Same thesis as GOOG.", "conviction": 2, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.804924+00:00", "symbol": "GOOG", "action": "hold", "reasoning": "Below 20-day SMA, MACD bearish crossover, negative sentiment, weak 5d/20d returns. Wait for a base to form.", "conviction": 2, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.804690+00:00", "symbol": "CRDO", "action": "buy", "reasoning": "Above both SMAs, RSI 55.5, MACD bullish, +22.6% 20-day return with strong momentum and positive news. Solid uptrend.", "conviction": 4, "target_pct": 0.08}, {"ts": "2026-06-02T02:37:03.803254+00:00", "symbol": "COIN", "action": "hold", "reasoning": "Below both SMAs, RSI 32.6 (weak), MACD bearish, slightly negative sentiment. No edge here.", "conviction": 1, "target_pct": 0.0}, {"ts": "2026-06-02T02:37:03.802848+00:00", "symbol": "AVGO", "action": "buy", "reasoning": "Above both 20 and 50-day SMAs, RSI 63.2 elevated but healthy, MACD bullish, +11% 5-day return with momentum. Clean trend setup.", "conviction": 4, "target_pct": 0.08}, {"ts": "2026-06-02T02:37:03.802510+00:00", "symbol": "AMZN", "action": "hold", "reasoning": "Below 20-day SMA, RSI 42.8 (neutral), MACD bearish crossover. Weak technicals despite news coverage; not a buy signal.", "conviction": 2, "target_pct": 0.0}]};
+
+const usd = n => (n<0?'-':'')+'$'+Math.abs(n).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+const pct = n => (n>=0?'+':'')+n.toFixed(2)+'%';
+const sign = n => n>=0?'pos':'neg';
+const esc = s => (s||'').replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+const shortTime = ts => { const d=new Date(ts); return isNaN(d)?'':d.toLocaleString('en-US',{month:'short',day:'numeric',hour:'numeric',minute:'2-digit'}); };
+
+// ---- updated stamp ----
+document.getElementById('updated').textContent = 'Updated ' + shortTime(D.generated);
+
+// ---- KPIs ----
+const kpis = [
+  {label:'Total Return', value:usd(D.total_pl), delta:pct(D.total_pct*100), cls:sign(D.total_pl)},
+  {label:'Equity', value:usd(D.equity), delta:'from '+usd(D.start_equity), cls:'muted'},
+  {label:"Day P&L", value:usd(D.day_pl), delta:pct(D.day_pct*100), cls:sign(D.day_pl)},
+  {label:'Cash', value:usd(D.cash), delta:(D.open_count+' positions'), cls:'muted'},
+  {label:'Open Positions', value:String(D.open_count), delta:(D.winners+' in profit'), cls:'muted'},
+  {label:'Win Rate', value:(D.win_rate==null?'—':(D.win_rate*100).toFixed(0)+'%'), delta:'open positions green', cls:'muted'},
+];
+document.getElementById('kpis').innerHTML = kpis.map(k=>`
+  <div class="card kpi">
+    <div class="label">${k.label}</div>
+    <div class="value ${k.cls}">${k.value}</div>
+    <div class="delta ${k.cls}">${k.delta}</div>
+  </div>`).join('');
+
+// ---- Equity curve (inline SVG, Catmull-Rom smoothing) ----
+function drawChart(){
+  const W=1000,H=300,padL=8,padR=8,padT=18,padB=26;
+  let pts = D.curve.map(p=>p.v);
+  if(pts.length<2) pts = pts.length? [pts[0],pts[0]] : [D.start_equity,D.start_equity];
+  const base = D.start_equity;
+  let lo=Math.min(base,...pts), hi=Math.max(base,...pts);
+  if(hi===lo){hi=lo+1;lo=lo-1;}
+  const pad=(hi-lo)*0.12; lo-=pad; hi+=pad;
+  const x=i=>padL+(i/(pts.length-1))*(W-padL-padR);
+  const y=v=>padT+(1-(v-lo)/(hi-lo))*(H-padT-padB);
+  const coords=pts.map((v,i)=>({x:x(i),y:y(v)}));
+  // smooth path
+  let d='M'+coords[0].x.toFixed(1)+','+coords[0].y.toFixed(1);
+  for(let i=0;i<coords.length-1;i++){
+    const p0=coords[i-1]||coords[i],p1=coords[i],p2=coords[i+1],p3=coords[i+2]||p2;
+    const c1x=p1.x+(p2.x-p0.x)/6,c1y=p1.y+(p2.y-p0.y)/6;
+    const c2x=p2.x-(p3.x-p1.x)/6,c2y=p2.y-(p3.y-p1.y)/6;
+    d+=`C${c1x.toFixed(1)},${c1y.toFixed(1)} ${c2x.toFixed(1)},${c2y.toFixed(1)} ${p2.x.toFixed(1)},${p2.y.toFixed(1)}`;
+  }
+  const area=d+` L${coords[coords.length-1].x.toFixed(1)},${(H-padB)} L${coords[0].x.toFixed(1)},${(H-padB)} Z`;
+  const up = pts[pts.length-1] >= base;
+  const stroke = up? 'var(--pos)':'var(--neg)';
+  const baseY=y(base).toFixed(1);
+  document.getElementById('chart').innerHTML=`
+  <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Equity curve">
+    <defs>
+      <linearGradient id="fill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="${up?'#22c55e':'#f43f5e'}" stop-opacity="0.28"/>
+        <stop offset="100%" stop-color="${up?'#22c55e':'#f43f5e'}" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    <line x1="0" y1="${baseY}" x2="${W}" y2="${baseY}" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5"/>
+    <text class="axis" x="6" y="${(+baseY-6)}">baseline ${usd(base)}</text>
+    <path d="${area}" fill="url(#fill)"/>
+    <path d="${d}" fill="none" stroke="${stroke}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>`;
+}
+drawChart();
+
+// ---- Positions ----
+(function(){
+  const el=document.getElementById('positions');
+  if(!D.positions.length){el.innerHTML='<div class="empty">No open positions yet.</div>';return;}
+  el.innerHTML=`<table><thead><tr>
+    <th>Ticker</th><th class="num">Shares</th><th class="num">Avg Entry</th>
+    <th class="num">Price</th><th class="num">Value</th><th class="num">P/L</th></tr></thead>
+    <tbody>${D.positions.map(p=>`<tr>
+      <td>${esc(p.symbol)}</td>
+      <td class="num">${p.qty}</td>
+      <td class="num">${usd(p.avg_entry)}</td>
+      <td class="num">${usd(p.current_price)}</td>
+      <td class="num">${usd(p.market_value)}</td>
+      <td class="num ${sign(p.plpc)}">${pct(p.plpc)}</td>
+    </tr>`).join('')}</tbody></table>`;
+})();
+
+// ---- Trades ----
+(function(){
+  const el=document.getElementById('trades');
+  if(!D.trades.length){el.innerHTML='<div class="empty">No trades yet.</div>';return;}
+  el.innerHTML=`<table><thead><tr>
+    <th>Time</th><th>Side</th><th>Ticker</th><th class="num">Shares</th><th>Reason</th></tr></thead>
+    <tbody>${D.trades.map(t=>{
+      const side=(t.side||'').toLowerCase();
+      return `<tr>
+        <td class="muted">${shortTime(t.ts)}</td>
+        <td><span class="badge ${side}">${side.toUpperCase()}</span></td>
+        <td>${esc(t.symbol)}</td>
+        <td class="num">${t.qty!=null?t.qty:'—'}</td>
+        <td class="muted">${esc(t.reason||'')}</td>
+      </tr>`;}).join('')}</tbody></table>`;
+})();
+
+// ---- Decision feed ----
+(function(){
+  const el=document.getElementById('decisions');
+  if(!D.decisions.length){el.innerHTML='<div class="empty">No decisions logged yet.</div>';return;}
+  el.innerHTML=D.decisions.map(d=>{
+    const a=(d.action||'hold').toLowerCase();
+    const conv=d.conviction!=null?(' &middot; conviction '+d.conviction+'/5'):'';
+    return `<div class="item">
+      <div><span class="badge ${a}">${a.toUpperCase()}</span></div>
+      <div>
+        <div class="sym">${esc(d.symbol)}</div>
+        <div class="rsn">${esc(d.reasoning||'')}</div>
+        <div class="meta">${shortTime(d.ts)}${conv}</div>
+      </div>
+    </div>`;}).join('');
+})();
+</script>
+</body>
+</html>
