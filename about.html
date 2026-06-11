@@ -118,17 +118,68 @@
       </div>
       <div class="rule">
         <div class="rule-num">10</div>
+        <div class="rule-text"><strong>Trailing stops.</strong> Once a position peaks at +7.5%, the stop rises to breakeven — the trade becomes zero-risk. Once it peaks at +10%, the floor locks in +5% profit. Winners are protected automatically without giving back all the gains.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">11</div>
+        <div class="rule-text"><strong>52-week high proximity.</strong> Joe prefers names trading within 15% of their 52-week high — they carry the least overhead resistance. Names more than 30% below their highs are avoided unless there is a compelling catalyst.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">12</div>
+        <div class="rule-text"><strong>Relative strength vs. SPY.</strong> Each candidate is measured against SPY's 20-day return. Joe prioritises names outperforming the index. If a held position lags SPY by more than 5% over 20 days, it is flagged for exit — capital belongs in leaders, not laggards.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">13</div>
         <div class="rule-text"><strong>PDT-aware.</strong> On a sub-$25k account, pattern day trading rules cap same-day round trips. Joe never sells a position opened the same day.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">14</div>
+        <div class="rule-text"><strong>Intraday context.</strong> Joe sees real-time prices, not just yesterday's close. If a name is already up >10% today on the discovery news, it's likely extended — Joe requires higher conviction before entering. A stock down >5% today without explanation is flagged as a caution before buying into weakness.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">15</div>
+        <div class="rule-text"><strong>Macro calendar awareness.</strong> Joe checks for upcoming high-impact US events (Fed rate decisions, CPI, NFP, GDP) in the next 5 days. When a major macro event is ≤2 days away, Joe tightens stops, prefers smaller position sizes, and notes the event explicitly in his reasoning.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">16</div>
+        <div class="rule-text"><strong>Insider buying signal.</strong> Joe checks SEC Form 4 filings for open-market purchases by executives and directors. When insiders buy their own stock in the open market — putting personal capital in at current prices — it is a high-conviction positive signal. Used as a tiebreaker: it raises conviction by one level when other signals are already constructive.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">17</div>
+        <div class="rule-text"><strong>Partial exits.</strong> Joe can scale out of positions rather than exit all-or-nothing. When a position is up significantly with an intact trend, Joe may sell half to bank gains and let the remainder run with a tight trailing stop — rather than waiting for either a full take-profit or a reversal.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">18</div>
+        <div class="rule-text"><strong>Market breadth filter.</strong> Joe monitors how many of the 11 major sector ETFs are above their 200-day moving averages. When fewer than 45% of sectors are trending up, the market's internal health is deteriorating even if the S&amp;P 500 index itself hasn't rolled over yet — a leading warning before the headline index breaks.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">19</div>
+        <div class="rule-text"><strong>Stale position exits.</strong> Capital that isn't moving is wasted capital. When a position has been held for 21+ days with less than 4% gain, Joe sees a <em>stale</em> flag and must justify continued holding with a specific near-term catalyst — not hope. A hard auto-exit fires unconditionally at 35 days with less than 2% gain. This is how professional traders enforce capital discipline: dead money gets recycled into names with actual momentum.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">20</div>
+        <div class="rule-text"><strong>Re-entry cooldown.</strong> When a position is stopped out, Joe cannot re-enter that same stock for 5 days. A failed breakout reveals something about the stock's supply and demand — re-buying immediately is often buying the same weakness twice. The pause forces Joe to wait for the stock to build a new base before re-entering.</div>
       </div>
     </div>
   </section>
 
   <section>
     <h2>How Joe Learns</h2>
-    <p>Every evening after market close, a stronger model (Sonnet) reviews the day's
-    decisions and outcomes and rewrites Joe's <strong>playbook</strong> — a living document
-    of lessons, what's working, and what to avoid. Joe reads the playbook before every
-    decision the next day. Lessons compound over time.</p>
+    <p>Joe has two learning loops running in parallel, both fed with structured performance data:</p>
+    <div class="card">
+      <div class="rule">
+        <div class="rule-num" style="font-size:10px;padding-top:3px">DAILY</div>
+        <div class="rule-text"><strong>Nightly reflection.</strong> After every market close, Sonnet reviews the day's decisions and trade outcomes — including entry price, exit price, and hold time — plus rolling 30-day win rate, P&amp;L distributions, and exit-reason breakdowns. It also reviews <strong>counterfactual lessons</strong>: names Joe passed on and what they did afterward (missed gains and correct passes). The output is a rewritten <strong>playbook</strong> Joe reads before every hourly decision.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num" style="font-size:10px;padding-top:3px">WEEKLY</div>
+        <div class="rule-text"><strong>Sunday strategy review.</strong> Each Sunday, Sonnet takes a wider view — 7 and 30-day performance stats, sector rotation, macro regime — and produces a <strong>strategy document</strong> with sector tilts, a watchlist for the week ahead, and directional adjustments. Joe reads this too, every hour.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num" style="font-size:10px;padding-top:3px">BACKTEST</div>
+        <div class="rule-text"><strong>Historical validation.</strong> Joe's strategy rules can be backtested against years of historical data — no LLM calls, fully deterministic, fills at next-day open with slippage. Outputs Sharpe ratio, CAGR, max drawdown, win rate, and per-exit-reason breakdowns. Used to validate signal edge and tune stop thresholds before trading with real capital.</div>
+      </div>
+    </div>
   </section>
 
   <section>
