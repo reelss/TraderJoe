@@ -58,6 +58,9 @@ jobs:
       # The token is injected so the subprocess git push authenticates.
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+      # Opt into Node.js 24 for actions (becomes default 2026-06-16).
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
+
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
@@ -98,14 +101,14 @@ jobs:
           fi
 
       - name: Persist logs
-        # Commit any new log entries so the digest and reflect jobs can read them.
-        # [skip ci] prevents this commit from re-triggering the workflow.
-        # No-op if nothing changed (quiet market day, market closed, etc).
-        # Pull --rebase before push because publish.py (called inside the cycle
-        # script) independently clones + pushes the dashboard to main, which
-        # advances remote HEAD. Without the rebase, this push would be rejected.
+        # Commit logs + dashboard so the digest/reflect jobs can read them.
+        # dashboard.html is regenerated in the workspace by build_dashboard()
+        # every cycle — must be staged before git pull --rebase or the rebase
+        # will abort with "unstaged changes". [skip ci] prevents re-triggering.
+        # Pull --rebase handles the case where publish.py pushed dashboard
+        # changes from its own clone mid-cycle, advancing remote HEAD.
         run: |
-          git add logs/
+          git add logs/ dashboard.html
           if ! git diff --cached --quiet; then
             git commit -m "chore: cycle log update [skip ci]"
             git pull --rebase origin main
