@@ -1,0 +1,84 @@
+# Joe — Sunday Strategy Review
+#
+# Runs at 4:00pm CT every Sunday.
+# CDT = UTC-5 (summer) → 21:00 UTC.
+# CST = UTC-6 (winter) → 22:00 UTC. This file targets 21:00 UTC (CDT/summer).
+# In winter the review fires at 3:00pm CST — still a useful pre-market window.
+#
+# What it does:
+#   - Reviews 7-day and 30-day performance across all trades.
+#   - Calls Claude Sonnet for a sector-rotation and macro-regime analysis.
+#   - Writes strategy.md with sector tilts, watchlist, and directional guidance.
+#   - Joe reads strategy.md before every hourly decision cycle all week.
+#
+# Entry point: python -m agent.main weekly
+# Docs: agent/weekly.py
+
+name: Joe — Sunday Strategy Review
+
+on:
+  # 4:00pm CT Sunday (CDT = UTC-5 → 21:00 UTC).
+  schedule:
+    - cron: "0 21 * * 0"
+
+  # Allow manual trigger from the GitHub Actions UI.
+  workflow_dispatch:
+
+permissions:
+  contents: write  # needed to commit strategy.md back to the repo
+
+jobs:
+  weekly:
+    name: Sunday strategy review
+    runs-on: ubuntu-latest
+
+    env:
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python (latest stable)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git for strategy publish
+        run: |
+          git config --global user.name "reelss"
+          git config --global user.email "reelss@gmail.com"
+          git config --global credential.helper store
+          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+
+      - name: Run weekly strategy review
+        run: python -m agent.main weekly
+
+      - name: Persist strategy
+        # Commit the new strategy.md so every hourly cycle this week reads it.
+        # [skip ci] prevents this commit from re-triggering the workflow.
+        run: |
+          git add strategy.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: weekly strategy update [skip ci]"
+            git push
+          fi

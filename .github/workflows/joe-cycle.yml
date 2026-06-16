@@ -1,0 +1,109 @@
+# Joe — Hourly Trading Cycle
+#
+# Runs at the top of each hour during US market hours (9:30am–4pm ET weekdays).
+# EDT = UTC-4 (June–November); EST = UTC-5 (December–March).
+# This cron covers 10:00am–4:00pm ET in summer (14:00–20:00 UTC) which safely
+# includes the full session. The script itself skips gracefully if the market
+# is actually closed (pre-market, holiday, or between the cron window and open).
+#
+# Entry point: python -m agent.main cycle
+# Docs: agent/main.py → agent/cycle.py
+
+name: Joe — Hourly Cycle
+
+on:
+  # Top of each hour, 10am–4pm ET (14:00–20:00 UTC), weekdays only.
+  # Note: cron uses UTC. EDT offset is UTC-4; EST is UTC-5.
+  # We run 14:00–20:00 UTC (10am–4pm EDT) so the full session is covered in summer.
+  # In winter (EST, UTC-5) this becomes 9am–3pm ET — still catches all core hours.
+  schedule:
+    - cron: "0 14-20 * * 1-5"   # top of hour, 10am–4pm ET (EDT) — full core session
+    - cron: "35 13 * * 1-5"     # 8:35am CT (CDT) — first cycle at market open
+
+  # Allow manual trigger from the GitHub Actions UI (useful for testing).
+  workflow_dispatch:
+    inputs:
+      force:
+        description: "Force run even if market is closed (pass --force)"
+        required: false
+        default: "false"
+        type: choice
+        options:
+          - "false"
+          - "true"
+
+permissions:
+  contents: write  # needed for dashboard publish to gh-pages via publish.py
+
+jobs:
+  cycle:
+    name: Trading cycle
+    runs-on: ubuntu-latest
+
+    env:
+      # Required credentials — set these in GitHub repo Settings → Secrets → Actions
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Optional sources — leave unset in GitHub Secrets if not using them;
+      # config.py degrades gracefully when these are empty.
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # publish.py pushes dashboard to GitHub Pages via git.
+      # The token is injected so the subprocess git push authenticates.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python (latest stable)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          # Cache busts when requirements.txt changes.
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git for dashboard publish
+        # publish.py pushes to GitHub Pages via subprocess git.
+        # Wire the GITHUB_TOKEN into the credential helper so it authenticates.
+        run: |
+          git config --global user.name "reelss"
+          git config --global user.email "reelss@gmail.com"
+          git config --global credential.helper store
+          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+
+      - name: Run trading cycle
+        # --force is only passed when manually triggered with force=true.
+        run: |
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            python -m agent.main cycle --force
+          else
+            python -m agent.main cycle
+          fi
+
+      - name: Persist logs
+        # Commit any new log entries so the digest and reflect jobs can read them.
+        # [skip ci] prevents this commit from re-triggering the workflow.
+        # No-op if nothing changed (quiet market day, market closed, etc).
+        run: |
+          git add logs/
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: cycle log update [skip ci]"
+            git push
+          fi

@@ -1,0 +1,35 @@
+# Secrets — never commit
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+
+# Logs are committed so GitHub Actions jobs can read them across runs.
+# The .env file (secrets) stays gitignored — never commit that.
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated / published files (output of dashboard_page.py and publish.py)
+dashboard.md
+index.html
+
+# Windows Task Scheduler scripts (replaced by GitHub Actions)
+create_eod_task.ps1
+create_open_task.ps1
+
+# Unrelated files in project root
+vip-room-poc*
+Social_Media_Marketing_Packages_Research.md
+MORNING_BRIEF_GH_ACTIONS.md
+
+# One-off scripts
+tsla_watch.py
+
+# Claude Code session files
+.claude/

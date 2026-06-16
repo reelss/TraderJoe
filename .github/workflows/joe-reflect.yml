@@ -1,0 +1,93 @@
+# Joe — Nightly Reflection
+#
+# Runs at 4:35pm ET (5 minutes after the digest) on weekdays.
+# EDT = UTC-4 (summer) → 20:35 UTC.
+# EST = UTC-5 (winter) → 21:35 UTC. This file targets 20:35 UTC (EDT/summer).
+#
+# What it does:
+#   - Reviews today's trades, decisions, and account state.
+#   - Calls Claude Sonnet (the stronger model) to distill durable lessons.
+#   - Rewrites playbook.md with updated rules — the playbook is read before
+#     every decision cycle, so lessons compound over time.
+#   - Skips silently if there was no activity today (weekend/holiday).
+#
+# Entry point: python -m agent.main reflect
+# Docs: agent/reflect.py
+
+name: Joe — Nightly Reflection
+
+on:
+  # 4:35pm ET, year-round. 21:35 UTC = 4:35pm EST (correct in winter).
+  # In summer (EDT, UTC-4) this fires at 5:35pm ET — still well after close.
+  # Runs 5 minutes after the digest so the digest has time to finish first.
+  schedule:
+    - cron: "35 21 * * 1-5"
+
+  # Allow manual trigger from the GitHub Actions UI (useful for testing).
+  workflow_dispatch:
+
+permissions:
+  contents: write  # needed for dashboard publish to gh-pages via publish.py
+
+jobs:
+  reflect:
+    name: Nightly reflection
+    runs-on: ubuntu-latest
+
+    env:
+      # Required credentials — set these in GitHub repo Settings → Secrets → Actions
+      ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+      ALPACA_SECRET_KEY: ${{ secrets.ALPACA_SECRET_KEY }}
+      ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+
+      # Optional sources — leave unset in GitHub Secrets if not using them.
+      REDDIT_CLIENT_ID: ${{ secrets.REDDIT_CLIENT_ID }}
+      REDDIT_CLIENT_SECRET: ${{ secrets.REDDIT_CLIENT_SECRET }}
+      REDDIT_USER_AGENT: ${{ secrets.REDDIT_USER_AGENT }}
+      FINNHUB_API_KEY: ${{ secrets.FINNHUB_API_KEY }}
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      # publish.py pushes dashboard to GitHub Pages via git.
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python (latest stable)
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: pip-${{ runner.os }}-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            pip-${{ runner.os }}-
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Configure git for dashboard publish
+        # publish.py pushes to GitHub Pages via subprocess git.
+        # Wire the GITHUB_TOKEN into the credential helper so it authenticates.
+        run: |
+          git config --global user.name "reelss"
+          git config --global user.email "reelss@gmail.com"
+          git config --global credential.helper store
+          echo "https://x-access-token:${GITHUB_TOKEN}@github.com" > ~/.git-credentials
+
+      - name: Run nightly reflection
+        run: python -m agent.main reflect
+
+      - name: Persist playbook
+        # Commit the rewritten playbook.md so tomorrow's fresh checkout reads it.
+        # [skip ci] prevents this commit from re-triggering the workflow.
+        run: |
+          git add playbook.md
+          if ! git diff --cached --quiet; then
+            git commit -m "chore: playbook update [skip ci]"
+            git push
+          fi

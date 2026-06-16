@@ -1,0 +1,224 @@
+{"ts": "2026-06-11T13:35:39.800797+00:00", "event": "pass", "symbol": "ADBE", "price_at_pass": 227.99, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.801054+00:00", "event": "pass", "symbol": "ARTY", "price_at_pass": 69.3, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.801254+00:00", "event": "pass", "symbol": "FTXL", "price_at_pass": 251.87, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.801414+00:00", "event": "pass", "symbol": "NAVN", "price_at_pass": 23.15, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.801584+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 201.69, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.801743+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 176.32, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.802289+00:00", "event": "pass", "symbol": "OXM", "price_at_pass": 37.93, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.802484+00:00", "event": "pass", "symbol": "QQQ", "price_at_pass": 697.7, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.802657+00:00", "event": "pass", "symbol": "SOXX", "price_at_pass": 558.57, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T13:35:39.802835+00:00", "event": "pass", "symbol": "SPY", "price_at_pass": 727.28, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.682226+00:00", "event": "pass", "symbol": "DKNG", "price_at_pass": 29.61, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.689490+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 346.53, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.689700+00:00", "event": "pass", "symbol": "INTC", "price_at_pass": 115.16, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T14:35:41.689870+00:00", "event": "pass", "symbol": "LUNR", "price_at_pass": 29.77, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.690010+00:00", "event": "pass", "symbol": "NAVN", "price_at_pass": 23.68, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T14:35:41.690147+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 202.26, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.690282+00:00", "event": "pass", "symbol": "SFIX", "price_at_pass": 4.18, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T14:35:41.690453+00:00", "event": "pass", "symbol": "SOXX", "price_at_pass": 566.5, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.690595+00:00", "event": "pass", "symbol": "SPY", "price_at_pass": 728.33, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T14:35:41.690734+00:00", "event": "pass", "symbol": "V", "price_at_pass": 320.81, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.456238+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 291.89, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.456737+00:00", "event": "pass", "symbol": "DKNG", "price_at_pass": 29.5, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.456900+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 347.52, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.457047+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 89.87, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T15:35:43.457192+00:00", "event": "pass", "symbol": "INTC", "price_at_pass": 112.82, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T15:35:43.457342+00:00", "event": "pass", "symbol": "LUNR", "price_at_pass": 30.06, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.457483+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 200.81, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.457632+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 110.92, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.457788+00:00", "event": "pass", "symbol": "SNDK", "price_at_pass": 1737.3, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T15:35:43.457938+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 385.51, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T15:35:43.458094+00:00", "event": "pass", "symbol": "VELO", "price_at_pass": 28.89, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T16:35:38.379073+00:00", "event": "pass", "symbol": "CHWY", "price_at_pass": 18.89, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T16:35:38.379261+00:00", "event": "pass", "symbol": "INTC", "price_at_pass": 112.95, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T16:35:38.379414+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 178.53, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T16:35:38.379568+00:00", "event": "pass", "symbol": "SNDK", "price_at_pass": 1772.88, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T16:35:38.379719+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 386.55, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.216684+00:00", "event": "pass", "symbol": "AVGO", "price_at_pass": 382.75, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.216877+00:00", "event": "pass", "symbol": "CHWY", "price_at_pass": 18.86, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217047+00:00", "event": "pass", "symbol": "INTC", "price_at_pass": 114.41, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217205+00:00", "event": "pass", "symbol": "MNTS", "price_at_pass": 16.12, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217387+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 178.59, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217553+00:00", "event": "pass", "symbol": "QQQ", "price_at_pass": 710.2, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217702+00:00", "event": "pass", "symbol": "SNDK", "price_at_pass": 1829.91, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T17:35:40.217853+00:00", "event": "pass", "symbol": "SOXX", "price_at_pass": 572.83, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T17:35:40.217997+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 5.7, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.351845+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 295.52, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.370381+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 239.14, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.370625+00:00", "event": "pass", "symbol": "GOOG", "price_at_pass": 350.24, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.370852+00:00", "event": "pass", "symbol": "MNTS", "price_at_pass": 17.06, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T18:35:35.371051+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 388.46, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.371243+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 952.1, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.371440+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 202.49, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.371675+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 179.88, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.371828+00:00", "event": "pass", "symbol": "QQQ", "price_at_pass": 709.79, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T18:35:35.371972+00:00", "event": "pass", "symbol": "SATS", "price_at_pass": 125.09, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T18:35:35.372128+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 5.8, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T18:35:35.372276+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 392.11, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:38.972797+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 295.89, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.013841+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 93.52, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.014132+00:00", "event": "pass", "symbol": "MNTS", "price_at_pass": 16.65, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.014331+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 388.69, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.014515+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 988.67, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T19:35:39.014687+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 205.06, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.014848+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 184.58, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.015001+00:00", "event": "pass", "symbol": "PL", "price_at_pass": 34.12, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.015166+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 6.1, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.015319+00:00", "event": "pass", "symbol": "SPY", "price_at_pass": 739.64, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.015467+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 398.95, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:35:39.015623+00:00", "event": "pass", "symbol": "VOO", "price_at_pass": 680.01, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.595153+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 295.76, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.608428+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 92.66, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.608607+00:00", "event": "pass", "symbol": "MNTS", "price_at_pass": 16.61, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.608778+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 390.5, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.608934+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 205.25, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.609088+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 184.69, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.609242+00:00", "event": "pass", "symbol": "PL", "price_at_pass": 34.31, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.609431+00:00", "event": "pass", "symbol": "SNDK", "price_at_pass": 1892.49, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.609599+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 5.98, "action": "hold", "conviction": 2}
+{"ts": "2026-06-11T19:55:40.609771+00:00", "event": "pass", "symbol": "SPY", "price_at_pass": 738.31, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.609930+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 399.11, "action": "hold", "conviction": 1}
+{"ts": "2026-06-11T19:55:40.610084+00:00", "event": "pass", "symbol": "VOO", "price_at_pass": 678.74, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.233456+00:00", "event": "pass", "symbol": "ADBE", "price_at_pass": 197.06, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.242206+00:00", "event": "pass", "symbol": "ALAB", "price_at_pass": 377.04, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T13:35:45.242367+00:00", "event": "pass", "symbol": "AMD", "price_at_pass": 501.74, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.242516+00:00", "event": "pass", "symbol": "AVTX", "price_at_pass": 14.15, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.242655+00:00", "event": "pass", "symbol": "CRWV", "price_at_pass": 99.47, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.242792+00:00", "event": "pass", "symbol": "FRVO", "price_at_pass": 34.67, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.242936+00:00", "event": "pass", "symbol": "KDP", "price_at_pass": 31.38, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T13:35:45.243071+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 383.42, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.243225+00:00", "event": "pass", "symbol": "NBIS", "price_at_pass": 230.71, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T13:35:45.243380+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 204.03, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.243520+00:00", "event": "pass", "symbol": "QQQ", "price_at_pass": 713.83, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T13:35:45.243654+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 108.68, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.475896+00:00", "event": "pass", "symbol": "ADBE", "price_at_pass": 204.62, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.476527+00:00", "event": "pass", "symbol": "AMD", "price_at_pass": 514.36, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T14:35:39.476699+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 236.45, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.476861+00:00", "event": "pass", "symbol": "LEN", "price_at_pass": 92.06, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.477009+00:00", "event": "pass", "symbol": "META", "price_at_pass": 566.6, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.477153+00:00", "event": "pass", "symbol": "NOK", "price_at_pass": 14.89, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.477302+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 205.6, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T14:35:39.477445+00:00", "event": "pass", "symbol": "SATS", "price_at_pass": 118.28, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.477592+00:00", "event": "pass", "symbol": "SHAZ", "price_at_pass": 69.0, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T14:35:39.477734+00:00", "event": "pass", "symbol": "XLV", "price_at_pass": 153.61, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T15:35:36.500750+00:00", "event": "pass", "symbol": "MS", "price_at_pass": 216.18, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T15:35:36.500982+00:00", "event": "pass", "symbol": "NOK", "price_at_pass": 15.01, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T15:35:36.501195+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 206.58, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T15:35:36.501396+00:00", "event": "pass", "symbol": "XLV", "price_at_pass": 153.77, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T16:35:33.173840+00:00", "event": "pass", "symbol": "BAC", "price_at_pass": 55.73, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T16:35:33.174092+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 361.48, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T16:35:33.174292+00:00", "event": "pass", "symbol": "GS", "price_at_pass": 1056.07, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T16:35:33.174489+00:00", "event": "pass", "symbol": "LEN", "price_at_pass": 90.59, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T16:35:33.174676+00:00", "event": "pass", "symbol": "MS", "price_at_pass": 213.64, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T16:35:33.174868+00:00", "event": "pass", "symbol": "SATS", "price_at_pass": 108.66, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T16:35:33.175056+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 4.18, "action": "hold", "conviction": 2}
+{"ts": "2026-06-12T19:35:44.068832+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 237.42, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069016+00:00", "event": "pass", "symbol": "COIN", "price_at_pass": 161.06, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069175+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 359.91, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069334+00:00", "event": "pass", "symbol": "MH", "price_at_pass": 12.12, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069488+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 123.72, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069658+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 204.07, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069816+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 183.19, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.069973+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 3.92, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:35:44.070193+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 402.2, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.097166+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 238.18, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.097342+00:00", "event": "pass", "symbol": "ASTS", "price_at_pass": 82.52, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.097496+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 358.94, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.097639+00:00", "event": "pass", "symbol": "MH", "price_at_pass": 12.05, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.097787+00:00", "event": "pass", "symbol": "MNTS", "price_at_pass": 11.97, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.098043+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 204.81, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.098218+00:00", "event": "pass", "symbol": "RDW", "price_at_pass": 15.18, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.098369+00:00", "event": "pass", "symbol": "SPCE", "price_at_pass": 3.88, "action": "hold", "conviction": 1}
+{"ts": "2026-06-12T19:55:31.098515+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 403.77, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.410072+00:00", "event": "pass", "symbol": "DDOG", "price_at_pass": 231.95, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.410536+00:00", "event": "pass", "symbol": "JRSH", "price_at_pass": 4.71, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.410727+00:00", "event": "pass", "symbol": "PLAY", "price_at_pass": 13.19, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.410913+00:00", "event": "pass", "symbol": "QQQ", "price_at_pass": 738.63, "action": "hold", "conviction": 2}
+{"ts": "2026-06-15T13:35:39.411099+00:00", "event": "pass", "symbol": "SOXX", "price_at_pass": 619.29, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.411329+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 414.88, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T13:35:39.411517+00:00", "event": "pass", "symbol": "TSLL", "price_at_pass": 14.15, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.726210+00:00", "event": "pass", "symbol": "AXTI", "price_at_pass": 110.61, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.726747+00:00", "event": "pass", "symbol": "CUPR", "price_at_pass": 8.68, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.726952+00:00", "event": "pass", "symbol": "DDOG", "price_at_pass": 231.48, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.727119+00:00", "event": "pass", "symbol": "PAYX", "price_at_pass": 101.18, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.727270+00:00", "event": "pass", "symbol": "SMCI", "price_at_pass": 31.44, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.727425+00:00", "event": "pass", "symbol": "SOXX", "price_at_pass": 621.22, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.727565+00:00", "event": "pass", "symbol": "TSEM", "price_at_pass": 284.25, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.727708+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 409.66, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T14:35:35.745890+00:00", "event": "resolved", "symbol": "SOXX", "pass_ts": "2026-06-11T13:35:39.802657+00:00", "price_at_pass": 558.57, "price_now": 621.22, "return_pct": 0.1122, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T15:35:41.740292+00:00", "event": "resolved", "symbol": "GOOGL", "pass_ts": "2026-06-11T14:35:41.689490+00:00", "price_at_pass": 346.53, "price_now": 371.8, "return_pct": 0.0729, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T15:35:41.740496+00:00", "event": "resolved", "symbol": "SOXX", "pass_ts": "2026-06-11T14:35:41.690453+00:00", "price_at_pass": 566.5, "price_now": 623.38, "return_pct": 0.1004, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T16:35:34.528765+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 246.42, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.532315+00:00", "event": "pass", "symbol": "CUPR", "price_at_pass": 9.25, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.532542+00:00", "event": "pass", "symbol": "DDOG", "price_at_pass": 237.95, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.532741+00:00", "event": "pass", "symbol": "FLY", "price_at_pass": 34.01, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.532936+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 134.72, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.533120+00:00", "event": "pass", "symbol": "NFLX", "price_at_pass": 81.44, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.533277+00:00", "event": "pass", "symbol": "RGNT", "price_at_pass": 6.66, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T16:35:34.533434+00:00", "event": "pass", "symbol": "ROKU", "price_at_pass": 143.29, "action": "hold", "conviction": 2}
+{"ts": "2026-06-15T17:35:38.692010+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 246.65, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.762878+00:00", "event": "pass", "symbol": "CMCSA", "price_at_pass": 24.18, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.763115+00:00", "event": "pass", "symbol": "CRM", "price_at_pass": 166.05, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.763332+00:00", "event": "pass", "symbol": "FOXA", "price_at_pass": 55.27, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.763507+00:00", "event": "pass", "symbol": "META", "price_at_pass": 595.17, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.763686+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 1075.55, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.763844+00:00", "event": "pass", "symbol": "NFLX", "price_at_pass": 81.27, "action": "hold", "conviction": 0}
+{"ts": "2026-06-15T17:35:38.763996+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 212.46, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T17:35:38.771848+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T13:35:39.801584+00:00", "price_at_pass": 201.69, "price_now": 212.46, "return_pct": 0.0534, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T17:35:38.772058+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T14:35:41.690147+00:00", "price_at_pass": 202.26, "price_now": 212.46, "return_pct": 0.0504, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T17:35:38.772235+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T15:35:43.457483+00:00", "price_at_pass": 200.81, "price_now": 212.46, "return_pct": 0.058, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T18:35:38.866453+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 246.21, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.883779+00:00", "event": "pass", "symbol": "BMNR", "price_at_pass": 17.29, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884004+00:00", "event": "pass", "symbol": "DASH", "price_at_pass": 167.77, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884216+00:00", "event": "pass", "symbol": "FOXA", "price_at_pass": 54.69, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884389+00:00", "event": "pass", "symbol": "META", "price_at_pass": 594.78, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884565+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 398.56, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884733+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 133.27, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.884890+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 1083.72, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.885048+00:00", "event": "pass", "symbol": "RDDT", "price_at_pass": 178.07, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.885207+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 109.3, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.885359+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 646.34, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.885521+00:00", "event": "pass", "symbol": "XSD", "price_at_pass": 633.34, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T18:35:38.901222+00:00", "event": "resolved", "symbol": "RKLB", "pass_ts": "2026-06-11T15:35:43.457632+00:00", "price_at_pass": 110.92, "price_now": 109.3, "return_pct": -0.0146, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T18:35:38.901396+00:00", "event": "resolved", "symbol": "AMZN", "pass_ts": "2026-06-11T18:35:35.370381+00:00", "price_at_pass": 239.14, "price_now": 246.21, "return_pct": 0.0296, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T18:35:38.901554+00:00", "event": "resolved", "symbol": "MSFT", "pass_ts": "2026-06-11T18:35:35.371051+00:00", "price_at_pass": 388.46, "price_now": 398.56, "return_pct": 0.026, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T18:35:38.901699+00:00", "event": "resolved", "symbol": "MU", "pass_ts": "2026-06-11T18:35:35.371243+00:00", "price_at_pass": 952.1, "price_now": 1083.72, "return_pct": 0.1382, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.533267+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 245.63, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.541989+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 369.49, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.542183+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 98.6, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.542372+00:00", "event": "pass", "symbol": "META", "price_at_pass": 591.21, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.542558+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 399.07, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.542740+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 131.11, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.542957+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 211.44, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.543176+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 192.41, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.543392+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 109.44, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.543608+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 409.9, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:35:44.543838+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 648.49, "action": "hold", "conviction": 2}
+{"ts": "2026-06-15T19:35:44.645992+00:00", "event": "resolved", "symbol": "ORCL", "pass_ts": "2026-06-11T13:35:39.801743+00:00", "price_at_pass": 176.32, "price_now": 192.41, "return_pct": 0.0913, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.646342+00:00", "event": "resolved", "symbol": "GOOGL", "pass_ts": "2026-06-11T15:35:43.456900+00:00", "price_at_pass": 347.52, "price_now": 369.49, "return_pct": 0.0632, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.646550+00:00", "event": "resolved", "symbol": "HOOD", "pass_ts": "2026-06-11T15:35:43.457047+00:00", "price_at_pass": 89.87, "price_now": 98.6, "return_pct": 0.0971, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.646752+00:00", "event": "resolved", "symbol": "SNDK", "pass_ts": "2026-06-11T15:35:43.457788+00:00", "price_at_pass": 1737.3, "price_now": 2088.81, "return_pct": 0.2023, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.646923+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T15:35:43.457938+00:00", "price_at_pass": 385.51, "price_now": 409.9, "return_pct": 0.0633, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647079+00:00", "event": "resolved", "symbol": "ORCL", "pass_ts": "2026-06-11T16:35:38.379414+00:00", "price_at_pass": 178.53, "price_now": 192.41, "return_pct": 0.0777, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647222+00:00", "event": "resolved", "symbol": "SNDK", "pass_ts": "2026-06-11T16:35:38.379568+00:00", "price_at_pass": 1772.88, "price_now": 2088.81, "return_pct": 0.1782, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647363+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T16:35:38.379719+00:00", "price_at_pass": 386.55, "price_now": 409.9, "return_pct": 0.0604, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647508+00:00", "event": "resolved", "symbol": "ORCL", "pass_ts": "2026-06-11T17:35:40.217387+00:00", "price_at_pass": 178.59, "price_now": 192.41, "return_pct": 0.0774, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647650+00:00", "event": "resolved", "symbol": "SNDK", "pass_ts": "2026-06-11T17:35:40.217702+00:00", "price_at_pass": 1829.91, "price_now": 2088.81, "return_pct": 0.1415, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.647814+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T18:35:35.371440+00:00", "price_at_pass": 202.49, "price_now": 211.44, "return_pct": 0.0442, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:35:44.647998+00:00", "event": "resolved", "symbol": "ORCL", "pass_ts": "2026-06-11T18:35:35.371675+00:00", "price_at_pass": 179.88, "price_now": 192.41, "return_pct": 0.0697, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.648206+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T18:35:35.372276+00:00", "price_at_pass": 392.11, "price_now": 409.9, "return_pct": 0.0454, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:35:44.648399+00:00", "event": "resolved", "symbol": "HOOD", "pass_ts": "2026-06-11T19:35:39.013841+00:00", "price_at_pass": 93.52, "price_now": 98.6, "return_pct": 0.0543, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-15T19:35:44.648593+00:00", "event": "resolved", "symbol": "MSFT", "pass_ts": "2026-06-11T19:35:39.014331+00:00", "price_at_pass": 388.69, "price_now": 399.07, "return_pct": 0.0267, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:35:44.648783+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T19:35:39.014687+00:00", "price_at_pass": 205.06, "price_now": 211.44, "return_pct": 0.0311, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:35:44.648969+00:00", "event": "resolved", "symbol": "ORCL", "pass_ts": "2026-06-11T19:35:39.014848+00:00", "price_at_pass": 184.58, "price_now": 192.41, "return_pct": 0.0424, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:35:44.649162+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T19:35:39.015467+00:00", "price_at_pass": 398.95, "price_now": 409.9, "return_pct": 0.0274, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-15T19:55:34.744362+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 246.0, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.744832+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 98.01, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.744976+00:00", "event": "pass", "symbol": "META", "price_at_pass": 591.74, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.745124+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 399.05, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.745260+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 131.19, "action": "hold", "conviction": 0}
+{"ts": "2026-06-15T19:55:34.745390+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 212.0, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.745521+00:00", "event": "pass", "symbol": "ORCL", "price_at_pass": 191.77, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.748812+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 109.44, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.749009+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 409.47, "action": "hold", "conviction": 1}
+{"ts": "2026-06-15T19:55:34.749187+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 652.09, "action": "hold", "conviction": 2}

@@ -1,0 +1,844 @@
+[2026-06-02T02:36:53.178991+00:00] Equity $10000.00 | cash $10000.00 | 0 open positions
+[2026-06-02T02:36:53.599436+00:00] source[alpaca_news]: 131 ticker signals
+[2026-06-02T02:36:53.960105+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T02:36:54.430917+00:00] 12 candidates -> brain
+[2026-06-02T02:37:03.802202+00:00] Market note: Three solid setups (AVGO, CRDO, MSFT) above key moving averages with bullish technicals; avoid overbought parabolic moves (HPE, SMCI) and undercut names (AMZN, GOOG, META).
+[2026-06-02T02:37:03.941714+00:00] Order BUY AVGO -> OrderStatus.ACCEPTED
+[2026-06-02T02:37:03.993831+00:00] Order BUY CRDO -> OrderStatus.ACCEPTED
+[2026-06-02T02:37:04.044472+00:00] Order BUY MSFT -> OrderStatus.ACCEPTED
+[2026-06-02T02:37:04.044840+00:00] Cycle complete.
+[2026-06-02T03:21:28.188635+00:00] Market closed — skipping cycle.
+[2026-06-02T03:48:18.796504+00:00] Digest: day +0.00%, total +0.00%, 3 trades — sent to Slack: True
+[2026-06-02T03:55:08.707476+00:00] Playbook updated (3 trades, 12 decisions today).
+[2026-06-02T04:01:51.597478+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T04:14:25.728889+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T04:14:27.746605+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T13:05:56.628355+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T13:05:58.822924+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T13:08:43.703459+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T13:08:45.839318+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T13:35:04.096388+00:00] Equity $9942.50 | cash $8963.20 | 1 open positions
+[2026-06-02T13:35:04.547362+00:00] source[alpaca_news]: 132 ticker signals
+[2026-06-02T13:35:10.334939+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T13:35:10.860249+00:00] 12 candidates -> brain
+[2026-06-02T13:35:21.890930+00:00] Market note: Parabolic extremes (ARM, HPE, MRVL, HPQ) are traps—avoid chasing. CRDO and MSFT offer clean triple-confirmation entries above both SMAs with healthy RSI and bullish MACD. Sell UK to redeploy. Cash is abundant; sit out overbought names and wait for bases.
+[2026-06-02T13:35:22.034849+00:00] Order FAILED UK: {"available":"0","code":40310000,"existing_qty":"320","held_for_orders":"320","message":"insufficient qty available for order (requested: 320, available: 0)","symbol":"UK"}
+[2026-06-02T13:35:22.117941+00:00] BUY 3 CRDO @~$239.65 (stop $220.48/target $275.60) -> OrderStatus.PENDING_NEW
+[2026-06-02T13:35:22.236289+00:00] BUY 1 MSFT @~$448.42 (stop $412.55/target $515.68) -> OrderStatus.PENDING_NEW
+[2026-06-02T13:35:22.236596+00:00] Cycle complete.
+[2026-06-02T13:35:22.628630+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T13:35:24.831197+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T14:35:06.591668+00:00] Equity $9838.26 | cash $8453.66 | 2 open positions
+[2026-06-02T14:35:07.009372+00:00] source[alpaca_news]: 110 ticker signals
+[2026-06-02T14:35:08.705219+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T14:35:09.324812+00:00] 13 candidates -> brain
+[2026-06-02T14:35:22.935118+00:00] Market note: Exit UK at stop; hold MSFT on thesis. Sit out all overbought parabolic moves (ARM, HPE, MRVL, HPQ); the playbook works—discipline beats FOMO. Cash waits for clean triple-confirmation setups.
+[2026-06-02T14:35:23.022971+00:00] EXIT UK -> OrderStatus.PENDING_NEW
+[2026-06-02T14:35:23.023337+00:00] Cycle complete.
+[2026-06-02T14:35:23.449869+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T14:35:25.962139+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T15:35:04.841245+00:00] Equity $9835.40 | cash $9391.26 | 1 open positions
+[2026-06-02T15:35:05.386633+00:00] source[alpaca_news]: 112 ticker signals
+[2026-06-02T15:35:08.005237+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T15:35:08.703457+00:00] 13 candidates -> brain
+[2026-06-02T15:35:21.450151+00:00] Market note: Momentum names (AMD, ASTS) show clean triple-confirmation setups; buying small with tight stops. Extended parabolic movers (MU, NBIS, PURR, AAPL) avoided—playbook saves losers. MSFT holds; NVDA and others on wait for MACD bullish flip.
+[2026-06-02T15:35:21.500544+00:00] Order FAILED AMD: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T15:35:21.556555+00:00] Order FAILED ASTS: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T15:35:21.556842+00:00] Cycle complete.
+[2026-06-02T15:35:21.943679+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T15:35:24.132969+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T16:35:05.516682+00:00] Equity $9835.06 | cash $9391.26 | 1 open positions
+[2026-06-02T16:35:05.901550+00:00] source[alpaca_news]: 84 ticker signals
+[2026-06-02T16:35:06.274434+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T16:35:06.931323+00:00] 12 candidates -> brain
+[2026-06-02T16:35:21.335443+00:00] Market note: Market showing selective strength in large-cap AI/cloud (MSFT, ORCL, DELL overbought) and mid-cap momentum (PLTR, TMHC). Avoid chasing parabolic moves; PLTR offers a clean triple-confirmation entry. Hold MSFT; stay flat on overextended names until bases form.
+[2026-06-02T16:35:21.397434+00:00] Order FAILED PLTR: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T16:35:21.397838+00:00] Cycle complete.
+[2026-06-02T16:35:21.824605+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T16:35:23.947318+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T17:35:04.708276+00:00] Equity $9835.02 | cash $9391.26 | 1 open positions
+[2026-06-02T17:35:05.088798+00:00] source[alpaca_news]: 158 ticker signals
+[2026-06-02T17:35:08.241172+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T17:35:08.955634+00:00] 13 candidates -> brain
+[2026-06-02T17:35:21.986110+00:00] Market note: Tech rally is hot but overbought; AVGO and PLTR offer clean triple-confirmation entries while most parabolic names (MRVL, ORCL, QQQ, AAPL) are avoid traps. MSFT holds; rest cash.
+[2026-06-02T17:35:22.038007+00:00] Order FAILED AVGO: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T17:35:22.081020+00:00] Order FAILED PLTR: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T17:35:22.081271+00:00] Cycle complete.
+[2026-06-02T17:35:22.474618+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T17:35:24.539416+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T18:35:04.714040+00:00] Equity $9833.90 | cash $9391.26 | 1 open positions
+[2026-06-02T18:35:05.123706+00:00] source[alpaca_news]: 159 ticker signals
+[2026-06-02T18:35:07.611077+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T18:35:08.494888+00:00] 12 candidates -> brain
+[2026-06-02T18:35:21.771630+00:00] Market note: Tech remains strong on AI tailwinds (QQQ +10.6% 20d), but parabolic names (HPE, MRVL, PURR) are trap setups—avoid. AVGO offers triple confirmation at reasonable RSI; MSFT holds. Stay small, patient, and disciplined on entries.
+[2026-06-02T18:35:21.822963+00:00] Order FAILED AVGO: {"code":40310100,"message":"trade denied due to pattern day trading protection"}
+[2026-06-02T18:35:21.823366+00:00] Cycle complete.
+[2026-06-02T18:35:22.285443+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T18:35:24.361764+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T18:42:26.723806+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T18:42:28.652069+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T19:35:04.820400+00:00] Equity $9833.21 | cash $9391.26 | 1 open positions
+[2026-06-02T19:35:05.256240+00:00] source[alpaca_news]: 159 ticker signals
+[2026-06-02T19:35:06.176354+00:00] source[finnhub]: 0 ticker signals
+[2026-06-02T19:35:06.914060+00:00] 13 candidates -> brain
+[2026-06-02T19:35:20.523781+00:00] Market note: Chip sector has elevated overbought conditions (MRVL, HPE, AMD parabolic); only AVGO has clean risk/reward with news catalyst and healthy RSI. Keep MSFT and add disciplined AVGO; avoid chasing extended momentum. Plenty of cash to stay selective.
+[2026-06-02T19:35:20.566119+00:00] BUY 1 AVGO @~$477.81 -> OrderStatus.PENDING_NEW
+[2026-06-02T19:35:20.566462+00:00] Cycle complete.
+[2026-06-02T19:35:20.964411+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T19:35:22.940809+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-02T20:35:06.605465+00:00] Market closed — skipping cycle.
+[2026-06-02T21:30:31.355466+00:00] Playbook updated (15 trades, 101 decisions today).
+[2026-06-02T21:35:06.440316+00:00] Digest: day -1.61%, total -1.61%, 15 trades — sent to Slack: True
+[2026-06-02T21:35:06.819172+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-02T21:35:09.269521+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T13:35:03.725800+00:00] Equity $9831.86 | cash $8913.12 | 2 open positions
+[2026-06-03T13:35:04.329225+00:00] Regime: risk_on (SPY 758.27 vs 200d SMA 682.89)
+[2026-06-03T13:35:04.737391+00:00] source[alpaca_news]: 151 ticker signals
+[2026-06-03T13:35:13.064983+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T13:35:13.601120+00:00] 12 candidates -> brain
+[2026-06-03T13:35:26.477157+00:00] Market note: Risk_on regime intact (SPY > 200-day). PDT counter at 2 = no new buy orders today. Hold AVGO/MSFT; avoid all overbought extended names (CRWD, MRVL, HPE, MU, PANW) until they base—chasing parabolic moves is a trap regardless of positive news.
+[2026-06-03T13:35:26.481914+00:00] Cycle complete.
+[2026-06-03T13:35:26.885973+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T13:35:29.637339+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T14:35:03.957970+00:00] Equity $9827.89 | cash $8913.12 | 2 open positions
+[2026-06-03T14:35:04.377450+00:00] Regime: risk_on (SPY 756.59 vs 200d SMA 682.88)
+[2026-06-03T14:35:04.828355+00:00] source[alpaca_news]: 101 ticker signals
+[2026-06-03T14:35:07.000409+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T14:35:07.431199+00:00] 12 candidates -> brain
+[2026-06-03T14:35:21.597931+00:00] Market note: Risk-on regime intact; SPY above 200-day SMA. PDT counter at 2 = no new buys permitted today. AVGO and MSFT holdings maintain theses; focus on sitting tight and avoiding parabolic traps (AMD, MRVL, CRWD, PANW all extended). Cash is the best position given limited entry clarity and overbought readings across most candidates.
+[2026-06-03T14:35:21.601865+00:00] Cycle complete.
+[2026-06-03T14:35:21.980317+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T14:35:24.316926+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T15:35:05.664165+00:00] Equity $9826.99 | cash $8913.12 | 2 open positions
+[2026-06-03T15:35:06.155217+00:00] Regime: risk_on (SPY 755.62 vs 200d SMA 682.88)
+[2026-06-03T15:35:06.631075+00:00] source[alpaca_news]: 96 ticker signals
+[2026-06-03T15:35:07.024783+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T15:35:07.446360+00:00] 12 candidates -> brain
+[2026-06-03T15:35:19.440845+00:00] Market note: Risk-on regime (SPY above 200-day SMA), but daytrade_count at 2 blocks new buys for rest of session. Hold AVGO and MSFT; avoid parabolic AMD/DELL/HPE/MU. Wait for technical confirmations (SMAs, MACD bullish, RSI reset) on extended setups.
+[2026-06-03T15:35:19.444556+00:00] Cycle complete.
+[2026-06-03T15:35:19.855937+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T15:35:22.262021+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T16:35:03.804903+00:00] Equity $9822.86 | cash $8913.12 | 2 open positions
+[2026-06-03T16:35:04.308676+00:00] Regime: risk_on (SPY 754.41 vs 200d SMA 682.87)
+[2026-06-03T16:35:04.722420+00:00] source[alpaca_news]: 84 ticker signals
+[2026-06-03T16:35:09.611925+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T16:35:10.497357+00:00] 13 candidates -> brain
+[2026-06-03T16:35:24.260717+00:00] Market note: Risk-on regime intact (SPY above 200-day SMA); market healthy. PDT counter at 2 blocks new buys today. Focus: hold AVGO (core, RSI approaching trim), hold MSFT (thesis intact despite loss), wait for parabolic names (AMD, CRWD, PANW) to base before re-entry. No new buys until PDT resets or clear triple-confirmation setup emerges.
+[2026-06-03T16:35:24.264662+00:00] Cycle complete.
+[2026-06-03T16:35:24.667845+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T16:35:26.801573+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T17:35:04.005451+00:00] Equity $9823.62 | cash $8913.12 | 2 open positions
+[2026-06-03T17:35:04.512131+00:00] Regime: risk_on (SPY 754.91 vs 200d SMA 682.87)
+[2026-06-03T17:35:04.918012+00:00] source[alpaca_news]: 145 ticker signals
+[2026-06-03T17:35:05.332214+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T17:35:05.746862+00:00] 13 candidates -> brain
+[2026-06-03T17:35:22.775474+00:00] Market note: Market regime is risk_on (SPY above 200-day SMA). PDT counter at 2 limits new buys today; ORCL is a high-conviction triple-confirmation setup and the only new buy warranted. Trim or hold existing positions. Avoid all parabolic names (MRVL, XOS) and oversold reversals without MACD confirmation (GOOG, GOOGL). Cash remaining positions and wait for cleaner entries.
+[2026-06-03T17:35:22.816740+00:00] BUY 3 ORCL @~$229.26 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-03T17:35:22.817120+00:00] Cycle complete.
+[2026-06-03T17:35:23.206578+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T17:35:25.390527+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T18:35:03.622957+00:00] Equity $9838.06 | cash $8225.13 | 3 open positions
+[2026-06-03T18:35:04.091278+00:00] Regime: risk_on (SPY 755.73 vs 200d SMA 682.88)
+[2026-06-03T18:35:04.549862+00:00] source[alpaca_news]: 162 ticker signals
+[2026-06-03T18:35:05.528850+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T18:35:06.085442+00:00] 14 candidates -> brain
+[2026-06-03T18:35:22.570936+00:00] Market note: Risk-on regime confirmed (SPY above 200-day). PDT limit (daytrade_count = 2) blocks new buy orders. Hold core AVGO/MSFT/ORCL, avoid all parabolic names (HPE, MRVL, HYLN, XOS, NVTS). Sit in cash; re-engage after PDT counter resets or on genuine pullback entries (AAPL/NVDA MACD flip, PLTR above 200-day).
+[2026-06-03T18:35:22.575442+00:00] Cycle complete.
+[2026-06-03T18:35:22.950254+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T18:35:25.093742+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T19:35:05.464162+00:00] Equity $9831.97 | cash $8225.13 | 3 open positions
+[2026-06-03T19:35:05.855947+00:00] Regime: risk_on (SPY 754.79 vs 200d SMA 682.87)
+[2026-06-03T19:35:06.282137+00:00] source[alpaca_news]: 168 ticker signals
+[2026-06-03T19:35:07.971390+00:00] source[finnhub]: 0 ticker signals
+[2026-06-03T19:35:08.886450+00:00] 14 candidates -> brain
+[2026-06-03T19:35:23.507820+00:00] Market note: Market is risk_on (SPY above 200-day SMA). Account has daytrade_count = 2, so NO new buy orders are allowed today. Focus on holding quality positions (AVGO, MSFT, ORCL) and waiting for tomorrow's reset to scout fresh setups from pullbacks.
+[2026-06-03T19:35:23.512174+00:00] Cycle complete.
+[2026-06-03T19:35:23.891991+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T19:35:26.376895+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T20:33:26.425495+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T20:35:03.646148+00:00] Market closed — skipping cycle.
+[2026-06-03T20:36:49.308444+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T21:30:33.676048+00:00] Playbook updated (1 trades, 90 decisions today).
+[2026-06-03T21:31:31.322034+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-03T21:35:05.707282+00:00] Digest: day -1.19%, total -2.84%, 1 trades — sent to Slack: True
+[2026-06-03T21:35:06.116561+00:00] Dashboard written: C:\Users\reels\OneDrive\Documents\Claude\Projects\Trading Project\dashboard.html
+[2026-06-03T21:35:08.001626+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T13:35:10.566693+00:00] Equity $9743.90 | cash $8225.12 | 3 open positions
+[2026-06-04T13:35:11.097762+00:00] Regime: risk_on (SPY 752.91 vs 200d SMA 683.42)
+[2026-06-04T13:35:11.557351+00:00] source[alpaca_news]: 136 ticker signals
+[2026-06-04T13:35:19.852213+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T13:35:20.319592+00:00] 11 candidates -> brain
+[2026-06-04T13:35:35.720112+00:00] Market note: Risk-on regime intact; market above 200-day. Priority: exit AVGO (stop breached), hold ORCL (clean triple-confirm), sit tight on extended names (CRWD, SOXX) awaiting pullback. Daytrade count 0; can initiate if opportunity arises, but no chase. Cash 82% — selective.
+[2026-06-04T13:35:35.890037+00:00] EXIT AVGO (stop_loss, -14.0%) -> OrderStatus.PENDING_NEW
+[2026-06-04T13:35:35.890323+00:00] Cycle complete.
+[2026-06-04T13:35:36.349154+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T13:35:38.421662+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T14:35:04.256495+00:00] Equity $9768.34 | cash $8636.95 | 2 open positions
+[2026-06-04T14:35:04.648166+00:00] Regime: risk_on (SPY 754.0 vs 200d SMA 683.42)
+[2026-06-04T14:35:05.076471+00:00] source[alpaca_news]: 114 ticker signals
+[2026-06-04T14:35:13.341363+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T14:35:13.948183+00:00] 13 candidates -> brain
+[2026-06-04T14:35:29.232926+00:00] Market note: Risk-on regime and SPY above 200-day SMA allows fresh buys. ORCL (triple confirmation) holds; SOXX and UNH offer clean trend entries with real momentum/catalyst. Avoid all parabolic names (CRWD, PANW, MU) and sub-SMA20 plays until confirmed bases form. Exit MSFT to raise dry powder for higher-conviction setups.
+[2026-06-04T14:35:29.390309+00:00] EXIT MSFT (brain_sell, -4.1%) -> OrderStatus.PENDING_NEW
+[2026-06-04T14:35:29.463219+00:00] BUY 1 SOXX @~$591.18 (stop 10.8%) -> OrderStatus.PENDING_NEW
+[2026-06-04T14:35:29.519181+00:00] BUY 2 UNH @~$399.58 (stop 6.2%) -> OrderStatus.PENDING_NEW
+[2026-06-04T14:35:29.519433+00:00] Cycle complete.
+[2026-06-04T14:35:29.996612+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T14:35:32.336703+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T15:35:06.363875+00:00] Equity $9778.20 | cash $7677.00 | 3 open positions
+[2026-06-04T15:35:06.749016+00:00] Regime: risk_on (SPY 755.64 vs 200d SMA 683.43)
+[2026-06-04T15:35:07.185958+00:00] source[alpaca_news]: 93 ticker signals
+[2026-06-04T15:35:09.983996+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T15:35:10.682837+00:00] 13 candidates -> brain
+[2026-06-04T15:35:26.428617+00:00] Market note: Risk-on regime intact (SPY above 200 SMA). Holding three core positions (ORCL, SOXX, UNH); adding IGV on clean triple-confirmation setup. Most mega-cap tech remains below key moving averages (GOOG, GOOGL, AAPL) — wait for MACD and price confirmation before chasing. PDT count at 0; no constraint on new buys this session.
+[2026-06-04T15:35:26.481337+00:00] BUY 9 IGV @~$100.63 (stop 8.3%) -> OrderStatus.PENDING_NEW
+[2026-06-04T15:35:26.481633+00:00] Cycle complete.
+[2026-06-04T15:35:27.025508+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T15:35:29.417281+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T16:35:04.456288+00:00] Equity $9758.12 | cash $6771.16 | 4 open positions
+[2026-06-04T16:35:04.872296+00:00] Regime: risk_on (SPY 756.33 vs 200d SMA 683.43)
+[2026-06-04T16:35:05.288921+00:00] source[alpaca_news]: 90 ticker signals
+[2026-06-04T16:35:11.332498+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T16:35:12.358621+00:00] 15 candidates -> brain
+[2026-06-04T16:35:28.850146+00:00] Market note: Market is risk_on (SPY above 200-day SMA). Current portfolio is well-positioned (4 holdings, 3 of 4 with clean setups). No new buys today—all candidates are either parabolic (MU, RDW, SOXL), broken technicals below SMA20 (GOOG, GOOGL, FLY, RUM), or below long-term SMAs (HOOD, META, MSFT). Preserve dry powder; best risk/reward is sitting tight in existing positions and waiting for bases to form.
+[2026-06-04T16:35:28.853293+00:00] Cycle complete.
+[2026-06-04T16:35:29.366049+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T16:35:31.224175+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T17:35:04.445689+00:00] Equity $9772.00 | cash $6771.16 | 4 open positions
+[2026-06-04T17:35:04.856473+00:00] Regime: risk_on (SPY 757.21 vs 200d SMA 683.44)
+[2026-06-04T17:35:05.296049+00:00] source[alpaca_news]: 134 ticker signals
+[2026-06-04T17:35:05.725693+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T17:35:06.749992+00:00] 16 candidates -> brain
+[2026-06-04T17:35:22.709990+00:00] Market note: Risk-on regime (SPY above 200-day SMA at 757 vs 683) supports holding existing trend positions; new entries require triple confirmation (trend + MACD bullish + RSI 50–75) and clean price structure. Parabolic moves (CRWD, MU, AAPL, MSFT) correctly avoided; dry powder maintained with daytrade_count at 0 for flexibility.
+[2026-06-04T17:35:22.713289+00:00] Cycle complete.
+[2026-06-04T17:35:23.180312+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T17:35:25.108256+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T18:50:39.598595+00:00] Equity $9785.63 | cash $6771.16 | 4 open positions
+[2026-06-04T18:50:40.128038+00:00] Regime: risk_on (SPY 757.88 vs 200d SMA 683.44)
+[2026-06-04T18:50:40.630703+00:00] source[alpaca_news]: 136 ticker signals
+[2026-06-04T18:50:41.386624+00:00] source[finnhub]: 0 ticker signals
+[2026-06-04T18:50:41.849703+00:00] 14 candidates -> brain
+[2026-06-04T18:50:58.511262+00:00] Market note: Risk-on regime confirmed (SPY above 200d SMA). Current holdings (IGV, ORCL, SOXX, UNH) are solid; selectively add HOOD and JPM on clean triple-confirmation setups. Daytrade count at 0 — room to move. Avoid all parabolic names (CRWD, XOS, CIEN) and wait for MACD/price confirmation on AMZN, NVDA, AVGO. Cash ~68%, buying power ample; no urgency to force trades.
+[2026-06-04T18:50:58.588835+00:00] BUY 9 HOOD @~$87.38 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-04T18:50:58.641578+00:00] BUY 3 JPM @~$310.69 (stop 5.0%) -> OrderStatus.PENDING_NEW
+[2026-06-04T18:50:58.641823+00:00] Cycle complete.
+[2026-06-04T18:50:59.143615+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T18:51:01.268292+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T22:08:09.244921+00:00] Market closed — skipping cycle.
+[2026-06-04T22:14:03.392432+00:00] Digest: day -0.59%, total -2.35%, 7 trades — sent to Slack: True
+[2026-06-04T22:14:03.803379+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-04T22:14:05.966271+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-04T22:14:35.881997+00:00] Playbook updated (7 trades, 82 decisions today).
+[2026-06-05T12:37:59.667979+00:00] source[alpaca_news]: 125 ticker signals
+[2026-06-05T12:37:59.992341+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T12:47:27.906841+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T12:48:00.119507+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T13:35:03.907985+00:00] Equity $9731.52 | cash $5053.43 | 6 open positions
+[2026-06-05T13:35:05.328058+00:00] Regime: risk_on (SPY 752.59 vs 200d SMA 684.0) | VIX 15.4 (calm)
+[2026-06-05T13:35:07.097995+00:00] source[alpaca_news]: 144 ticker signals
+[2026-06-05T13:35:10.185638+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T13:35:16.224715+00:00] Earnings within 5 days: ORCL
+[2026-06-05T13:35:16.225038+00:00] 17 candidates -> brain
+[2026-06-05T13:35:37.350413+00:00] Market note: Risk-on regime, calm VIX (15.4), SPY above SMA200. Market is healthy. Focus on triple-confirmation setups above all SMAs with bullish MACD (PANW buy candidate fits; ORCL/SOXX holds solid but monitor ORCL earnings in 5d). Avoid parabolic entries (MRLN, IOT, TTAN RSI >68 + extended 20d). Exit HOOD (below SMA200). UNH capped at half-thesis due to bearish MACD; 6 positions, 2 slots open—disciplined entries only.
+[2026-06-05T13:35:37.430486+00:00] EXIT HOOD (brain_sell, -0.5%) -> OrderStatus.PENDING_NEW
+[2026-06-05T13:35:37.495554+00:00] BUY 2 PANW @~$276.88 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-05T13:35:37.495775+00:00] Cycle complete.
+[2026-06-05T13:35:37.941098+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T13:35:39.799102+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T14:35:04.080493+00:00] Equity $9688.43 | cash $5273.71 | 6 open positions
+[2026-06-05T14:35:05.548572+00:00] Regime: risk_on (SPY 750.43 vs 200d SMA 683.99) | VIX 15.4 (calm)
+[2026-06-05T14:35:07.252234+00:00] source[alpaca_news]: 89 ticker signals
+[2026-06-05T14:35:08.812734+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T14:35:09.982529+00:00] Earnings within 5 days: ABM, ORCL
+[2026-06-05T14:35:09.982842+00:00] 17 candidates -> brain
+[2026-06-05T14:35:30.575934+00:00] Market note: Risk-on regime with calm VIX (15.4); SPY above 200-day SMA. Portfolio is balanced (6 positions, $4.4k invested, $5.3k cash). Focus: defend holdings with MACD bearish (UNH, ORCL earnings), trim IGV below SMA200, protect PANW/SOXX into RSI extremes. No new buys until triple confirmation (SMA20/50/200 + MACD bullish + volume). Cash ready for genuine pullback entries.
+[2026-06-05T14:35:30.808827+00:00] EXIT IGV (brain_sell, -2.9%) -> OrderStatus.PENDING_NEW
+[2026-06-05T14:35:30.809173+00:00] Cycle complete.
+[2026-06-05T14:35:31.358111+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T14:35:33.352180+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T15:35:04.017672+00:00] Equity $9665.70 | cash $6153.48 | 5 open positions
+[2026-06-05T15:35:05.473152+00:00] Regime: risk_on (SPY 747.67 vs 200d SMA 683.98) | VIX 15.4 (calm)
+[2026-06-05T15:35:06.724645+00:00] Sector concentration warning: ['Technology'] >= 30% of invested equity
+[2026-06-05T15:35:07.105864+00:00] source[alpaca_news]: 98 ticker signals
+[2026-06-05T15:35:09.645091+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T15:35:10.756362+00:00] Earnings within 5 days: GIII, ORCL
+[2026-06-05T15:35:10.756755+00:00] 17 candidates -> brain
+[2026-06-05T15:35:37.452835+00:00] Market note: Risk-on regime intact (SPY 747.67, above SMA200; VIX 15.4 calm). Tech concentrated (34.4%); Banking at 26.7%. Sell ORCL (earnings 5d), hold core positions (SOXX, PANW, JPM, UNH), add MS (banking, triple confirmation, RSI near trim level). Most mega-cap names (AMZN, GOOG, GOOGL, NVDA, MSFT, META) are below SMA20 or SMA200 with MACD bearish — skip chasing; wait for SMA + MACD confirmation. Avoid GIII (earnings today, RSI 80), MRLN (below SMA50/200), all parabolic names.
+[2026-06-05T15:35:37.550546+00:00] EXIT ORCL (brain_sell, -4.6%) -> OrderStatus.PENDING_NEW
+[2026-06-05T15:35:37.612591+00:00] BUY 4 MS @~$215.03 (stop 6.2%) -> OrderStatus.PENDING_NEW
+[2026-06-05T15:35:37.612847+00:00] Cycle complete.
+[2026-06-05T15:35:38.077769+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T15:35:40.018751+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T16:35:05.437156+00:00] Equity $9639.46 | cash $5949.13 | 5 open positions
+[2026-06-05T16:35:06.903203+00:00] Regime: risk_on (SPY 744.24 vs 200d SMA 683.96) | VIX 15.4 (calm)
+[2026-06-05T16:35:08.492282+00:00] source[alpaca_news]: 90 ticker signals
+[2026-06-05T16:35:09.695406+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T16:35:10.685452+00:00] 15 candidates -> brain
+[2026-06-05T16:35:30.766873+00:00] Market note: Risk-on regime intact (SPY +$61 above 200d, VIX 15.4 calm, size_multiplier 1.0). Sector concentration moderate (Banking 25%, Financial 23%, HC 22%—no major overload). 5 of 5 current holdings are above key SMAs, but 3 have bearish MACD (JPM, SOXX, UNH) and warrant close monitoring; no new entries without bullish MACD + vol confirmation. All candidate entries fail: either MACD bearish, below SMA20/200, or vol too weak. Default to HOLD across the board. Playbook holds: triple confirmation is the gate.
+[2026-06-05T16:35:30.770086+00:00] Cycle complete.
+[2026-06-05T16:35:31.197449+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T16:35:33.373628+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T17:35:03.816388+00:00] Equity $9645.85 | cash $5949.13 | 5 open positions
+[2026-06-05T17:35:05.143378+00:00] Regime: risk_on (SPY 744.24 vs 200d SMA 683.96) | VIX 15.4 (calm)
+[2026-06-05T17:35:06.794685+00:00] source[alpaca_news]: 160 ticker signals
+[2026-06-05T17:35:07.551117+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T17:35:08.720046+00:00] 17 candidates -> brain
+[2026-06-05T17:35:25.349361+00:00] Market note: Regime is risk_on, VIX calm (15.4), but most mega-cap tech names remain below key moving averages with MACD bearish—no new buy signals yet. Hold existing positions (JPM, MS, PANW, SOXX, UNH) but do not add; watch for MACD bullish crosses on beaten-down names like AAPL, NVDA, GOOGL as next entry triggers.
+[2026-06-05T17:35:25.352605+00:00] Cycle complete.
+[2026-06-05T17:35:25.734850+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T17:35:27.702934+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T18:35:04.078280+00:00] Equity $9631.80 | cash $5949.13 | 5 open positions
+[2026-06-05T18:35:05.642752+00:00] Regime: risk_on (SPY 740.64 vs 200d SMA 683.94) | VIX 15.4 (calm)
+[2026-06-05T18:35:07.533197+00:00] source[alpaca_news]: 178 ticker signals
+[2026-06-05T18:35:13.851052+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T18:35:15.043591+00:00] 17 candidates -> brain
+[2026-06-05T18:35:34.704913+00:00] Market note: Risk-on regime and calm VIX (15.4) present, but existing holdings (SOXX, UNH, PANW) show early MACD weakness warnings. Do NOT open new positions; prioritize holding quality setups (JPM, MS) and tightening stops on extended/bearish-MACD names (PANW +38.7%, SOXX -7.3% with MACD rolling over). Banking/Financial sector is 48.5% of portfolio—no new concentration. Cash is 62% available; patience for cleaner triple-confirmation setups is your edge.
+[2026-06-05T18:35:34.708418+00:00] Cycle complete.
+[2026-06-05T18:35:35.110945+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T18:35:36.954906+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T19:35:04.239530+00:00] Equity $9626.16 | cash $5949.13 | 5 open positions
+[2026-06-05T19:35:05.719045+00:00] Regime: risk_on (SPY 737.92 vs 200d SMA 683.93) | VIX 15.4 (calm)
+[2026-06-05T19:35:07.279588+00:00] source[alpaca_news]: 177 ticker signals
+[2026-06-05T19:35:08.594300+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T19:35:09.586883+00:00] 17 candidates -> brain
+[2026-06-05T19:35:26.088876+00:00] Market note: Regime is risk_on, VIX calm at 15.4, SPY above 200-day SMA; hold existing positions with clean technicals (JPM, MS, PANW, SOXX, UNH) but do not add—most candidates lack MACD confirmation or are below key SMAs. Best entries remain paused; no new conviction setup yet.
+[2026-06-05T19:35:26.092477+00:00] Cycle complete.
+[2026-06-05T19:35:26.511449+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T19:35:28.537793+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T19:55:03.970374+00:00] Equity $9632.31 | cash $5949.13 | 5 open positions
+[2026-06-05T19:55:05.499969+00:00] Regime: risk_on (SPY 739.12 vs 200d SMA 683.93) | VIX 15.4 (calm)
+[2026-06-05T19:55:07.232067+00:00] source[alpaca_news]: 180 ticker signals
+[2026-06-05T19:55:07.546345+00:00] source[finnhub]: 0 ticker signals
+[2026-06-05T19:55:08.409722+00:00] 17 candidates -> brain
+[2026-06-05T19:55:30.462163+00:00] Market note: Risk-on regime intact (SPY above 200 SMA, VIX 15.4 calm). Banking/FinServ concentrated (~48% combined); avoid adding to those sectors. Current holdings (JPM, MS, UNH, PANW, SOXX) are adequately positioned with 5 open, 3 remaining slots available. Focus: hold existing triple-confirmation wins (JPM, PANW); tighten stops on SOXX (MACD flipped bearish) and MS (RSI overbought). No new buys until candidates show triple SMA + MACD bullish + volume confirmation together — the playbook's repeatable edge.
+[2026-06-05T19:55:30.466289+00:00] Cycle complete.
+[2026-06-05T19:55:30.854871+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T19:55:32.741183+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-05T20:35:03.869666+00:00] Market closed — skipping cycle.
+[2026-06-05T21:30:53.191867+00:00] Playbook updated (5 trades, 134 decisions today).
+[2026-06-05T21:35:05.444327+00:00] Digest: day -1.86%, total -3.96%, 5 trades — sent to Slack: True
+[2026-06-05T21:35:05.826829+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-05T21:35:07.926160+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-06T13:35:09.792662+00:00] Market closed — skipping cycle.
+[2026-06-06T14:35:03.832260+00:00] Market closed — skipping cycle.
+[2026-06-06T15:35:08.903976+00:00] Market closed — skipping cycle.
+[2026-06-06T16:35:05.340985+00:00] Market closed — skipping cycle.
+[2026-06-06T17:35:03.902648+00:00] Market closed — skipping cycle.
+[2026-06-06T18:35:45.743734+00:00] Market closed — skipping cycle.
+[2026-06-06T19:35:08.847034+00:00] Market closed — skipping cycle.
+[2026-06-06T20:35:03.902174+00:00] Market closed — skipping cycle.
+[2026-06-07T13:35:09.733099+00:00] Market closed — skipping cycle.
+[2026-06-07T14:35:04.075722+00:00] Market closed — skipping cycle.
+[2026-06-07T15:35:04.034513+00:00] Market closed — skipping cycle.
+[2026-06-07T16:35:04.083336+00:00] Market closed — skipping cycle.
+[2026-06-07T17:35:05.869203+00:00] Market closed — skipping cycle.
+[2026-06-07T18:35:04.419698+00:00] Market closed — skipping cycle.
+[2026-06-07T19:35:10.450549+00:00] Market closed — skipping cycle.
+[2026-06-07T20:35:06.268649+00:00] Market closed — skipping cycle.
+[2026-06-07T21:00:42.291796+00:00] Weekly strategy updated (28 trades, 407 decisions over 7 days).
+[2026-06-08T16:48:33.225908+00:00] Equity $9666.39 | cash $5949.11 | 5 open positions
+[2026-06-08T16:48:34.927335+00:00] Regime: risk_on (SPY 742.8 vs 200d SMA 684.45) | VIX 21.5 (elevated)
+[2026-06-08T16:48:36.538912+00:00] source[alpaca_news]: 116 ticker signals
+[2026-06-08T16:48:36.976547+00:00] source[finnhub]: 0 ticker signals
+[2026-06-08T16:48:38.302308+00:00] Earnings within 5 days: ORCL
+[2026-06-08T16:48:38.302588+00:00] 15 candidates -> brain
+[2026-06-08T16:48:55.125282+00:00] Market note: Risk-off distribution in effect: VIX 21.5 (elevated), XLK -6.7% and below SMA200, broad indices below SMA20. SELL both SOXX and PANW to correct sizing violations and cut broken theses; HOLD existing longs (JPM, MS, UNH) with tightened stops and NO new sector additions. Financials at concentration cap; Health Care is sector leader but UNH MACD is bearish—defend only. Cash raised; sit tight until tech stabilizes and MACD bullish signals re-emerge.
+[2026-06-08T16:48:55.229319+00:00] EXIT PANW (brain_sell, -4.6%) -> OrderStatus.PENDING_NEW
+[2026-06-08T16:48:55.296995+00:00] EXIT SOXX (brain_sell, -2.4%) -> OrderStatus.PENDING_NEW
+[2026-06-08T16:48:55.297251+00:00] Cycle complete.
+[2026-06-08T16:48:55.846177+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T16:48:58.416976+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T17:48:28.723899+00:00] Equity $9657.92 | cash $7059.22 | 3 open positions
+[2026-06-08T17:48:30.163117+00:00] Regime: risk_on (SPY 741.0 vs 200d SMA 684.44) | VIX 21.5 (elevated)
+[2026-06-08T17:48:31.029171+00:00] Sector concentration warning: ['Banking', 'Financial Services', 'Health Care'] >= 30% of invested equity
+[2026-06-08T17:48:31.389373+00:00] source[alpaca_news]: 158 ticker signals
+[2026-06-08T17:48:31.726676+00:00] source[finnhub]: 0 ticker signals
+[2026-06-08T17:48:32.339741+00:00] 11 candidates -> brain
+[2026-06-08T17:48:46.255902+00:00] Market note: Risk-off rotation in progress (VIX 21.5, all indices below SMA20, XLK -6.7%): no new longs, manage existing positions tightly, all three open positions are sector-concentrated and near trim zone—sit tight and wait for MACD recovery or take profits on any relief rally.
+[2026-06-08T17:48:46.257988+00:00] Cycle complete.
+[2026-06-08T17:48:46.644011+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T17:48:48.870055+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T18:48:27.169267+00:00] Equity $9663.94 | cash $7059.22 | 3 open positions
+[2026-06-08T18:48:28.654881+00:00] Regime: risk_on (SPY 741.38 vs 200d SMA 684.44) | VIX 21.5 (elevated)
+[2026-06-08T18:48:29.797814+00:00] Sector concentration warning: ['Banking', 'Financial Services', 'Health Care'] >= 30% of invested equity
+[2026-06-08T18:48:30.149652+00:00] source[alpaca_news]: 152 ticker signals
+[2026-06-08T18:48:30.466930+00:00] source[finnhub]: 0 ticker signals
+[2026-06-08T18:48:31.333704+00:00] 13 candidates -> brain
+[2026-06-08T18:48:48.496484+00:00] Market note: Risk-off distribution phase: VIX 21.5 (elevated), XLK -6.7%, all indices below SMA20. JPM/MS/UNH are sector-concentrated (3 concentrated sectors at 31–36%); reduce exposure, no new buys. MRVL and MU are parabolic traps. Only triple-confirmation, non-tech setups qualify; none pass today. Manage existing positions, preserve capital, default to HOLD.
+[2026-06-08T18:48:48.570896+00:00] EXIT MS (brain_sell, -0.8%) -> OrderStatus.PENDING_NEW
+[2026-06-08T18:48:48.571167+00:00] Cycle complete.
+[2026-06-08T18:48:48.955869+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T18:48:51.089260+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T19:48:27.123474+00:00] Equity $9664.05 | cash $7913.02 | 2 open positions
+[2026-06-08T19:48:28.585750+00:00] Regime: risk_on (SPY 739.79 vs 200d SMA 684.43) | VIX 21.5 (elevated)
+[2026-06-08T19:48:29.192522+00:00] Sector concentration warning: ['Banking', 'Health Care'] >= 30% of invested equity
+[2026-06-08T19:48:29.565271+00:00] source[alpaca_news]: 131 ticker signals
+[2026-06-08T19:48:30.313510+00:00] source[finnhub]: 0 ticker signals
+[2026-06-08T19:48:31.008958+00:00] 12 candidates -> brain
+[2026-06-08T19:48:47.409621+00:00] Market note: Risk-off regime: VIX 21.5 (elevated), XLK -6.7%, QQQ -4.8%, all indices below SMA20. Banking and Health Care sectors are concentrated (53% + 47% = 100% of invested equity). Do NOT open new positions; manage existing JPM and UNH tightly with stops, trim on any MACD rollover, and rotate into defensive sectors (XLP, XLRE) only when triple confirmation is clean. Cash is a position.
+[2026-06-08T19:48:47.412237+00:00] Cycle complete.
+[2026-06-08T19:48:47.772795+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T19:48:49.660185+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T19:55:02.202846+00:00] Equity $9658.44 | cash $7913.02 | 2 open positions
+[2026-06-08T19:55:03.513280+00:00] Regime: risk_on (SPY 739.2 vs 200d SMA 684.43) | VIX 21.5 (elevated)
+[2026-06-08T19:55:04.118351+00:00] Sector concentration warning: ['Banking', 'Health Care'] >= 30% of invested equity
+[2026-06-08T19:55:04.473601+00:00] source[alpaca_news]: 141 ticker signals
+[2026-06-08T19:55:04.763013+00:00] source[finnhub]: 0 ticker signals
+[2026-06-08T19:55:05.455809+00:00] 13 candidates -> brain
+[2026-06-08T19:55:22.693137+00:00] Market note: Risk-off tape with VIX 21.5 (elevated), XLK -6.7% and below SMA200. SPY below SMA20, QQQ MACD bearish. NO NEW LONGS — hold existing positions only (JPM, UNH both above SMAs), manage tight stops, take any gains. Banking and Health Care already at max sector concentration (53.5% + 46.5%). All tech/discretionary names below key SMAs or extended. Cash is king this cycle.
+[2026-06-08T19:55:22.695683+00:00] Cycle complete.
+[2026-06-08T19:55:23.074796+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T19:55:24.959957+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T20:48:32.345804+00:00] Market closed — skipping cycle.
+[2026-06-08T21:30:57.197897+00:00] Playbook updated (3 trades, 64 decisions today).
+[2026-06-08T21:35:05.698629+00:00] Digest: day +0.45%, total -3.40%, 3 trades — sent to Slack: True
+[2026-06-08T21:35:06.130882+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-08T21:35:08.510028+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-08T21:48:27.078632+00:00] Market closed — skipping cycle.
+[2026-06-08T22:48:27.043865+00:00] Market closed — skipping cycle.
+[2026-06-08T23:48:27.899037+00:00] Market closed — skipping cycle.
+[2026-06-09T13:35:06.556053+00:00] Equity $9673.76 | cash $7913.00 | 2 open positions
+[2026-06-09T13:35:08.027069+00:00] Regime: risk_on (SPY 743.63 vs 200d SMA 684.97) | VIX 18.9 (calm)
+[2026-06-09T13:35:08.671834+00:00] Sector concentration warning: ['Banking', 'Health Care'] >= 30% of invested equity
+[2026-06-09T13:35:09.240495+00:00] source[alpaca_news]: 140 ticker signals
+[2026-06-09T13:35:14.670611+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T13:35:15.648757+00:00] Earnings within 5 days: ORCL
+[2026-06-09T13:35:15.649141+00:00] 14 candidates -> brain
+[2026-06-09T13:35:32.844247+00:00] Market note: Risk-on regime with VIX calm (18.9), but tape remains fragile — major indices below SMA20, MACD broadly bearish, sector rotation favors Health Care (XLV) and Consumer Staples over Technology. Two quality positions (JPM, UNH) at sector concentration ceiling. No new entries justified; capital is best preserved in cash (81.8% equity) until Tech stabilizes or a clean triple-confirmation setup outside concentrated sectors appears. Stay disciplined.
+[2026-06-09T13:35:32.847286+00:00] Cycle complete.
+[2026-06-09T13:35:33.288617+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T13:35:35.448112+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T14:35:04.748035+00:00] Equity $9681.83 | cash $7913.00 | 2 open positions
+[2026-06-09T14:35:06.205985+00:00] Regime: risk_on (SPY 741.2 vs 200d SMA 684.96) | VIX 18.9 (calm)
+[2026-06-09T14:35:06.943069+00:00] Sector concentration warning: ['Banking', 'Health Care'] >= 30% of invested equity
+[2026-06-09T14:35:07.338657+00:00] source[alpaca_news]: 115 ticker signals
+[2026-06-09T14:35:07.703672+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T14:35:08.486806+00:00] 14 candidates -> brain
+[2026-06-09T14:35:29.407683+00:00] Market note: Risk-on regime + VIX calm (18.9), but tape is fragile—SPY below SMA20, MACD bearish at index level, -2.4% 5d. Banking and Health Care concentration at 98% of invested equity; sector limits hit. No new entries warranted: all Tech candidates (NVDA, INTC, GOOG, AVGO, MRVL, MU) show MACD bearish + volume weak despite high hype. MRVL is a parabolic trap (+57.9% 20d). Hold JPM and UNH only; preserve capital and wait for SPY + sector leader recovery (close above SMA20 for 2 sessions) before adding. Current 82% cash is correct.
+[2026-06-09T14:35:29.410630+00:00] Cycle complete.
+[2026-06-09T14:35:30.135186+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T14:35:32.191702+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T15:35:04.766062+00:00] Equity $9663.37 | cash $7913.00 | 2 open positions
+[2026-06-09T15:35:10.881788+00:00] Regime: risk_on (SPY 731.23 vs 200d SMA 684.91) | VIX 18.9 (calm)
+[2026-06-09T15:35:11.494428+00:00] Sector concentration warning: ['Banking', 'Health Care'] >= 30% of invested equity
+[2026-06-09T15:35:11.903642+00:00] source[alpaca_news]: 120 ticker signals
+[2026-06-09T15:35:14.509172+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T15:35:15.473698+00:00] Earnings within 5 days: ASO, SAIL, SJM, UNFI
+[2026-06-09T15:35:15.474061+00:00] 12 candidates -> brain
+[2026-06-09T15:35:32.796457+00:00] Market note: Risk-on regime (SPY above SMA200, VIX 18.9 calm) but tape is fragile—multiple earnings today remove liquidity and create binary risk. Both holdings (JPM, UNH) are clean and performing; both sectors (Banking, Health Care) are concentrated at 53% and 47%, capping new entries. Cash ~82% is correct: no valid triple-confirmation setups available, and parabolic names (MRVL, MU) are traps. Sit tight, execute discipline, wait for earnings to clear and a cleaner sector to emerge.
+[2026-06-09T15:35:32.847189+00:00] BUY 8 SJM @~$114.82 (stop 7.6%) -> OrderStatus.PENDING_NEW
+[2026-06-09T15:35:32.847504+00:00] Cycle complete.
+[2026-06-09T15:35:33.282023+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T15:35:35.302875+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T16:35:04.714482+00:00] Equity $9654.73 | cash $6992.28 | 3 open positions
+[2026-06-09T16:35:06.138510+00:00] Regime: risk_on (SPY 727.25 vs 200d SMA 684.89) | VIX 18.9 (calm)
+[2026-06-09T16:35:11.190802+00:00] Sector concentration warning: ['Banking', 'Food Products', 'Health Care'] >= 30% of invested equity
+[2026-06-09T16:35:11.566089+00:00] source[alpaca_news]: 99 ticker signals
+[2026-06-09T16:35:13.571639+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T16:35:14.455417+00:00] Earnings within 5 days: ASO, SAIL, SJM, UEC, UNFI
+[2026-06-09T16:35:14.455806+00:00] 12 candidates -> brain
+[2026-06-09T16:35:29.160747+00:00] Market note: Risk-on regime confirmed (VIX 18.9 calm, SPY above SMA200). Trim SJM for earnings today; hold JPM, UNH, tighten UNH stop. Sector concentration is pinned at max (Banking, Food, Health Care all ≥30%); no new sector additions. No tech buys until XLK reclaims SMA200. Cash ~72% is appropriate; wait for better entry confirmation before deploying further.
+[2026-06-09T16:35:29.163520+00:00] Cycle complete.
+[2026-06-09T16:35:29.690789+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T16:35:31.611214+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T17:35:10.972003+00:00] Equity $9645.17 | cash $6992.28 | 3 open positions
+[2026-06-09T17:35:12.325358+00:00] Regime: risk_on (SPY 731.71 vs 200d SMA 684.91) | VIX 18.9 (calm)
+[2026-06-09T17:35:13.225917+00:00] Sector concentration warning: ['Banking', 'Food Products', 'Health Care'] >= 30% of invested equity
+[2026-06-09T17:35:13.792165+00:00] source[alpaca_news]: 125 ticker signals
+[2026-06-09T17:35:15.335395+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T17:35:16.106994+00:00] Earnings within 5 days: ORCL, SJM
+[2026-06-09T17:35:16.107366+00:00] 14 candidates -> brain
+[2026-06-09T17:35:34.974677+00:00] Market note: Risk-on regime (VIX 18.9 calm, SPY above SMA200) but tape remains selective — XLK below SMA200 kills all tech entry candidates; three open positions (Banking, Food, Health) at concentration ceiling. Buying only NUVL (Health Care strength, clean technicals) on remainder of dry powder; holding JPM/UNH/SJM but require tighter stops on SJM (earnings imminent) and UNH (MACD signal tight). Cash 72% of account is correct.
+[2026-06-09T17:35:35.033828+00:00] BUY 6 NUVL @~$123.04 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-09T17:35:35.034073+00:00] Cycle complete.
+[2026-06-09T17:35:35.423132+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T17:35:37.776776+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T18:35:04.719245+00:00] Equity $9647.60 | cash $6254.04 | 4 open positions
+[2026-06-09T18:35:06.147848+00:00] Regime: risk_on (SPY 735.69 vs 200d SMA 684.93) | VIX 18.9 (calm)
+[2026-06-09T18:35:11.563014+00:00] source[alpaca_news]: 153 ticker signals
+[2026-06-09T18:35:19.811258+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T18:35:26.454892+00:00] 15 candidates -> brain
+[2026-06-09T18:35:43.602498+00:00] Market note: VIX calm (18.9) and SPY > SMA200 provide some relief, but Nasdaq remains weak and tech sector below SMA200 vetos most opportunities. Sector leaders are Health Care (XLV) and Staples (XLP); all tech entries blocked until XLK reclaims SMA200. Hold JPM, UNH, NUVL (clean technicals, sector tailwind); exit SJM (negative momentum, no leadership). Cash ~65% equity—correct posture for disciplined, high-conviction setups only.
+[2026-06-09T18:35:43.605431+00:00] Cycle complete.
+[2026-06-09T18:35:44.058431+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T18:35:46.253776+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T19:35:10.467523+00:00] Equity $9638.50 | cash $6254.04 | 4 open positions
+[2026-06-09T19:35:12.012994+00:00] Regime: risk_on (SPY 734.56 vs 200d SMA 684.93) | VIX 18.9 (calm)
+[2026-06-09T19:35:13.676656+00:00] source[alpaca_news]: 154 ticker signals
+[2026-06-09T19:35:17.705192+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T19:35:18.559300+00:00] Earnings within 5 days: SJM
+[2026-06-09T19:35:18.559734+00:00] 16 candidates -> brain
+[2026-06-09T19:35:38.105634+00:00] Market note: Risk-on regime + calm VIX (18.9) permit holding existing positions (JPM, UNH, NUVL core holds; SJM exits on earnings today). Technology remains broken below SMA20/50 — no new longs in XLK, XLC, or parabolic semiconductors (MRVL, MU) until sector headwinds reverse. Health Care (NUVL, UNH) is the only conviction sector showing multi-day strength; all new entries must come from XLV/XLP/XLI with full triple confirmation. Cash ~65% is appropriate for current setup.
+[2026-06-09T19:35:38.139424+00:00] Cycle complete.
+[2026-06-09T19:35:39.126809+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T19:35:41.549120+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T19:55:03.228738+00:00] Equity $9647.84 | cash $6254.04 | 4 open positions
+[2026-06-09T19:55:04.824381+00:00] Regime: risk_on (SPY 736.17 vs 200d SMA 684.94) | VIX 18.9 (calm)
+[2026-06-09T19:55:06.360170+00:00] source[alpaca_news]: 149 ticker signals
+[2026-06-09T19:55:06.681519+00:00] source[finnhub]: 0 ticker signals
+[2026-06-09T19:55:07.562917+00:00] Earnings within 5 days: SJM
+[2026-06-09T19:55:07.563180+00:00] 15 candidates -> brain
+[2026-06-09T19:55:25.364750+00:00] Market note: Risk-on regime but market below SMA20; VIX calm (18.9) is favorable but tape remains fragile. Tech (XLK) below SMA200 = no new tech longs. Health Care (XLV) sector is the only strong tailwind. Exit SJM (earnings today), hold core JPM/UNH/NUVL, maintain 82% cash. No new buys until broader technicals improve.
+[2026-06-09T19:55:25.367688+00:00] Cycle complete.
+[2026-06-09T19:55:25.755837+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T19:55:27.648510+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-09T20:35:06.859023+00:00] Market closed — skipping cycle.
+[2026-06-09T21:31:01.871277+00:00] Playbook updated (2 trades, 113 decisions today).
+[2026-06-09T21:35:07.579527+00:00] Digest: day -0.01%, total -3.42%, 2 trades — sent to Slack: True
+[2026-06-09T21:35:08.076916+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-09T21:35:10.107157+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T14:35:10.708320+00:00] Equity $9673.01 | cash $6254.03 | 4 open positions
+[2026-06-10T14:35:12.298179+00:00] Regime: risk_on (SPY 737.84 vs 200d SMA 685.4) | VIX 19.9 (calm)
+[2026-06-10T14:35:14.014657+00:00] source[alpaca_news]: 108 ticker signals
+[2026-06-10T14:35:15.310937+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T14:35:15.973332+00:00] 15 candidates -> brain
+[2026-06-10T14:35:39.157899+00:00] Market note: Risk-off regime with VIX 19.9 (elevated-calm border), SPY/QQQ below SMA20, and MACD bearish on major indices. Hold all profitable positions (JPM, UNH, NUVL, SJM) with tighter stops; do not add to any sector. Tech is in freefall; wait for recovery confirmation. Defensive rotation (XLV, XLP, XLRE) is intact—scout those sectors only after broad-market stabilization at SMA20.
+[2026-06-10T14:35:39.186332+00:00] Cycle complete.
+[2026-06-10T14:35:40.171983+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T14:35:42.708727+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T15:35:04.729179+00:00] Equity $9679.23 | cash $6254.03 | 4 open positions
+[2026-06-10T15:35:06.111720+00:00] Regime: risk_on (SPY 731.02 vs 200d SMA 685.37) | VIX 19.9 (calm)
+[2026-06-10T15:35:11.933130+00:00] source[alpaca_news]: 99 ticker signals
+[2026-06-10T15:35:12.264615+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T15:35:13.001999+00:00] 15 candidates -> brain
+[2026-06-10T15:35:38.993489+00:00] Market note: VIX 19.9 is calm on label but tape is broken — SPY/QQQ below SMA20, sector leaders in freefall (XLK -6.7%, XLC lagging), MACD bearish on broad indices. Regime is risk_on mechanically but technicals demand defense. Hold all existing winners (JPM, NUVL, SJM, UNH); they remain above all SMAs and have MACD bullish. Do NOT open new positions — too much noise, too much sector rotation friction. Cash is the best position until SPY reclaims SMA20 and MACD turns bullish on daily.
+[2026-06-10T15:35:38.996805+00:00] Cycle complete.
+[2026-06-10T15:35:39.607361+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T15:35:42.047049+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T16:35:04.777160+00:00] Equity $9669.88 | cash $6254.03 | 4 open positions
+[2026-06-10T16:35:06.171098+00:00] Regime: risk_on (SPY 731.61 vs 200d SMA 685.37) | VIX 19.9 (calm)
+[2026-06-10T16:35:07.770298+00:00] source[alpaca_news]: 104 ticker signals
+[2026-06-10T16:35:08.983421+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T16:35:10.025264+00:00] 15 candidates -> brain
+[2026-06-10T16:35:30.904263+00:00] Market note: Regime is risk_on on paper but tape is broken: SPY below SMA20 with MACD bearish, VIX at 19.9 (elevated edge of calm), all tech/semiconductor ETFs below SMA20. Broad market freefall invalidated entries (PANW, SOXX). Hold existing positions (JPM, NUVL, SJM, UNH) tight with stops ≤6–7%; do NOT add to any sector given concentration limits (Banking 27.4%, Food 27.1%, Health Care 23.8%). Sector leaders are XLV, XLP, XLRE (above SMA200), but no clean triple-confirmation candidates emerged in this dataset. Primary focus: (1) fix NUVL stop from 12% to 6–7% immediately, (2) trim SJM on next +2–3% spike to reduce Food concentration, (3) stay in ~65% cash until SPY reclaims SMA20 + QQQ reclaims SMA20—that is the buy signal, not sentiment spikes. Defense over offense this week.
+[2026-06-10T16:35:30.907307+00:00] Cycle complete.
+[2026-06-10T16:35:31.287548+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T16:35:33.310834+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T17:35:04.438088+00:00] Equity $9667.15 | cash $6254.03 | 4 open positions
+[2026-06-10T17:35:05.788951+00:00] Regime: risk_on (SPY 728.85 vs 200d SMA 685.36) | VIX 19.9 (calm)
+[2026-06-10T17:35:07.562393+00:00] source[alpaca_news]: 160 ticker signals
+[2026-06-10T17:35:15.797204+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T17:35:16.810872+00:00] Earnings within 5 days: ORCL
+[2026-06-10T17:35:16.811264+00:00] 14 candidates -> brain
+[2026-06-10T17:35:37.155766+00:00] Market note: VIX 19.9 (calm tier) masks underlying tape fragility — SPY/QQQ below SMA20, MACD bearish on both, sector freefall in XLK/XLC. Defensive rotation (XLV, XLP, XLRE) is the only zone with conviction; buy CASY if vol/technicals stay clean, but avoid all tech/discretionary until broad market reclaims SMA20 + MACD bullish. Hold existing winners (JPM, UNH, SJM, NUVL) and enforce stop corrections (NUVL 12%→6% imminent). ~65% cash is appropriate; no urgency to deploy.
+[2026-06-10T17:35:37.195923+00:00] BUY 1 CASY @~$881.14 (stop 9.7%) -> OrderStatus.PENDING_NEW
+[2026-06-10T17:35:37.196204+00:00] Cycle complete.
+[2026-06-10T17:35:37.890083+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T17:35:39.741979+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T18:35:04.445259+00:00] Equity $9688.72 | cash $5369.63 | 5 open positions
+[2026-06-10T18:35:06.015547+00:00] Regime: risk_on (SPY 729.06 vs 200d SMA 685.36) | VIX 19.9 (calm)
+[2026-06-10T18:35:13.222617+00:00] source[alpaca_news]: 172 ticker signals
+[2026-06-10T18:35:21.470435+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T18:35:28.611295+00:00] 17 candidates -> brain
+[2026-06-10T18:35:50.198573+00:00] Market note: Risk-off distribution tape with VIX 19.9 (calm tier); SPY below SMA20, MACD bearish, all indices showing pullback stress. Hold existing winners (CASY, JPM, NUVL, SJM, UNH) with tighter stops; no new entries until SPY reclaims SMA20 and broad-based confirmation returns. Tech is in freefall — avoid entirely. Defensive sectors (XLV, XLP) leading; focus hunting grounds there on triple confirmation only.
+[2026-06-10T18:35:50.201711+00:00] Cycle complete.
+[2026-06-10T18:35:50.566036+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T18:35:52.507848+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T19:35:06.891553+00:00] Equity $9691.22 | cash $5369.63 | 5 open positions
+[2026-06-10T19:35:08.331633+00:00] Regime: risk_on (SPY 726.93 vs 200d SMA 685.35) | VIX 19.9 (calm)
+[2026-06-10T19:35:10.208254+00:00] source[alpaca_news]: 163 ticker signals
+[2026-06-10T19:35:10.574404+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T19:35:11.782892+00:00] Earnings within 5 days: ORCL
+[2026-06-10T19:35:11.783185+00:00] 17 candidates -> brain
+[2026-06-10T19:35:30.083659+00:00] Market note: Risk-off distribution intact: VIX 19.9 (elevated from Friday's 15.4), tech sector in freefall, all indices below SMA20. Defense over offense — hold XLV/XLP winners (CASY, UNH, NUVL, SJM) with tight stops; cash is protecting capital. Do NOT chase oversold tech; momentum is broken. Sector concentration rising in healthcare (35.9% combined); no new XLV entries.
+[2026-06-10T19:35:30.087057+00:00] Cycle complete.
+[2026-06-10T19:35:30.638606+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T19:35:32.830860+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T19:55:03.038097+00:00] Equity $9692.90 | cash $5369.63 | 5 open positions
+[2026-06-10T19:55:04.460031+00:00] Regime: risk_on (SPY 726.84 vs 200d SMA 685.35) | VIX 19.9 (calm)
+[2026-06-10T19:55:06.396869+00:00] source[alpaca_news]: 158 ticker signals
+[2026-06-10T19:55:06.678279+00:00] source[finnhub]: 0 ticker signals
+[2026-06-10T19:55:07.723639+00:00] Earnings within 5 days: ORCL
+[2026-06-10T19:55:07.723926+00:00] 17 candidates -> brain
+[2026-06-10T19:55:27.740641+00:00] Market note: Risk-off tape with VIX 19.9 elevated and SPY below SMA20—regime is fragile despite above-SMA200. No new longs unless triple-confirmation + XLV/XLP tailwind. Defend existing health care and staples longs; sell ORCL immediately (earnings today). Cash is ~55% of equity; this is appropriate given accelerating sector freefall in Tech.
+[2026-06-10T19:55:27.743856+00:00] Cycle complete.
+[2026-06-10T19:55:28.124396+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T19:55:29.996108+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-10T20:35:09.899943+00:00] Market closed — skipping cycle.
+[2026-06-10T21:31:10.716827+00:00] Playbook updated (1 trades, 109 decisions today).
+[2026-06-10T21:35:07.511132+00:00] Digest: day +0.43%, total -3.02%, 1 trades — sent to Slack: True
+[2026-06-10T21:35:08.332577+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-10T21:35:10.528384+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T13:35:04.090492+00:00] Equity $9681.54 | cash $5369.62 | 5 open positions
+[2026-06-11T13:35:05.730488+00:00] Regime: risk_on (SPY 727.28 vs 200d SMA 685.76) | VIX 22.2 (elevated)
+[2026-06-11T13:35:08.454163+00:00] source[alpaca_news]: 144 ticker signals
+[2026-06-11T13:35:08.737343+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T13:35:09.992982+00:00] Earnings within 5 days: ADBE
+[2026-06-11T13:35:15.482107+00:00] 15 candidates -> brain
+[2026-06-11T13:35:39.772073+00:00] Market note: Risk_on regime but SPY below SMA20 with elevated VIX 22.2 — elevated tier confirms caution. Tech sector freefall (XLK below SMA200) invalidates all individual chip/software entries. Hold core positions (CASY, JPM, UNH, NUVL) with tightened stops; SJM at RSI >75 = take 50% profit. No new entries until broad market reclaims SMA20 + XLK stabilizes above SMA200. Defensive rotation (XLP, XLV) is working; scout individual healthcare/staples names on triple confirmation only. Cash ~55% is appropriate defense.
+[2026-06-11T13:35:39.810049+00:00] Cycle complete.
+[2026-06-11T13:35:40.310640+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T13:35:42.616940+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T14:35:04.634649+00:00] Equity $9703.12 | cash $5369.62 | 5 open positions
+[2026-06-11T14:35:06.642563+00:00] Regime: risk_on (SPY 728.33 vs 200d SMA 685.77) | VIX 22.2 (elevated)
+[2026-06-11T14:35:08.943823+00:00] source[alpaca_news]: 108 ticker signals
+[2026-06-11T14:35:09.246837+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T14:35:10.091469+00:00] Earnings within 5 days: ADBE
+[2026-06-11T14:35:16.481520+00:00] 16 candidates -> brain
+[2026-06-11T14:35:41.641486+00:00] Market note: Risk-off tape with VIX 22 elevated; SPY below SMA20, MACD bearish. Do not chase; manage existing holdings tightly, enforce 6% stops, and take profits on extended names (SJM). Sector concentration requires rebalancing—reduce Food Products and Healthcare. Cash is your friend in elevated regimes.
+[2026-06-11T14:35:41.780586+00:00] PARTIAL EXIT 50% SJM (brain_sell, +0.9%) -> OrderStatus.PENDING_NEW
+[2026-06-11T14:35:41.780928+00:00] Cycle complete.
+[2026-06-11T14:35:42.730986+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T14:35:45.165906+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T15:35:09.779727+00:00] Equity $9687.64 | cash $5834.10 | 5 open positions
+[2026-06-11T15:35:11.566781+00:00] Regime: risk_on (SPY 727.53 vs 200d SMA 685.77) | VIX 22.2 (elevated)
+[2026-06-11T15:35:14.145883+00:00] source[alpaca_news]: 97 ticker signals
+[2026-06-11T15:35:14.462598+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T15:35:21.403573+00:00] Insider net buying (last 30d): HOOD
+[2026-06-11T15:35:21.403869+00:00] 16 candidates -> brain
+[2026-06-11T15:35:43.410397+00:00] Market note: VIX elevated at 22.2, SPY above SMA200 but below SMA20. Tech sector (XLK) in freefall -6.7% today. Defensive rotation hardening: XLP +1.7%, XLV +0.6% leading. Playbook: hold existing defensive positions (CASY, SJM 50% trim for RSI >75, UNH, JPM, NUVL). Do NOT chase tech, semis, or anything below SMA200. No new buys until XLK reclaims SMA200 or a sector leader (XLP, XLV) offers a clean triple-confirmation setup with volume. Risk-off distribution: cash ~60% is appropriate.
+[2026-06-11T15:35:43.558499+00:00] PARTIAL EXIT 50% SJM (brain_sell, +1.2%) -> OrderStatus.PENDING_NEW
+[2026-06-11T15:35:43.558824+00:00] Cycle complete.
+[2026-06-11T15:35:44.573436+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T15:35:46.605628+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T16:35:04.544096+00:00] Equity $9687.91 | cash $6066.96 | 5 open positions
+[2026-06-11T16:35:06.396263+00:00] Regime: risk_on (SPY 729.37 vs 200d SMA 685.77) | VIX 22.2 (elevated)
+[2026-06-11T16:35:14.474440+00:00] source[alpaca_news]: 88 ticker signals
+[2026-06-11T16:35:14.781187+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T16:35:18.876219+00:00] 10 candidates -> brain
+[2026-06-11T16:35:38.376636+00:00] Market note: Risk-off tape confirmed by VIX 22.2 (elevated) and SPY still above SMA200 but below SMA20—regime is risk_on on the rule but tape is defense-heavy. SJM is parabolic; take half profits. All other holdings are sound but show weak volume; no new buys until a clear re-confirmation (XLK/XLP above SMAs + volume). Defensive rotation (XLP, XLV) is working; stay selective and manage size with VIX elevated.
+[2026-06-11T16:35:38.469312+00:00] PARTIAL EXIT 50% SJM (brain_sell, +0.9%) -> OrderStatus.PENDING_NEW
+[2026-06-11T16:35:38.469523+00:00] Cycle complete.
+[2026-06-11T16:35:38.887277+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T16:35:41.013903+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T17:35:04.574126+00:00] Equity $9705.63 | cash $6183.01 | 5 open positions
+[2026-06-11T17:35:06.003433+00:00] Regime: risk_on (SPY 734.25 vs 200d SMA 685.8) | VIX 22.2 (elevated)
+[2026-06-11T17:35:10.175513+00:00] source[alpaca_news]: 152 ticker signals
+[2026-06-11T17:35:10.470519+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T17:35:17.627736+00:00] Insider net buying (last 30d): MNTS, SPCE
+[2026-06-11T17:35:17.628016+00:00] 14 candidates -> brain
+[2026-06-11T17:35:40.213569+00:00] Market note: Risk-off regime confirmed: VIX 22.2 (elevated), SPY above SMA200 but below SMA20, MACD bearish across indices. Exit SJM (RSI overbought, weak vol). Hold existing winners (CASY, JPM, UNH, NUVL) but do NOT add—sector concentration ceiling reached (Banking 26.7%, Health Care 23.1%). Tighten all stops to 6%. No new buys until market prints 2 consecutive closes above SMA20 and VIX cools below 20.
+[2026-06-11T17:35:40.342192+00:00] EXIT SJM (brain_sell, +0.9%) -> OrderStatus.PENDING_NEW
+[2026-06-11T17:35:40.342577+00:00] Cycle complete.
+[2026-06-11T17:35:40.778946+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T17:35:42.729636+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T18:35:04.604614+00:00] Equity $9700.03 | cash $6299.02 | 4 open positions
+[2026-06-11T18:35:06.868315+00:00] Regime: risk_on (SPY 734.56 vs 200d SMA 685.8) | VIX 22.2 (elevated)
+[2026-06-11T18:35:08.878200+00:00] source[alpaca_news]: 163 ticker signals
+[2026-06-11T18:35:09.179076+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T18:35:16.160820+00:00] Insider net buying (last 30d): MNTS, SPCE
+[2026-06-11T18:35:16.161216+00:00] 16 candidates -> brain
+[2026-06-11T18:35:35.328142+00:00] Market note: Risk-off regime persists with VIX elevated at 22.2; all open positions (CASY, JPM, NUVL, UNH) remain above their SMAs and are held on intact technicals. No new entries warranted—tech sector broken, industrials downgraded, only defensive staples (XLP) and healthcare (XLV) offer tailwinds. Wait for XLK to reclaim SMA200 before re-engaging tech. Preserve capital.
+[2026-06-11T18:35:35.391397+00:00] Cycle complete.
+[2026-06-11T18:35:35.951124+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T18:35:37.886524+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T19:35:07.717060+00:00] Equity $9714.29 | cash $6299.02 | 4 open positions
+[2026-06-11T19:35:09.405232+00:00] Regime: risk_on (SPY 739.64 vs 200d SMA 685.83) | VIX 22.2 (elevated)
+[2026-06-11T19:35:11.422421+00:00] source[alpaca_news]: 155 ticker signals
+[2026-06-11T19:35:11.729860+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T19:35:19.360976+00:00] Insider net buying (last 30d): HOOD, MNTS, SPCE
+[2026-06-11T19:35:19.361391+00:00] 16 candidates -> brain
+[2026-06-11T19:35:38.943736+00:00] Market note: VIX 22.2 (elevated), SPY below SMA20, XLK -9.99% 5d and below SMA200 — tech sector is broken. Defensive rotation (XLP +1.7% 5d) is the only confirmed tailwind. Hold existing positions (CASY, JPM, NUVL, UNH) that meet triple confirmation and are above all SMAs; do NOT add new positions until market regime stabilizes. Space hype (MNTS, SPCE, PL) is event noise masking bearish technicals — avoid entirely. ~65% cash is appropriate given tape; redeploy only into XLP or XLV on triple-confirmation setups with vol confirmation.
+[2026-06-11T19:35:39.027588+00:00] Cycle complete.
+[2026-06-11T19:35:39.525979+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T19:35:42.034527+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T19:55:03.909345+00:00] Equity $9705.31 | cash $6299.02 | 4 open positions
+[2026-06-11T19:55:05.441941+00:00] Regime: risk_on (SPY 738.31 vs 200d SMA 685.82) | VIX 22.2 (elevated)
+[2026-06-11T19:55:07.600555+00:00] source[alpaca_news]: 161 ticker signals
+[2026-06-11T19:55:07.920400+00:00] source[finnhub]: 0 ticker signals
+[2026-06-11T19:55:13.817552+00:00] Insider net buying (last 30d): HOOD, MNTS, SPCE
+[2026-06-11T19:55:13.817994+00:00] 16 candidates -> brain
+[2026-06-11T19:55:40.551240+00:00] Market note: VIX elevated at 22.2; SPY below SMA20 with MACD bearish. Maintain defensive posture—hold existing winners (CASY, JPM, NUVL, UNH all above SMAs), fix stop violations immediately, and do NOT add new positions until broad market reclaims SMA20 on 2 consecutive closes. Tech sector (XLK) remains in freefall; zero new entries in MSFT, NVDA, ORCL, or semis until XLK confirms recovery. Space euphoria (MNTS, SPCE, PL) is sector hype on parabolic technicals—avoid. Cash is appropriate; redeploy only into confirmed defensive leaders (XLP) with full triple confirmation.
+[2026-06-11T19:55:40.632540+00:00] Cycle complete.
+[2026-06-11T19:55:41.086392+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T19:55:43.161322+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-11T20:35:04.500990+00:00] Market closed — skipping cycle.
+[2026-06-11T21:31:10.743373+00:00] Playbook updated (4 trades, 119 decisions today).
+[2026-06-11T21:35:06.131072+00:00] Digest: day +0.03%, total -2.93%, 4 trades — sent to Slack: True
+[2026-06-11T21:35:06.543906+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-11T21:35:08.503062+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T13:35:08.841665+00:00] Equity $9728.64 | cash $6299.00 | 4 open positions
+[2026-06-12T13:35:10.437274+00:00] Regime: risk_on (SPY 738.5 vs 200d SMA 686.28) | VIX 19.4 (calm)
+[2026-06-12T13:35:15.834161+00:00] source[alpaca_news]: 174 ticker signals
+[2026-06-12T13:35:16.152817+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T13:35:24.327040+00:00] 16 candidates -> brain
+[2026-06-12T13:35:45.214889+00:00] Market note: Risk-on regime with golden cross confirmed, but tape remains fragile: all positions held with no new entries. Vol_ratio dead across board (0.01–0.31) signals weak conviction on rallies. Execute RSI >75 trim orders (CASY, NUVL) as profit-locks. Tech/semis remain off-limits pending sector stabilization. Cash ~65% is appropriate; deploying into steady XLP/XLF names when triple confirmation + volume resumes.
+[2026-06-12T13:35:45.255452+00:00] Cycle complete.
+[2026-06-12T13:35:45.691601+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T13:35:48.029883+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T14:35:06.727283+00:00] Equity $9716.41 | cash $6299.00 | 4 open positions
+[2026-06-12T14:35:08.371078+00:00] Regime: risk_on (SPY 739.78 vs 200d SMA 686.29) | VIX 19.4 (calm)
+[2026-06-12T14:35:11.311162+00:00] source[alpaca_news]: 167 ticker signals
+[2026-06-12T14:35:11.613406+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T14:35:22.456380+00:00] 14 candidates -> brain
+[2026-06-12T14:35:39.386257+00:00] Market note: Risk-on regime (SPY +0.8% 5d, above SMA200, golden_cross true) but VIX 19.4 (calm tier) and price action still fragile — multiple holdings above SMAs but volume weak. Defend concentrated Health Care (24%), hold Bank/Retail core; no new additions until vol confirms and sector tailwinds stabilize.
+[2026-06-12T14:35:39.490794+00:00] Cycle complete.
+[2026-06-12T14:35:40.164859+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T14:35:42.370416+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T15:35:03.767751+00:00] Equity $9713.88 | cash $6299.00 | 4 open positions
+[2026-06-12T15:35:05.288709+00:00] Regime: risk_on (SPY 742.74 vs 200d SMA 686.3) | VIX 19.4 (calm)
+[2026-06-12T15:35:12.242353+00:00] source[alpaca_news]: 113 ticker signals
+[2026-06-12T15:35:12.565950+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T15:35:17.463596+00:00] 10 candidates -> brain
+[2026-06-12T15:35:36.498338+00:00] Market note: Risk-on regime (SPY +0.6%, VIX 19.4 calm, golden cross true) but four holdings locked at sector ceilings (Banking 28%, Health Care 24%, Retail 26%). All open positions holding intact with clean technicals and MACD bullish. No new buys until sector concentration drops; redeploy only via profit-taking or stops. Focus: manage existing wins (CASY, JPM, UNH near RSI sell zones), hold NUVL trend, avoid XLK/tech entirely until structural recovery.
+[2026-06-12T15:35:36.513069+00:00] Cycle complete.
+[2026-06-12T15:35:37.007882+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T15:35:38.960564+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T16:35:08.549725+00:00] Equity $9700.20 | cash $6299.00 | 4 open positions
+[2026-06-12T16:35:10.073836+00:00] Regime: risk_on (SPY 741.04 vs 200d SMA 686.3) | VIX 19.4 (calm)
+[2026-06-12T16:35:12.536376+00:00] source[alpaca_news]: 88 ticker signals
+[2026-06-12T16:35:12.892861+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T16:35:17.229916+00:00] Insider net buying (last 30d): SPCE
+[2026-06-12T16:35:17.230361+00:00] 11 candidates -> brain
+[2026-06-12T16:35:33.171171+00:00] Market note: Risk-on regime with golden cross and calm VIX (19.4) support existing longs, but sector concentration (Banking 28%, Health Care 24%) and lack of volume confirmation on candidates prohibit new entries. Defend and hold quality positions; do not chase extended or below-SMA names.
+[2026-06-12T16:35:33.187187+00:00] Cycle complete.
+[2026-06-12T16:35:33.564490+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T16:35:35.527701+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T17:35:03.647272+00:00] Equity $9704.44 | cash $6299.00 | 4 open positions
+[2026-06-12T17:35:05.155547+00:00] Regime: risk_on (SPY 741.45 vs 200d SMA 686.3) | VIX 19.4 (calm)
+[2026-06-12T17:35:07.091357+00:00] source[alpaca_news]: 145 ticker signals
+[2026-06-12T17:35:07.384311+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T17:35:14.814034+00:00] Insider net buying (last 30d): SPCE
+[2026-06-12T17:35:14.814467+00:00] 13 candidates -> brain
+[2026-06-12T17:35:34.478467+00:00] Market note: Risk-on regime with VIX calm (19.4) and golden_cross confirmed, but 4 of 4 holdings already above SMAs and sector concentration at ceiling (Banking 28%, Health Care 24%). No new entries warranted — capital is deployed in high-conviction setups; focus on management (RSI >75 trims), avoid chasing parabolic moves, and rotate out if any MACD rollover occurs.
+[2026-06-12T17:35:34.483012+00:00] Cycle complete.
+[2026-06-12T17:35:34.920137+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T17:35:36.770434+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T18:35:04.615425+00:00] Equity $9710.45 | cash $6299.00 | 4 open positions
+[2026-06-12T18:35:06.042956+00:00] Regime: risk_on (SPY 741.66 vs 200d SMA 686.3) | VIX 19.4 (calm)
+[2026-06-12T18:35:08.842609+00:00] source[alpaca_news]: 157 ticker signals
+[2026-06-12T18:35:09.148172+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T18:35:14.634847+00:00] Insider net buying (last 30d): SPCE
+[2026-06-12T18:35:14.635234+00:00] 14 candidates -> brain
+[2026-06-12T18:35:35.052395+00:00] Market note: Risk-on regime with calm VIX (19.4) and golden_cross confirmed — but hold all longs, take no new entries. Four quality positions (CASY, JPM, NUVL, UNH) are above all SMAs with MACD bullish; RH shows promise but below SMA200. Tech/Semis remain below SMA200; avoid entirely. Favor Health Care (XLV, UNH) and Financials (JPM) which are sector leaders. Capital is efficiently deployed (35% invested, 65% cash); do not force. Wait for cleaner setups in Consumer Staples and Financials only.
+[2026-06-12T18:35:35.099276+00:00] BUY 5 RH @~$155.13 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-12T18:35:35.099579+00:00] Cycle complete.
+[2026-06-12T18:35:35.496687+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T18:35:37.407225+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T19:35:04.406909+00:00] Equity $9714.64 | cash $5519.70 | 5 open positions
+[2026-06-12T19:35:10.999817+00:00] Regime: risk_on (SPY 740.53 vs 200d SMA 686.29) | VIX 19.4 (calm)
+[2026-06-12T19:35:12.639203+00:00] Sector concentration warning: ['Retail'] >= 30% of invested equity
+[2026-06-12T19:35:13.928954+00:00] source[alpaca_news]: 164 ticker signals
+[2026-06-12T19:35:14.235056+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T19:35:19.520918+00:00] Insider net buying (last 30d): SPCE
+[2026-06-12T19:35:19.521318+00:00] 14 candidates -> brain
+[2026-06-12T19:35:44.065866+00:00] Market note: Risk-on regime with golden_cross=true and VIX=19.4 (calm), but tape remains fragile — SPY still below SMA20 and QQQ below SMA20. Hold all five existing positions (CASY, JPM, NUVL, RH, UNH) with tight discipline; no new entries warranted until individual names show full triple confirmation AND VIX remains calm. Retail (CASY, RH) and Health Care (UNH, NUVL) are carrying concentration risk — watch for sector rotation. Take profits (50% trim) when RSI >75. Reject all tech/semis until XLK reclaims SMA200; mean reversion has failed, so no bottom-fishing. Cash is appropriately sized at ~57% of equity.
+[2026-06-12T19:35:44.078946+00:00] Cycle complete.
+[2026-06-12T19:35:44.514137+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T19:35:46.316168+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T19:55:02.228835+00:00] Equity $9702.47 | cash $5519.70 | 5 open positions
+[2026-06-12T19:55:03.660967+00:00] Regime: risk_on (SPY 741.25 vs 200d SMA 686.3) | VIX 19.4 (calm)
+[2026-06-12T19:55:05.119695+00:00] Sector concentration warning: ['Retail'] >= 30% of invested equity
+[2026-06-12T19:55:05.796761+00:00] source[alpaca_news]: 165 ticker signals
+[2026-06-12T19:55:06.086522+00:00] source[finnhub]: 0 ticker signals
+[2026-06-12T19:55:11.156424+00:00] Insider net buying (last 30d): MNTS, SPCE
+[2026-06-12T19:55:11.156820+00:00] 14 candidates -> brain
+[2026-06-12T19:55:31.094137+00:00] Market note: Risk-on regime (SPY above SMA200, golden_cross=true, VIX 19.4 calm) supports holding existing triple-confirmation positions (CASY, JPM, NUVL, UNH), but sector headwinds (XLK below SMA200, space sell-off) block new tech/semis entries. RH breaks trend below SMA200 despite intraday pop—monitor closely. Retail sector is concentrated at 39.8%; no new RH adds. Prefer holding proven winners and deploying new capital only into Health Care or Staples breakouts with full triple confirmation.
+[2026-06-12T19:55:31.106897+00:00] Cycle complete.
+[2026-06-12T19:55:31.501976+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T19:55:33.377150+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-12T20:35:11.575656+00:00] Market closed — skipping cycle.
+[2026-06-12T21:31:06.989160+00:00] Playbook updated (1 trades, 106 decisions today).
+[2026-06-12T21:35:06.538287+00:00] Digest: day -0.09%, total -3.01%, 1 trades — sent to Slack: True
+[2026-06-12T21:35:07.245011+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-12T21:35:09.460042+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-13T13:35:07.544218+00:00] Market closed — skipping cycle.
+[2026-06-13T14:35:08.871449+00:00] Market closed — skipping cycle.
+[2026-06-13T15:35:04.124631+00:00] Market closed — skipping cycle.
+[2026-06-13T16:35:04.206625+00:00] Market closed — skipping cycle.
+[2026-06-13T17:35:09.574948+00:00] Market closed — skipping cycle.
+[2026-06-13T18:35:04.068709+00:00] Market closed — skipping cycle.
+[2026-06-13T19:35:07.996795+00:00] Market closed — skipping cycle.
+[2026-06-13T20:35:04.094374+00:00] Market closed — skipping cycle.
+[2026-06-14T14:21:26.813329+00:00] Market closed — skipping cycle.
+[2026-06-14T14:35:03.796552+00:00] Market closed — skipping cycle.
+[2026-06-14T15:21:21.761958+00:00] Market closed — skipping cycle.
+[2026-06-14T15:35:07.303845+00:00] Market closed — skipping cycle.
+[2026-06-14T16:21:15.876822+00:00] Market closed — skipping cycle.
+[2026-06-14T16:35:05.573653+00:00] Market closed — skipping cycle.
+[2026-06-14T17:21:19.824322+00:00] Market closed — skipping cycle.
+[2026-06-14T17:35:02.573741+00:00] Market closed — skipping cycle.
+[2026-06-14T18:21:19.799074+00:00] Market closed — skipping cycle.
+[2026-06-14T18:35:02.481400+00:00] Market closed — skipping cycle.
+[2026-06-14T19:21:16.687955+00:00] Market closed — skipping cycle.
+[2026-06-14T19:35:02.498602+00:00] Market closed — skipping cycle.
+[2026-06-14T20:21:21.058453+00:00] Market closed — skipping cycle.
+[2026-06-14T20:35:05.469170+00:00] Market closed — skipping cycle.
+[2026-06-14T21:00:46.006968+00:00] Weekly strategy updated (11 trades, 511 decisions over 7 days).
+[2026-06-14T21:21:18.423817+00:00] Market closed — skipping cycle.
+[2026-06-15T13:35:08.786804+00:00] Equity $9700.26 | cash $5519.69 | 5 open positions
+[2026-06-15T13:35:10.575937+00:00] Regime: risk_on (SPY 752.7 vs 200d SMA 686.83) | VIX 17.7 (calm)
+[2026-06-15T13:35:12.113632+00:00] Sector concentration warning: ['Retail'] >= 30% of invested equity
+[2026-06-15T13:35:13.074580+00:00] source[alpaca_news]: 159 ticker signals
+[2026-06-15T13:35:13.369569+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T13:35:14.451574+00:00] Earnings within 5 days: JRSH
+[2026-06-15T13:35:18.033827+00:00] 12 candidates -> brain
+[2026-06-15T13:35:39.405955+00:00] Market note: Risk-on, golden cross confirmed, VIX calm at 17.7. Sector breadth still only 45% (5 of 11 above SMA200) — maintain conservative sizing. Retail concentration critically high at 39.8% (RH exit mandatory). Execute RH exit immediately to reduce concentration; redeploy into XLP or XLF triple-confirmation setup only. Existing holds (CASY, JPM, NUVL, UNH) all viable; monitor for MACD rollover on UNH and trim JPM/NUVL at RSI >75. No new initiations until breadth reaches ≥60% or a clean sector leader emerges (COST on XLP, CAT/HON on XLI with full triple confirmation + vol confirmation).
+[2026-06-15T13:35:39.687986+00:00] EXIT RH (brain_sell, +1.2%) -> OrderStatus.PENDING_NEW
+[2026-06-15T13:35:39.688249+00:00] Cycle complete.
+[2026-06-15T13:35:40.347054+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T13:35:42.474019+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T14:35:08.610175+00:00] Equity $9701.82 | cash $6316.20 | 4 open positions
+[2026-06-15T14:35:10.136237+00:00] Regime: risk_on (SPY 753.2 vs 200d SMA 686.83) | VIX 17.7 (calm)
+[2026-06-15T14:35:12.072740+00:00] source[alpaca_news]: 145 ticker signals
+[2026-06-15T14:35:12.395147+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T14:35:17.050058+00:00] 12 candidates -> brain
+[2026-06-15T14:35:35.704962+00:00] Market note: Regime is risk_on with golden_cross confirmed, VIX calm at 17.7. Only 4 of 11 sectors above SMA200 (36% breadth) — stabilizing but still below the 60% gate for aggressive expansion. Maintain position discipline: hold existing triple-confirmation positions (JPM, CASY, NUVL, UNH), trim UNH at RSI 75 to cut Healthcare concentration, and take zero new entries until a candidate shows full triple confirmation with MACD bullish, RSI 50–70, AND volume ≥1.5x. Fix all stop violations before market open; CASY stop is logged correct at ≤7%. Capital is better kept dry than deployed into marginal setups.
+[2026-06-15T14:35:35.854668+00:00] PARTIAL EXIT 50% UNH (brain_sell, +2.2%) -> OrderStatus.PENDING_NEW
+[2026-06-15T14:35:35.854924+00:00] Cycle complete.
+[2026-06-15T14:35:36.398612+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T14:35:38.672522+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T15:35:06.878765+00:00] Equity $9704.60 | cash $6724.24 | 4 open positions
+[2026-06-15T15:35:09.091453+00:00] Regime: risk_on (SPY 754.86 vs 200d SMA 686.84) | VIX 17.7 (calm)
+[2026-06-15T15:35:10.858064+00:00] Sector concentration warning: ['Banking'] >= 30% of invested equity
+[2026-06-15T15:35:11.682882+00:00] source[alpaca_news]: 116 ticker signals
+[2026-06-15T15:35:11.984885+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T15:35:12.806757+00:00] Earnings within 5 days: ACN
+[2026-06-15T15:35:18.624980+00:00] 15 candidates -> brain
+[2026-06-15T15:35:41.701956+00:00] Market note: Market regime is tentative risk-on recovery (SPY above SMA200, VIX 17.7 calm, golden cross true) but sector breadth remains neutral at 45% (target ≥60%). Banking sector is concentrated at 32.3% — hard stop on new XLF exposure. Hold all four positions (CASY, JPM, NUVL, UNH); no new entries qualify. CRITICAL: correct stop violations on NUVL (12% → ≤7%) and verify CASY/RH stops before market open. Cash ~69% — maintain discipline; breadth must improve and new setups must be triple-confirmation clean before deploying more capital.
+[2026-06-15T15:35:41.745289+00:00] Cycle complete.
+[2026-06-15T15:35:42.209935+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T15:35:44.285456+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T16:35:06.887127+00:00] Equity $9700.62 | cash $6724.24 | 4 open positions
+[2026-06-15T16:35:08.325026+00:00] Regime: risk_on (SPY 756.2 vs 200d SMA 686.85) | VIX 17.7 (calm)
+[2026-06-15T16:35:09.567341+00:00] Sector concentration warning: ['Banking'] >= 30% of invested equity
+[2026-06-15T16:35:10.276111+00:00] source[alpaca_news]: 119 ticker signals
+[2026-06-15T16:35:10.634515+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T16:35:15.305800+00:00] 12 candidates -> brain
+[2026-06-15T16:35:34.502677+00:00] Market note: Risk-on regime confirmed (SPY above SMA200, VIX 17.7 calm, golden_cross true), but sector breadth remains neutral at 45% — maintain conservative sizing and require full triple confirmation on all new entries. Banking sector is concentrated (32.4%); no new XLF adds. Trim UNH at RSI >75 today to lock in gains and manage concentration. All current holdings are valid; focus on execution discipline (stops, trim orders) rather than new positions.
+[2026-06-15T16:35:34.554339+00:00] Cycle complete.
+[2026-06-15T16:35:35.087574+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T16:35:37.138151+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T17:35:06.750348+00:00] Equity $9699.69 | cash $6724.24 | 4 open positions
+[2026-06-15T17:35:08.182397+00:00] Regime: risk_on (SPY 755.91 vs 200d SMA 686.85) | VIX 17.7 (calm)
+[2026-06-15T17:35:09.377950+00:00] Sector concentration warning: ['Banking'] >= 30% of invested equity
+[2026-06-15T17:35:10.124415+00:00] source[alpaca_news]: 151 ticker signals
+[2026-06-15T17:35:10.443985+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T17:35:15.983876+00:00] 13 candidates -> brain
+[2026-06-15T17:35:38.664827+00:00] Market note: Market regime is risk_on with VIX 17.7 (calm), golden_cross true, but sector breadth neutral at 45% (only 5 of 11 sectors above SMA200). Banking sector concentration is 32.4% — take JPM trim to decongest. Partial trim of NUVL and UNH also reduces Health Care overhang. ROKU is the only clean new entry (triple confirmation, volume breakout, near 52w high, no sector headwind); size conservatively at 6%. All other candidates fail trend filters (below SMA200 or sector below SMA200) or are parabolic/extended (MU, NVDA). Hold existing winners and trim profitable positions into weakness.
+[2026-06-15T17:35:38.830766+00:00] BUY 5 ROKU @~$142.53 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-15T17:35:38.831039+00:00] Cycle complete.
+[2026-06-15T17:35:39.292894+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T17:35:41.303559+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T18:35:05.910487+00:00] Equity $9698.59 | cash $6011.64 | 5 open positions
+[2026-06-15T18:35:07.449641+00:00] Regime: risk_on (SPY 754.82 vs 200d SMA 686.84) | VIX 17.7 (calm)
+[2026-06-15T18:35:09.641672+00:00] source[alpaca_news]: 165 ticker signals
+[2026-06-15T18:35:09.925860+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T18:35:17.338131+00:00] 17 candidates -> brain
+[2026-06-15T18:35:38.842371+00:00] Market note: Market regime is risk_on with calm VIX (17.7), golden_cross confirmed, but sector breadth remains neutral (45% above SMA200). Existing positions (CASY, JPM, NUVL, ROKU, UNH) all hold triple confirmation and tailwinds; no new entries required. UNH RSI 77.6 triggers 50% trim today. Avoid all sub-SMA200 names and parabolic tech (MU, WDC, XLK names) until breadth reaches ≥60%. Capital is better deployed in quality holds than chasing extended plays.
+[2026-06-15T18:35:38.902985+00:00] Cycle complete.
+[2026-06-15T18:35:39.538323+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T18:35:41.471166+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T19:35:07.054885+00:00] Equity $9696.24 | cash $6011.64 | 5 open positions
+[2026-06-15T19:35:08.565731+00:00] Regime: risk_on (SPY 754.3 vs 200d SMA 686.84) | VIX 17.7 (calm)
+[2026-06-15T19:35:10.860588+00:00] source[alpaca_news]: 145 ticker signals
+[2026-06-15T19:35:11.182662+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T19:35:20.167384+00:00] 16 candidates -> brain
+[2026-06-15T19:35:44.489683+00:00] Market note: Fragile recovery (breadth 45%, only 5 of 11 sectors above SMA200) limits new entry aggression. Conviction 4 catastrophically miscalibrated (0% win rate, -4.8% avg loss) — cap all new entries at conviction 3 until this resolves. Hold existing positions (CASY, JPM, NUVL, ROKU, UNH) with clean triple confirmation; trim UNH at RSI >75. Avoid all Tech (XLK below SMA200), Consumer Disc. (XLY below SMA200), XLC. XLP + XLF + XLI are primary hunting grounds for next triple-confirmation entry; WDC is monitoring candidate for pullback entry on volume + MACD base.
+[2026-06-15T19:35:44.656053+00:00] Cycle complete.
+[2026-06-15T19:35:45.275064+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T19:35:47.711159+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T19:55:04.397713+00:00] Equity $9698.12 | cash $6011.64 | 5 open positions
+[2026-06-15T19:55:05.833725+00:00] Regime: risk_on (SPY 753.9 vs 200d SMA 686.84) | VIX 17.7 (calm)
+[2026-06-15T19:55:07.959703+00:00] source[alpaca_news]: 143 ticker signals
+[2026-06-15T19:55:08.255117+00:00] source[finnhub]: 0 ticker signals
+[2026-06-15T19:55:13.745632+00:00] 15 candidates -> brain
+[2026-06-15T19:55:34.700131+00:00] Market note: Market regime is risk_on with golden_cross confirmed, but sector breadth remains neutral (45% of sectors above SMA200). VIX calm at 17.7. Do NOT force new entries; only manage existing positions. Trim UNH at RSI >75 to lock in gains. Hold CASY, JPM, NUVL, ROKU on trend with low-conviction stops. WDC is parabolic—watchlist only. Continue scanning XLP (COST, PG, KO, WMT) for clean triple-confirmation setups; require vol_ratio ≥1.5x before initiating.
+[2026-06-15T19:55:34.781016+00:00] Cycle complete.
+[2026-06-15T19:55:35.193798+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T19:55:37.082702+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-15T20:35:08.355920+00:00] Market closed — skipping cycle.
+[2026-06-15T21:31:16.619944+00:00] Playbook updated (3 trades, 112 decisions today).
+[2026-06-15T21:35:11.754186+00:00] Digest: day +0.02%, total -2.99%, 3 trades — sent to Slack: True
+[2026-06-15T21:35:12.238101+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-15T21:35:14.204513+00:00] publish: dashboard pushed to GitHub Pages
