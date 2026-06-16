@@ -6,63 +6,62 @@
 - Swing trader: hold days to weeks. Never chase intraday spikes.
 - Trade with the trend: only buy names above **ALL THREE SMAs (20, 50, 200)**. Below SMA200 = no entry, no exceptions — not for turnarounds, not for "almost there."
 - Sentiment is a clue, not a command. Hype + weak technicals = trap. Best setups pair rising attention with a clean technical base AND price confirmation.
-- Position sizing and stops are sacred. Hard cap: **6–8% stops only**. Enforce mechanically at order creation — no overrides, ever. ROKU was logged at 12% stop — fix immediately; this is the third multi-session violation.
-- A "no trade" is a valid decision. Cash is a position.
+- Position sizing and stops are sacred. Hard cap: **6–8% stops only**. Enforce mechanically at order creation — no overrides, ever.
+- A "no trade" is a valid decision. Cash (~62%) is a position.
 - RSI > 75 = take 50% off in ONE order; RSI > 80 or 20-day return > 50% = do not initiate. Wait for base.
 - **PDT awareness is mandatory**: daytrade_count ≥ 2 = stop new buy orders for the rest of the session.
 - **Earnings within 5 days = no new entries; existing positions exit before the event.**
-- **Sector rule is absolute**: individual stock above all three SMAs is necessary but not sufficient — sector ETF must also be above SMA200 before entry. ROKU (XLC below SMA200) is the new cautionary tale; RH (XLY) was the first.
-- **VIX 17.7 (calm)**: standard filters apply. Breadth still neutral (5/11 sectors above SMA200 = 45%); size conservatively until breadth reaches ≥60%.
+- **Sector rule is absolute**: individual stock above all three SMAs is necessary but not sufficient — sector ETF must also be above SMA200 before entry. No exceptions. ROKU (XLC) and RH (XLY) are the cautionary tales.
+- **Breadth neutral (5/11 sectors = 45%)**: size conservatively; no position > 10% of equity on new entries until breadth ≥ 60%.
 
 ## What's working
-- **Triple confirmation + sector alignment**: JPM (+2.9%), UNH (+2.9% after partial trim), NUVL (+0.2%) all holding. This is the only repeatable high-priority setup — requires sector ETF above SMA200 too.
-- **RSI trim discipline**: UNH partial sell at RSI 75+ executed correctly. Lock partial gains in one order; let remainder ride.
-- **Sitting in cash (~62%)**: broad market improving (SPY +1.76% today, QQQ +3.14%) but breadth neutral. No need to force trades.
-- **Parabolic avoidance**: WDC (+35% 20d), MU (+49% 20d), CUPR (RSI 87), CAST (RSI 90) all correctly passed.
-- **Earnings discipline**: ACN (3 days), JRSH (0 days) correctly avoided.
+- **Triple confirmation + sector alignment**: JPM (+2.9%), UNH (+2.87% partial locked), NUVL (+0.2%) all holding. This is the only repeatable high-priority setup.
+- **RSI trim discipline**: UNH trimmed correctly at RSI 77 in one order. Execute the same for any position hitting RSI > 75.
+- **Sitting in cash (~62%)**: broad market strong (SPY +1.76%, QQQ +3.14%) but breadth neutral — no need to force trades.
+- **Parabolic avoidance**: WDC (+35% 20d), MU (+50% 20d), CUPR/CAST (RSI 87–90) all correctly passed.
+- **ROKU exit**: correctly identified sector rule violation and exited at −0.86% rather than letting it become a −7%+ stop-loss. Rule enforcement is improving.
 
 ## Mistakes to avoid
-- **ROKU entry violated the sector rule.** XLC is below SMA200. Individual triple confirmation does NOT override sector headwind. RH (XLY) → ROKU (XLC): this is now a pattern. Stop opening positions in sectors below SMA200, no matter how clean the individual chart looks.
-- **Stop logged at 12% on ROKU** — hard-cap violation, again. Three sessions in a row. Fix to ≤7% at open tomorrow or exit. If stops cannot be set mechanically at order creation, do not open the position.
-- **Brain-sell churn**: 13 brain-sells at avg −0.95% vs 1 stop-loss at −13.96%. Letting winners run and cutting losers via stops is the right model — but stops must be sized correctly at entry.
-- **Win rate is 42.9%, avg loss (−4.22%) nearly 3.5× avg win (+1.24%)**: the loss side is destroying edge. Fix: tighter stops at entry, no rule exceptions.
-- **Missed tech rally**: SOXX +11%, MU +14%, NVDA +5%, GOOGL +7%, ORCL +9% in 4 days — all passed due to XLK below SMA200. The rule cost real gains today. Note: the rule is still correct (XLK still below SMA200) but watch for the sector confirmation trigger carefully — do not miss it a second time once XLK clears.
+- **ROKU / RH pattern — stop repeating it.** XLC and XLY are below SMA200. No individual chart, no matter how clean, overrides the sector filter. Third recurrence = reduce position limit by 50% for a full week as penalty.
+- **Stop violations are over.** ROKU was logged at 12%. Hard stop: if a stop cannot be set mechanically at order creation at ≤7%, do not open the position. Period.
+- **Brain-sell churn**: 16 brain-sells at avg −0.70% vs 1 stop-loss at −13.96%. Stops cut losers; brain-sells churn small losses. Use stops — but set them right at entry.
+- **Win rate 41.2%, avg loss (−3.55%) nearly 2.4× avg win (+1.48%)**: still negative expectancy. Fix: tighter stops at entry, hold winners to RSI trim triggers, no premature exits on green positions.
+- **Missed tech rally (again)**: NVDA +5%, MU +14%, SOXX +11%, ORCL +9%, SNDK +20% — all passed because XLK is below SMA200. The rule is correct; do NOT pre-empt it. But have the watchlist ready to fire the moment XLK closes above SMA200 for 2 consecutive sessions.
 - **No averaging down, no rationalizing broken thesis.** No adding to red positions. Ever.
 - **MACD rollover = immediate action**: bearish crossover on any open position = tighten stop same session or exit.
 
 ## Market context & sector notes
-- **Broad market accelerating**: SPY +1.76% today, +2.11% 5d; QQQ +3.14% today, +3.90% 5d; IWM +0.58% today, +3.71% 5d. All above SMA200. Tech is leading (QQQ outperforming). Risk-on tone, but breadth still neutral at 45%.
-- **VIX 17.7 (calm, improved)**: regime supportive. Standard position sizing. Vol confirmation threshold stays ≥1.5x for new entries.
-- **Sector leaders with tailwind (buy zone)**:
-  - **Financials (XLF, +0.4% today, +3.1% 5d, above SMA200)** — #1 hunting ground. JPM held. GS/MS: wait for MACD bullish crossover. Sector ceiling 20% of equity.
-  - **Industrials (XLI, +1.4% today, +2.9% 5d, above SMA200)** — #2 hunting ground. Upgraded; scan CAT, HON, UNP for triple confirmation + MACD bullish + vol ≥1.5x.
-  - **Consumer Staples (XLP, −0.4% today, +2.9% 5d, above SMA200)** — #3. CASY held but XLP lost ground today; monitor. COST, PG, KO, WMT remain eligible if triple confirmation holds.
-  - **Real Estate (XLRE, −0.8% today, +2.2% 5d, above SMA200)** — valid but pullback today; require full triple confirmation + vol before entry. Third priority.
-  - **Health Care (XLV, −0.6% today, +0.2% 5d, above SMA200)** — lagging today. Joe holds UNH + NUVL (~11% after trim). No new XLV adds until below 10% or existing positions trim further.
-- **Sector laggards / avoid**:
-  - **Technology (XLK, +3.78% today, +4.13% 5d, below SMA200)** — surging but structurally unconfirmed. **Watch closely**: if XLK closes above SMA200 tomorrow, that is day 1 of the 2-consecutive-close trigger. Do NOT enter yet — but prep watchlist (NVDA, SOXX, WDC, MU).
-  - **Consumer Disc. (XLY, +1.69% today, +2.76% 5d, below SMA200)** — avoid. ROKU is the warning. Do not add XLY/XLC exposure.
-  - **Communication (XLC, +0.5% today, +1.0% 5d, below SMA200)** — avoid. ROKU sits here; exit on MACD rollover or close below SMA50.
-  - **Energy (XLE, −3.48% today, −4.77% 5d, below SMA200)** — avoid. Iran deal crushing oil; structural breakdown.
-  - **Materials (XLB, +0.6% today, +5.1% 5d, below SMA200)** — bouncing strongly but still below SMA200; avoid new entries.
-  - **Utilities (XLU, +0.5% today, +2.8% 5d, below SMA200)** — avoid.
+- **Broad market strong**: SPY +1.76% (1d), +2.11% (5d); QQQ +3.14% (1d), +3.90% (5d); IWM +0.58% (1d), +3.71% (5d). All above SMA200. Tech leading. Risk-on tone sustained.
+- **VIX 16.2 (calm, improving)**: regime supportive. Standard filters apply. Vol confirmation threshold ≥1.5× for new entries.
+- **Breadth still neutral at 45% (5/11)**: do not aggressively deploy cash until ≥6 sectors clear SMA200.
+- **Sector leaders with tailwind (eligible for new entries)**:
+  - **Financials (XLF, +0.4% 1d, +3.1% 5d, above SMA200)** — #1 hunting ground. JPM held. GS/MS: require MACD bullish crossover. Total XLF exposure ≤20% equity.
+  - **Industrials (XLI, +1.4% 1d, +2.9% 5d, above SMA200)** — #2. Primary new-entry candidates: CAT, HON, UNP. Need triple confirmation + MACD bullish + vol ≥1.5×.
+  - **Consumer Staples (XLP, −0.4% 1d, +2.9% 5d, above SMA200)** — #3. Softening intraday; confirm SMA200 holds before adding. COST, PG, KO, WMT eligible if triple confirmation intact.
+  - **Real Estate (XLRE, −0.8% 1d, +2.2% 5d, above SMA200)** — valid but pulling back; require full confirmation before entry.
+  - **Health Care (XLV, −0.6% 1d, +0.2% 5d, above SMA200)** — lagging. Joe holds UNH + NUVL (~11%). No new XLV adds until below 10% exposure.
+- **Sectors to avoid**:
+  - **Technology (XLK, +3.78% 1d, +4.13% 5d, below SMA200)** — surging but unconfirmed. **Two-consecutive-close trigger**: if XLK closes above SMA200 today = day 1. Prep NVDA, SOXX, ORCL watchlist. Do NOT enter until day 2 confirmed close.
+  - **Consumer Disc. (XLY, below SMA200)** — avoid. ROKU/RH are the warnings.
+  - **Communication (XLC, below SMA200)** — avoid. ROKU exited; zero XLC exposure now.
+  - **Energy (XLE, −3.48% 1d, −4.77% 5d, below SMA200)** — structural breakdown. Iran deal headwind. Hard veto.
+  - **Materials (XLB, +0.6% 1d, +5.1% 5d, below SMA200)** — bouncing but still below SMA200; no new entries.
+  - **Utilities (XLU, below SMA200)** — avoid.
 
 ## Watchlist notes
-- **JPM**: Hold. +2.9% unrealized. Triple confirmation intact, MACD bullish, RSI ~64. XLF tailwind. Stop ≤6%. Trim 50% at RSI >75 in one order. No new XLF adds until Banking sector <20% of equity.
-- **UNH**: Hold (1 share remaining after trim). +2.9% partial locked. Triple confirmation intact, RSI ~77 — consider second trim if RSI stays >75. XLV lagging; do not add.
-- **NUVL**: Hold. +0.2% unrealized. Triple confirmation intact, near 52w high, RSI ~63. HC ceiling binding (~11%). Stop ≤7% (verify). Trim 50% at RSI >75 in one order.
-- **CASY**: Hold. −1.3% unrealized. Triple confirmation intact (above all SMAs, MACD bullish, RSI ~58). XLP softened today (−0.4%). Stop ≤7%. If XLP loses SMA200, tighten stop. Do not add.
-- **ROKU**: Caution — sector violation. **XLC is below SMA200; entry was a mistake.** Hold only with tight stop (≤7%, fix from 12% immediately). Exit on MACD rollover, close below SMA50, or any close below entry − 7%. Do not add. This is a lesson position.
-- **XLK trigger watch (NVDA, SOXX, MU, WDC)**: These moved +5–14% while passed. XLK is still below SMA200 but surging. **If XLK closes above SMA200 for 2 consecutive sessions**: immediately scan NVDA, SOXX, MU for triple confirmation + MACD bullish + RSI 50–70 + vol ≥1.5x. Do not pre-empt the two-close rule.
-- **XLI names (CAT, HON, UNP)**: Primary new-entry candidates. XLI above SMA200 and +1.4% today. Scan for triple confirmation + MACD bullish + vol ≥1.5x. No position yet.
-- **XLF names (GS, MS, BRK.B)**: Secondary candidates. JPM at sector ceiling; any new name keeps total XLF ≤20%. GS/MS: require MACD bullish crossover first.
-- **XLP names (COST, PG, KO, WMT)**: Third priority. XLP gave back ground today — confirm triple confirmation still intact before entry. RSI 50–70 + vol ≥1.5x required.
-- **DDOG**: Above all SMAs but MACD bearish. Watchlist; trigger = MACD bullish crossover + vol ≥1.5x + XLK sector confirmation.
-- **HOOD**: Below SMA200. Hard veto. Do not chase despite +10% 4-day move.
-- **TSLA, AMZN, XLY/XLC names**: Below SMA200 or in broken sectors. Avoid — ROKU is the cautionary tale.
-- **WDC**: Triple confirmation but +35% 20d — parabolic. Wait for pullback to RSI <60 + SMA50 base before considering entry.
-- **SPCE, MNTS, VELO, CUPR, CAST, RGNT**: Parabolic/broken. Do not chase.
-- **SMCI, MSTR, COIN**: Broken/crypto. Avoid entirely.
-- **XLE names (XOM, USO)**: Energy in freefall (−3.5% today, −4.8% 5d). Avoid.
-- **LEN, PAYX, ABT**: Below SMA200, negative momentum. No turnaround plays.
-- **CBRL, KDP**: RSI extended. Do not initiate.
+- **JPM**: Hold. +2.9% unrealized. Triple confirmation, MACD bullish, RSI ~63. XLF tailwind. Stop ≤6%. Trim 50% in one order at RSI >75. No new XLF adds (sector at ~10% equity; ceiling 20%).
+- **UNH**: Hold (1 share post-trim). +2.87% locked on sold portion. RSI ~77 — if RSI stays >75 tomorrow, execute second 50% trim in one order. Triple confirmation intact. XLV lagging; do not add.
+- **NUVL**: Hold. +0.2% unrealized. Triple confirmation, MACD bullish, RSI ~63. HC ceiling ~11%; no new adds. Stop ≤7% (verify). Trim 50% at RSI >75.
+- **CASY**: Hold. −1.4% unrealized. Triple confirmation intact, MACD bullish, RSI ~60. XLP softened. Stop ≤7%. If XLP loses SMA200, tighten stop immediately. Do not add.
+- **ROKU**: EXITED. Position closed at −0.86%. Lesson: sector rule violation. Do not re-enter XLC until sector clears SMA200 for 2 consecutive closes.
+- **XLK trigger watch (NVDA, SOXX, MU, ORCL)**: XLK is +3.78% today, approaching SMA200. If it closes above for 2 consecutive sessions, immediately scan NVDA, SOXX, ORCL, AAPL for triple confirmation + MACD bullish + RSI 50–70 + vol ≥1.5×. MU is parabolic (+50% 20d) — wait for pullback regardless of sector confirmation. Do NOT pre-empt the two-close rule.
+- **XLI names (CAT, HON, UNP)**: Primary new-entry candidates. XLI above SMA200, +1.4% today. Scan for triple confirmation + MACD bullish + vol ≥1.5×.
+- **XLF names (GS, MS)**: Secondary. Require MACD bullish crossover. Total XLF ≤20% equity.
+- **XLP names (COST, PG, KO, WMT)**: Third priority. Confirm XLP SMA200 still intact; RSI 50–70 + vol ≥1.5× required at entry.
+- **WDC**: Parabolic (+35% 20d, +16% today). Pass. Wait for pullback to RSI <60 + SMA50 base.
+- **DDOG**: Above all SMAs but MACD bearish. Trigger = MACD bullish crossover + vol ≥1.5× + XLK 2-close confirmation.
+- **HOOD, TSLA, AMZN, META, MSFT**: Below SMA200 or broken sector. Hard veto — no exceptions regardless of news.
+- **BABA, JD, MSTR, SMCI, COIN**: Broken / below all SMAs. Avoid entirely.
+- **SPCE, MNTS, VELO, CUPR, CAST**: Parabolic or broken. Do not chase.
+- **XLE names (XOM, USO)**: Energy in freefall. Hard veto.
+- **LEN, PAYX, ABT, CBRL, KDP**: Below SMA200 or RSI extended. No turnaround plays.
