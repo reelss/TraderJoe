@@ -101,9 +101,13 @@ jobs:
         # Commit any new log entries so the digest and reflect jobs can read them.
         # [skip ci] prevents this commit from re-triggering the workflow.
         # No-op if nothing changed (quiet market day, market closed, etc).
+        # Pull --rebase before push because publish.py (called inside the cycle
+        # script) independently clones + pushes the dashboard to main, which
+        # advances remote HEAD. Without the rebase, this push would be rejected.
         run: |
           git add logs/
           if ! git diff --cached --quiet; then
             git commit -m "chore: cycle log update [skip ci]"
+            git pull --rebase origin main
             git push
           fi
