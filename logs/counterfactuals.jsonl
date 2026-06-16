@@ -222,3 +222,22 @@
 {"ts": "2026-06-15T19:55:34.748812+00:00", "event": "pass", "symbol": "RKLB", "price_at_pass": 109.44, "action": "hold", "conviction": 1}
 {"ts": "2026-06-15T19:55:34.749009+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 409.47, "action": "hold", "conviction": 1}
 {"ts": "2026-06-15T19:55:34.749187+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 652.09, "action": "hold", "conviction": 2}
+{"ts": "2026-06-16T02:26:03.740200+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 296.53, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.740367+00:00", "event": "pass", "symbol": "BABA", "price_at_pass": 112.57, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.740505+00:00", "event": "pass", "symbol": "BTC", "price_at_pass": 29.43, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.740639+00:00", "event": "pass", "symbol": "JD", "price_at_pass": 28.67, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.740811+00:00", "event": "pass", "symbol": "META", "price_at_pass": 593.48, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.740977+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 399.75, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.741120+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 131.1, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.741268+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 1079.13, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.741412+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 212.46, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.741548+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 410.25, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.741684+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 653.42, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:26:03.750475+00:00", "event": "resolved", "symbol": "AAPL", "pass_ts": "2026-06-11T15:35:43.456238+00:00", "price_at_pass": 291.89, "price_now": 296.53, "return_pct": 0.0159, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.750724+00:00", "event": "resolved", "symbol": "AAPL", "pass_ts": "2026-06-11T18:35:35.351845+00:00", "price_at_pass": 295.52, "price_now": 296.53, "return_pct": 0.0034, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.750933+00:00", "event": "resolved", "symbol": "AAPL", "pass_ts": "2026-06-11T19:35:38.972797+00:00", "price_at_pass": 295.89, "price_now": 296.53, "return_pct": 0.0022, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.751112+00:00", "event": "resolved", "symbol": "MU", "pass_ts": "2026-06-11T19:35:39.014515+00:00", "price_at_pass": 988.67, "price_now": 1079.13, "return_pct": 0.0915, "days_elapsed": 4, "verdict": "missed_gain"}
+{"ts": "2026-06-16T02:26:03.751292+00:00", "event": "resolved", "symbol": "AAPL", "pass_ts": "2026-06-11T19:55:40.595153+00:00", "price_at_pass": 295.76, "price_now": 296.53, "return_pct": 0.0026, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.751465+00:00", "event": "resolved", "symbol": "MSFT", "pass_ts": "2026-06-11T19:55:40.608778+00:00", "price_at_pass": 390.5, "price_now": 399.75, "return_pct": 0.0237, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.751656+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T19:55:40.608934+00:00", "price_at_pass": 205.25, "price_now": 212.46, "return_pct": 0.0351, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:26:03.751824+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T19:55:40.609930+00:00", "price_at_pass": 399.11, "price_now": 410.25, "return_pct": 0.0279, "days_elapsed": 4, "verdict": "neutral"}

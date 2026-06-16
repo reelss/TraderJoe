@@ -842,3 +842,14 @@
 [2026-06-15T21:35:11.754186+00:00] Digest: day +0.02%, total -2.99%, 3 trades — sent to Slack: True
 [2026-06-15T21:35:12.238101+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
 [2026-06-15T21:35:14.204513+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-16T02:25:32.073777+00:00] Equity $9699.98 | cash $6011.64 | 5 open positions
+[2026-06-16T02:25:33.420151+00:00] Regime: risk_on (SPY 754.83 vs 200d SMA 686.84) | VIX 16.2 (calm)
+[2026-06-16T02:25:35.642213+00:00] source[alpaca_news]: 115 ticker signals
+[2026-06-16T02:25:35.932938+00:00] source[finnhub]: 0 ticker signals
+[2026-06-16T02:25:36.241659+00:00] Live price overlay applied for 17 symbols.
+[2026-06-16T02:25:42.332638+00:00] 16 candidates -> brain
+[2026-06-16T02:26:03.737530+00:00] Market note: Risk-on regime confirmed (VIX 16.2, SPY above SMA200, golden_cross true), but sector breadth still neutral (45% above SMA200). Hold all valid positions; execute no new entries until breadth improves ≥60% or individual triple-confirmation + sector alignment are pristine. Exit ROKU (sector violation). Trim UNH at RSI >75. Focus on XLI/XLP/XLF names only when full filters align.
+[2026-06-16T02:26:03.826805+00:00] EXIT ROKU (brain_sell, -0.9%) -> OrderStatus.ACCEPTED
+[2026-06-16T02:26:03.826938+00:00] Cycle complete.
+[2026-06-16T02:26:04.196748+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-16T02:26:06.190569+00:00] publish: dashboard pushed to GitHub Pages

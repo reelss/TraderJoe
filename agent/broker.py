@@ -101,7 +101,7 @@ class Broker:
             for sym, snap in snaps.items():
                 try:
                     price = float(snap.latest_trade.price) if snap.latest_trade else None
-                    prev_close = float(snap.prev_daily_bar.close) if snap.prev_daily_bar else None
+                    prev_close = float(snap.previous_daily_bar.close) if snap.previous_daily_bar else None
                     today_bar = snap.daily_bar
                     vol_today = float(today_bar.volume) if today_bar else None
                     intraday_high = float(today_bar.high) if today_bar else None
