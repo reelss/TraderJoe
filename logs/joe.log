@@ -853,3 +853,15 @@
 [2026-06-16T02:26:03.826938+00:00] Cycle complete.
 [2026-06-16T02:26:04.196748+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
 [2026-06-16T02:26:06.190569+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-16T02:44:49.796026+00:00] Equity $9699.98 | cash $6011.64 | 5 open positions
+[2026-06-16T02:44:51.286194+00:00] Regime: risk_on (SPY 754.83 vs 200d SMA 686.84) | VIX 16.2 (calm)
+[2026-06-16T02:44:52.334760+00:00] source[alpaca_news]: 115 ticker signals
+[2026-06-16T02:44:52.453444+00:00] source[finnhub]: 0 ticker signals
+[2026-06-16T02:44:53.125065+00:00] Live price overlay applied for 17 symbols.
+[2026-06-16T02:44:56.121349+00:00] 16 candidates -> brain
+[2026-06-16T02:45:15.575625+00:00] Market note: Risk-on regime intact (SPY above SMA200, VIX 16.2 calm, golden_cross true), but breadth still neutral at 45% (5/11 sectors above SMA200). Conservative sizing holds. Exit ROKU (sector veto XLC below SMA200) and trim UNH (RSI >75) to lock gains. Hold JPM, CASY, NUVL—all triple-confirmed. Avoid tech/parabolic setups (MU, WDC); wait for XLK sector trigger (2 consecutive closes above SMA200 before NVDA/chip entries). Cash remains 62%—redeploy into XLI or XLF names only on full triple confirmation.
+[2026-06-16T02:45:15.784988+00:00] EXIT ROKU (brain_sell, -0.9%) -> OrderStatus.ACCEPTED
+[2026-06-16T02:45:15.926885+00:00] PARTIAL EXIT 50% UNH (brain_sell, +2.9%) -> OrderStatus.ACCEPTED
+[2026-06-16T02:45:15.926924+00:00] Cycle complete.
+[2026-06-16T02:45:16.299136+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
+[2026-06-16T02:45:18.364649+00:00] publish: dashboard pushed to GitHub Pages

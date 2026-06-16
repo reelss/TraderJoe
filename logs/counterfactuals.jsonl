@@ -241,3 +241,14 @@
 {"ts": "2026-06-16T02:26:03.751465+00:00", "event": "resolved", "symbol": "MSFT", "pass_ts": "2026-06-11T19:55:40.608778+00:00", "price_at_pass": 390.5, "price_now": 399.75, "return_pct": 0.0237, "days_elapsed": 4, "verdict": "neutral"}
 {"ts": "2026-06-16T02:26:03.751656+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-11T19:55:40.608934+00:00", "price_at_pass": 205.25, "price_now": 212.46, "return_pct": 0.0351, "days_elapsed": 4, "verdict": "neutral"}
 {"ts": "2026-06-16T02:26:03.751824+00:00", "event": "resolved", "symbol": "TSLA", "pass_ts": "2026-06-11T19:55:40.609930+00:00", "price_at_pass": 399.11, "price_now": 410.25, "return_pct": 0.0279, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T02:45:15.576462+00:00", "event": "pass", "symbol": "AAPL", "price_at_pass": 296.53, "action": "hold", "conviction": 2}
+{"ts": "2026-06-16T02:45:15.576528+00:00", "event": "pass", "symbol": "BABA", "price_at_pass": 112.57, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576575+00:00", "event": "pass", "symbol": "BTC", "price_at_pass": 29.43, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576618+00:00", "event": "pass", "symbol": "JD", "price_at_pass": 28.67, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576658+00:00", "event": "pass", "symbol": "META", "price_at_pass": 593.48, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576697+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 399.75, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576736+00:00", "event": "pass", "symbol": "MSTR", "price_at_pass": 131.1, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576775+00:00", "event": "pass", "symbol": "MU", "price_at_pass": 1079.13, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576814+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 212.46, "action": "hold", "conviction": 2}
+{"ts": "2026-06-16T02:45:15.576853+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 410.25, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T02:45:15.576892+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 653.42, "action": "hold", "conviction": 1}
