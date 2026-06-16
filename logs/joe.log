@@ -866,3 +866,4 @@
 [2026-06-16T02:45:16.299136+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
 [2026-06-16T02:45:18.364649+00:00] publish: dashboard pushed to GitHub Pages
 [2026-06-16T02:54:54.182010+00:00] Playbook updated (3 trades, 32 decisions today).
+[2026-06-16T02:56:21.515413+00:00] Weekly strategy updated (14 trades, 591 decisions over 7 days).
