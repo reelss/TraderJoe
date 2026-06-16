@@ -33,10 +33,16 @@ print("daily_loss_tripped (down 5.7%):", daily_loss_tripped(acct))
 
 # Positions: WIN held since a prior day & up 16% (take-profit), OLD down 9%
 # (ATR stop ~7.5%), FRESH bought today down 9% (must NOT sell — same-day = day trade).
+# Fields mirror live broker.positions(): symbol, qty, avg_entry, current_price,
+# market_value, unrealized_pl, unrealized_plpc. Synthetic values are kept
+# internally consistent (current_price = avg_entry * (1 + plpc)).
 positions = [
-    {"symbol": "WIN", "qty": 4, "unrealized_plpc": 0.16},
-    {"symbol": "OLD", "qty": 2, "unrealized_plpc": -0.09},
-    {"symbol": "FRESH", "qty": 1, "unrealized_plpc": -0.09},
+    {"symbol": "WIN", "qty": 4, "avg_entry": 100.0, "current_price": 116.0,
+     "market_value": 464.0, "unrealized_pl": 64.0, "unrealized_plpc": 0.16},
+    {"symbol": "OLD", "qty": 2, "avg_entry": 80.0, "current_price": 72.8,
+     "market_value": 145.6, "unrealized_pl": -14.4, "unrealized_plpc": -0.09},
+    {"symbol": "FRESH", "qty": 1, "avg_entry": 50.0, "current_price": 45.5,
+     "market_value": 45.5, "unrealized_pl": -4.5, "unrealized_plpc": -0.09},
 ]
 opened_today = {"FRESH"}
 acct2 = {"equity": 10000.0, "last_equity": 10000.0, "cash": 4000.0,

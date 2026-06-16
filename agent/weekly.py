@@ -16,12 +16,13 @@ from __future__ import annotations
 import json
 from datetime import datetime, timedelta, timezone
 
-from anthropic import Anthropic
+from anthropic import Anthropic, RateLimitError
 
 from . import logbook as log
 from .broker import Broker
 from .config import CREDS, MODELS, PLAYBOOK_PATH, STRATEGY_PATH
 from .digest import send_to_slack
+from .llm_retry import create_with_retry
 from .perf_stats import compute_stats
 from .attribution import compute_attribution
 from .regime import macro_context
@@ -144,12 +145,18 @@ def run_weekly_review() -> None:
     )
 
     client = Anthropic(api_key=CREDS.anthropic_key)
-    resp = client.messages.create(
-        model=MODELS.reflection_model,
-        max_tokens=MODELS.max_tokens,
-        system=_SYSTEM,
-        messages=[{"role": "user", "content": user}],
-    )
+    try:
+        resp = create_with_retry(
+            client,
+            model=MODELS.reflection_model,
+            max_tokens=MODELS.max_tokens,
+            system=_SYSTEM,
+            messages=[{"role": "user", "content": user}],
+        )
+    except RateLimitError as exc:
+        log.info(f"Weekly review: Anthropic rate limit after retries ({exc!r}) — skipping update.")
+        send_to_slack(":warning: Joe weekly strategy review failed: Anthropic rate limit (429) after retries. Strategy unchanged.")
+        return
     new_strategy = resp.content[0].text.strip()
     if not new_strategy:
         log.info("Weekly review: model returned empty — strategy.md unchanged.")

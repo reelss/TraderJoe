@@ -9,12 +9,14 @@ from __future__ import annotations
 import json
 from datetime import datetime, timezone
 
-from anthropic import Anthropic
+from anthropic import Anthropic, RateLimitError
 
 from . import logbook as log
 from .broker import Broker
 from .config import CREDS, MODELS, PLAYBOOK_PATH
 from .counterfactual import recent_resolved
+from .digest import send_to_slack
+from .llm_retry import create_with_retry
 from .perf_stats import compute_stats
 from .regime import macro_context
 
@@ -105,12 +107,18 @@ def run_reflection() -> None:
     )
 
     client = Anthropic(api_key=CREDS.anthropic_key)
-    resp = client.messages.create(
-        model=MODELS.reflection_model,
-        max_tokens=MODELS.max_tokens,
-        system=_SYSTEM,
-        messages=[{"role": "user", "content": user}],
-    )
+    try:
+        resp = create_with_retry(
+            client,
+            model=MODELS.reflection_model,
+            max_tokens=MODELS.max_tokens,
+            system=_SYSTEM,
+            messages=[{"role": "user", "content": user}],
+        )
+    except RateLimitError as exc:
+        log.info(f"Reflection: Anthropic rate limit after retries ({exc!r}) — skipping update.")
+        send_to_slack(":warning: Joe nightly reflection failed: Anthropic rate limit (429) after retries. Playbook unchanged.")
+        return
     new_playbook = resp.content[0].text.strip()
     if new_playbook:
         PLAYBOOK_PATH.write_text(new_playbook + "\n", encoding="utf-8")
