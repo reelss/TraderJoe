@@ -252,3 +252,21 @@
 {"ts": "2026-06-16T02:45:15.576814+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 212.46, "action": "hold", "conviction": 2}
 {"ts": "2026-06-16T02:45:15.576853+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 410.25, "action": "hold", "conviction": 1}
 {"ts": "2026-06-16T02:45:15.576892+00:00", "event": "pass", "symbol": "WDC", "price_at_pass": 653.42, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962344+00:00", "event": "pass", "symbol": "ALAB", "price_at_pass": 373.16, "action": "hold", "conviction": 2}
+{"ts": "2026-06-16T18:19:38.962401+00:00", "event": "pass", "symbol": "AMZN", "price_at_pass": 246.32, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962439+00:00", "event": "pass", "symbol": "CBOE", "price_at_pass": 267.35, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962471+00:00", "event": "pass", "symbol": "CIFR", "price_at_pass": 27.23, "action": "hold", "conviction": 2}
+{"ts": "2026-06-16T18:19:38.962503+00:00", "event": "pass", "symbol": "COIN", "price_at_pass": 171.66, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962534+00:00", "event": "pass", "symbol": "GOOGL", "price_at_pass": 372.61, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962565+00:00", "event": "pass", "symbol": "HOOD", "price_at_pass": 96.8, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962595+00:00", "event": "pass", "symbol": "MSFT", "price_at_pass": 391.69, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962624+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 209.4, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.962654+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 405.64, "action": "hold", "conviction": 1}
+{"ts": "2026-06-16T18:19:38.963563+00:00", "event": "resolved", "symbol": "HOOD", "pass_ts": "2026-06-11T19:55:40.608428+00:00", "price_at_pass": 92.66, "price_now": 96.8, "return_pct": 0.0447, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963630+00:00", "event": "resolved", "symbol": "ALAB", "pass_ts": "2026-06-12T13:35:45.242206+00:00", "price_at_pass": 377.04, "price_now": 373.16, "return_pct": -0.0103, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963674+00:00", "event": "resolved", "symbol": "MSFT", "pass_ts": "2026-06-12T13:35:45.243071+00:00", "price_at_pass": 383.42, "price_now": 391.69, "return_pct": 0.0216, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963710+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-12T13:35:45.243380+00:00", "price_at_pass": 204.03, "price_now": 209.4, "return_pct": 0.0263, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963746+00:00", "event": "resolved", "symbol": "AMZN", "pass_ts": "2026-06-12T14:35:39.476699+00:00", "price_at_pass": 236.45, "price_now": 246.32, "return_pct": 0.0417, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963786+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-12T14:35:39.477302+00:00", "price_at_pass": 205.6, "price_now": 209.4, "return_pct": 0.0185, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963820+00:00", "event": "resolved", "symbol": "NVDA", "pass_ts": "2026-06-12T15:35:36.501195+00:00", "price_at_pass": 206.58, "price_now": 209.4, "return_pct": 0.0137, "days_elapsed": 4, "verdict": "neutral"}
+{"ts": "2026-06-16T18:19:38.963851+00:00", "event": "resolved", "symbol": "GOOGL", "pass_ts": "2026-06-12T16:35:33.174092+00:00", "price_at_pass": 361.48, "price_now": 372.61, "return_pct": 0.0308, "days_elapsed": 4, "verdict": "neutral"}

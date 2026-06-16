@@ -867,3 +867,15 @@
 [2026-06-16T02:45:18.364649+00:00] publish: dashboard pushed to GitHub Pages
 [2026-06-16T02:54:54.182010+00:00] Playbook updated (3 trades, 32 decisions today).
 [2026-06-16T02:56:21.515413+00:00] Weekly strategy updated (14 trades, 591 decisions over 7 days).
+[2026-06-16T18:19:11.020168+00:00] Equity $9724.01 | cash $7116.59 | 3 open positions
+[2026-06-16T18:19:12.053765+00:00] Regime: risk_on (SPY 752.04 vs 200d SMA 687.36) | VIX 16.2 (calm)
+[2026-06-16T18:19:12.282939+00:00] Sector concentration warning: ['Banking', 'Retail'] >= 30% of invested equity
+[2026-06-16T18:19:12.573055+00:00] source[alpaca_news]: 160 ticker signals
+[2026-06-16T18:19:12.664550+00:00] source[finnhub]: 0 ticker signals
+[2026-06-16T18:19:13.062647+00:00] Live price overlay applied for 15 symbols.
+[2026-06-16T18:19:14.375953+00:00] 13 candidates -> brain
+[2026-06-16T18:19:38.961708+00:00] Market note: Risk-on regime sustained (SPY +1.76%, VIX 16.2 calm), golden_cross active. Broad participation still narrow (45% breadth = 5/11 sectors); XLK approaching SMA200 from below — two-close trigger is live for Monday/Tuesday confirmation. Existing positions (JPM +6.1%, NUVL +0.2%, CASY -0.7%) are model setups; JPM RSI >75 trim is discipline-enforced. XLF/XLI/XLP remain hunting grounds, but sector concentration (Banking 38%, Retail 34%) demands diversification before new adds. No new entries until breadth ≥6 sectors or XLK two-close confirmed. Conviction 3 cap on new entries remains; no conviction 4 trades. Cash 62% is correct positioning.
+[2026-06-16T18:19:39.024864+00:00] PARTIAL EXIT 50% JPM (brain_sell, +6.1%) -> OrderStatus.PENDING_NEW
+[2026-06-16T18:19:39.024898+00:00] Cycle complete.
+[2026-06-16T18:19:39.263128+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
+[2026-06-16T18:19:40.800599+00:00] publish: dashboard pushed to GitHub Pages
