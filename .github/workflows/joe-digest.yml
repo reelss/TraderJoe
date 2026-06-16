@@ -17,10 +17,10 @@
 name: Joe — Daily Digest
 
 on:
-  # 4:30pm ET, year-round. 21:30 UTC = 4:30pm EST (correct in winter).
-  # In summer (EDT, UTC-4) this fires at 5:30pm ET — still well after close.
+  # 4:30pm ET year-round. Use 20:30 UTC for EDT (UTC-4, June–November).
+  # To run 4:30pm EST (December–March, UTC-5): change cron to "30 21 * * 1-5".
   schedule:
-    - cron: "30 21 * * 1-5"
+    - cron: "30 20 * * 1-5"  # 4:30pm EDT (20:30 UTC)
 
   # Allow manual trigger from the GitHub Actions UI (useful for testing).
   workflow_dispatch:

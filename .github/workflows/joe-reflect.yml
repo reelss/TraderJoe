@@ -17,11 +17,11 @@
 name: Joe — Nightly Reflection
 
 on:
-  # 4:35pm ET, year-round. 21:35 UTC = 4:35pm EST (correct in winter).
-  # In summer (EDT, UTC-4) this fires at 5:35pm ET — still well after close.
+  # 4:35pm ET year-round. Use 20:35 UTC for EDT (UTC-4, June–November).
+  # To run 4:35pm EST (December–March, UTC-5): change cron to "35 21 * * 1-5".
   # Runs 5 minutes after the digest so the digest has time to finish first.
   schedule:
-    - cron: "35 21 * * 1-5"
+    - cron: "35 20 * * 1-5"  # 4:35pm EDT (20:35 UTC)
 
   # Allow manual trigger from the GitHub Actions UI (useful for testing).
   workflow_dispatch:
@@ -91,9 +91,10 @@ jobs:
         # Pull --rebase before push because publish.py may have advanced remote
         # HEAD with a dashboard commit while this job was running.
         run: |
-          git add -u && git add playbook.md
+          git add -A
           if ! git diff --cached --quiet; then
             git commit -m "chore: playbook update [skip ci]"
+            git stash push -u
             git pull --rebase origin main
             git push
           fi
