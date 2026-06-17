@@ -893,3 +893,15 @@
 [2026-06-16T18:24:48.883340+00:00] publish: dashboard pushed to GitHub Pages
 [2026-06-16T21:38:52.331871+00:00] Market closed — skipping cycle.
 [2026-06-16T23:09:12.064918+00:00] Playbook updated (5 trades, 58 decisions today).
+[2026-06-17T16:47:47.538911+00:00] Equity $9699.56 | cash $8106.24 | 2 open positions
+[2026-06-17T16:47:49.166110+00:00] Regime: risk_on (SPY 750.06 vs 200d SMA 687.87) | VIX 16.4 (calm)
+[2026-06-17T16:47:50.377431+00:00] Sector concentration warning: ['Retail', 'Biotechnology'] >= 30% of invested equity
+[2026-06-17T16:47:51.413205+00:00] source[alpaca_news]: 80 ticker signals
+[2026-06-17T16:47:52.142014+00:00] source[finnhub]: 0 ticker signals
+[2026-06-17T16:47:52.786301+00:00] Live price overlay applied for 12 symbols.
+[2026-06-17T16:47:59.524921+00:00] 11 candidates -> brain
+[2026-06-17T16:48:18.428285+00:00] Market note: Risk-on confirmed (SPY above SMA200, golden cross active, VIX calm 16.4), but breadth neutral (45% = 5/11 sectors) and XLK still below SMA200 trigger. Exit CASY (volume collapse, concentration risk); hold NUVL (triple confirmation intact, near 52w high). Maintain 83% cash and tight sector concentration (Retail + HC = 100% of equity) until breadth improves or XLK two-close fires. No new entries until technicals confirm.
+[2026-06-17T16:48:18.581797+00:00] EXIT CASY (brain_sell, -3.6%) -> OrderStatus.PENDING_NEW
+[2026-06-17T16:48:18.581859+00:00] Cycle complete.
+[2026-06-17T16:48:18.984204+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
+[2026-06-17T16:48:20.947058+00:00] publish: dashboard pushed to GitHub Pages
