@@ -309,3 +309,15 @@
 {"ts": "2026-06-17T16:51:06.487704+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 402.82, "action": "hold", "conviction": 1}
 {"ts": "2026-06-17T16:51:06.487733+00:00", "event": "pass", "symbol": "UBER", "price_at_pass": 72.38, "action": "hold", "conviction": 1}
 {"ts": "2026-06-17T16:51:06.487762+00:00", "event": "pass", "symbol": "XLK", "price_at_pass": 188.74, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.042621+00:00", "event": "pass", "symbol": "AMAT", "price_at_pass": 607.36, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.042685+00:00", "event": "pass", "symbol": "BIRD", "price_at_pass": 5.55, "action": "hold", "conviction": 1}
+{"ts": "2026-06-17T19:17:11.042732+00:00", "event": "pass", "symbol": "BRAI", "price_at_pass": 9.2, "action": "hold", "conviction": 1}
+{"ts": "2026-06-17T19:17:11.042772+00:00", "event": "pass", "symbol": "CVNA", "price_at_pass": 63.41, "action": "hold", "conviction": 1}
+{"ts": "2026-06-17T19:17:11.042812+00:00", "event": "pass", "symbol": "NVDA", "price_at_pass": 205.77, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.042851+00:00", "event": "pass", "symbol": "NVO", "price_at_pass": 43.93, "action": "hold", "conviction": 1}
+{"ts": "2026-06-17T19:17:11.042890+00:00", "event": "pass", "symbol": "SNOW", "price_at_pass": 235.75, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.042934+00:00", "event": "pass", "symbol": "SPY", "price_at_pass": 745.61, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.042973+00:00", "event": "pass", "symbol": "TSLA", "price_at_pass": 400.64, "action": "hold", "conviction": 1}
+{"ts": "2026-06-17T19:17:11.043009+00:00", "event": "pass", "symbol": "VOO", "price_at_pass": 685.74, "action": "hold", "conviction": 2}
+{"ts": "2026-06-17T19:17:11.044045+00:00", "event": "resolved", "symbol": "VOO", "pass_ts": "2026-06-11T19:35:39.015623+00:00", "price_at_pass": 680.01, "price_now": 685.74, "return_pct": 0.0084, "days_elapsed": 5, "verdict": "neutral"}
+{"ts": "2026-06-17T19:17:11.044112+00:00", "event": "resolved", "symbol": "VOO", "pass_ts": "2026-06-11T19:55:40.610084+00:00", "price_at_pass": 678.74, "price_now": 685.74, "return_pct": 0.0103, "days_elapsed": 5, "verdict": "neutral"}
