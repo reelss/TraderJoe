@@ -905,3 +905,14 @@
 [2026-06-17T16:48:18.581859+00:00] Cycle complete.
 [2026-06-17T16:48:18.984204+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
 [2026-06-17T16:48:20.947058+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-17T16:50:41.529888+00:00] Equity $9698.69 | cash $8958.29 | 1 open positions
+[2026-06-17T16:50:42.913089+00:00] Regime: risk_on (SPY 750.05 vs 200d SMA 687.87) | VIX 16.4 (calm)
+[2026-06-17T16:50:43.109232+00:00] Sector concentration warning: ['Biotechnology'] >= 30% of invested equity
+[2026-06-17T16:50:43.710990+00:00] source[alpaca_news]: 80 ticker signals
+[2026-06-17T16:50:43.866454+00:00] source[finnhub]: 0 ticker signals
+[2026-06-17T16:50:44.503202+00:00] Live price overlay applied for 11 symbols.
+[2026-06-17T16:50:46.639797+00:00] 10 candidates -> brain
+[2026-06-17T16:51:06.486956+00:00] Market note: Risk-on regime with calm VIX (16.4) and golden cross intact; however, breadth is neutral (45%, only 5/11 sectors above SMA200) and XLK is still below SMA200, blocking the highest-conviction entry channel. NUVL (100% Biotech) is the only open position and is sound (triple confirmation, near 52w high); hold and trim at RSI >75. Dry powder (89% cash) is correct. Best new-entry opportunity remains XLI (Industrials above SMA200, +2.4% 5d) pending vol confirmation. Do not chase ICCM or pre-empt XLK trigger — discipline is the edge.
+[2026-06-17T16:51:06.489442+00:00] Cycle complete.
+[2026-06-17T16:51:06.821198+00:00] Dashboard written: /home/runner/work/TraderJoe/TraderJoe/dashboard.html
+[2026-06-17T16:51:08.978589+00:00] publish: dashboard pushed to GitHub Pages
