@@ -17,13 +17,12 @@
 name: Joe — Nightly Reflection
 
 on:
-  # 4:35pm ET year-round. Use 20:35 UTC for EDT (UTC-4, June–November).
-  # To run 4:35pm EST (December–March, UTC-5): change cron to "35 21 * * 1-5".
-  # Runs 5 minutes after the digest so the digest has time to finish first.
-  schedule:
-    - cron: "35 20 * * 1-5"  # 4:35pm EDT (20:35 UTC)
+  # Schedule disabled — Joe runs locally via Windows Task Scheduler.
+  # To re-enable: uncomment the block below (4:35pm EDT = 20:35 UTC).
+  # schedule:
+  #   - cron: "35 20 * * 1-5"
 
-  # Allow manual trigger from the GitHub Actions UI (useful for testing).
+  # Manual trigger still available from the GitHub Actions UI.
   workflow_dispatch:
 
 permissions:

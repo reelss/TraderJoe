@@ -12,15 +12,13 @@
 name: Joe — Hourly Cycle
 
 on:
-  # Top of each hour, 10am–4pm ET (14:00–20:00 UTC), weekdays only.
-  # Note: cron uses UTC. EDT offset is UTC-4; EST is UTC-5.
-  # We run 14:00–20:00 UTC (10am–4pm EDT) so the full session is covered in summer.
-  # In winter (EST, UTC-5) this becomes 9am–3pm ET — still catches all core hours.
-  schedule:
-    - cron: "0 14-20 * * 1-5"   # top of hour, 10am–4pm ET (EDT) — full core session
-    - cron: "35 13 * * 1-5"     # 8:35am CT (CDT) — first cycle at market open
+  # Schedule disabled — Joe runs locally via Windows Task Scheduler.
+  # To re-enable cloud scheduling, uncomment the block below.
+  # schedule:
+  #   - cron: "0 14-20 * * 1-5"   # top of hour, 10am–4pm ET (EDT)
+  #   - cron: "35 13 * * 1-5"     # 8:35am CT (CDT) — market open
 
-  # Allow manual trigger from the GitHub Actions UI (useful for testing).
+  # Manual trigger still available from the GitHub Actions UI.
   workflow_dispatch:
     inputs:
       force:

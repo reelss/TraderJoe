@@ -17,11 +17,12 @@
 name: Joe — Sunday Strategy Review
 
 on:
-  # 4:00pm CT Sunday (CDT = UTC-5 → 21:00 UTC).
-  schedule:
-    - cron: "0 21 * * 0"
+  # Schedule disabled — Joe runs locally via Windows Task Scheduler.
+  # To re-enable: uncomment the block below (4:00pm CT Sunday = 21:00 UTC).
+  # schedule:
+  #   - cron: "0 21 * * 0"
 
-  # Allow manual trigger from the GitHub Actions UI.
+  # Manual trigger still available from the GitHub Actions UI.
   workflow_dispatch:
 
 permissions:
