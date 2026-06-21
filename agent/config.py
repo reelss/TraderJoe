@@ -15,9 +15,11 @@ from dotenv import load_dotenv
 ROOT = Path(__file__).resolve().parent.parent
 LOGS_DIR = ROOT / "logs"
 PLAYBOOK_PATH = ROOT / "playbook.md"
+PRINCIPLES_PATH = ROOT / "principles.md"  # durable rules — not rewritten nightly
 STRATEGY_PATH = ROOT / "strategy.md"
 DASHBOARD_PATH = ROOT / "dashboard.md"
 HWM_PATH = ROOT / "logs" / "hwm.json"  # peak unrealized gain per open position
+PEAKS_PATH = ROOT / "logs" / "peaks.json"  # peak plpc per position for trailing exit
 
 # Load .env from the project root. override=True so Joe's own .env is the single
 # source of truth — otherwise an empty/shadowing OS var (e.g. a harness-set
@@ -96,10 +98,14 @@ class StrategyConfig:
     regime_symbol: str = "SPY"
     regime_sma: int = 200                 # SPY above its 200-day SMA = risk-on
     bars_lookback_days: int = 420         # enough trading days for 200-SMA + 12-1 mom
-    risk_per_trade_pct: float = 0.01      # risk ~1% of equity from entry to stop
+    risk_per_trade_pct: float = 0.02      # risk ~2% of equity from entry to stop
     atr_stop_mult: float = 2.5            # stop distance = 2.5 x ATR(14)
     min_stop_pct: float = 0.05            # clamp the ATR stop to this floor
-    max_stop_pct: float = 0.12            # ...and this ceiling
+    max_stop_pct: float = 0.09            # ...and this ceiling
+    # Deployment floor: in a risk-on regime with room for more positions, don't
+    # let the 2%-risk formula alone leave capital idle. Scale sizing toward the
+    # position cap until at least this fraction of equity is deployed.
+    min_deploy_pct: float = 0.50          # target >= 50% of equity deployed when risk-on
 
 
 @dataclass(frozen=True)
@@ -132,8 +138,10 @@ class SourceConfig:
     enable_stocktwits: bool = False       # Cloudflare-gated (403) as of 2026 — opt-in only
     enable_alpaca_news: bool = True
     enable_finnhub: bool = True           # only fires if FINNHUB_API_KEY is set
+    enable_sector_rs: bool = True         # momentum-leader screen from top RS sectors
 
     weight_alpaca_news: float = 1.5       # professional newswire (Benzinga)
+    weight_sector_rs: float = 1.2         # sector momentum leaders (not news-reactive)
     weight_finnhub: float = 1.4           # structured news + insider sentiment
     weight_stocktwits: float = 1.0        # purpose-built, user bull/bear tags
     weight_reddit: float = 0.6            # noisiest, most hype-prone

@@ -57,32 +57,45 @@ def _fetch_sector(symbol: str) -> str:
         return "Unknown"
 
 
-def sector_exposure(positions: list[dict]) -> dict:
-    """Calculate sector concentration across all open positions.
+def sector_exposure(positions: list[dict], equity: float | None = None) -> dict:
+    """Calculate sector concentration as a fraction of TOTAL ACCOUNT EQUITY.
+
+    Using equity (not just invested capital) as the denominator is critical:
+    measuring concentration against invested-only made 3 positions in 3 sectors
+    each read as 33%+ "concentrated" purely because most of the account was cash,
+    self-locking deployment. Against equity, 3 positions at ~10% each read as
+    ~10% per sector — correctly leaving room to add.
 
     Args:
         positions: list of position dicts from broker.positions()
                    Each must have 'symbol' and 'market_value'.
+        equity: total account equity. If None, falls back to total invested
+                (legacy behavior) — callers concerned with concentration should
+                always pass equity.
 
     Returns:
         {
-          "by_sector": {"Technology": 0.35, "Financials": 0.12, ...},
+          "by_sector": {"Technology": 0.10, "Financials": 0.08, ...},  # of equity
           "by_symbol": {"ORCL": "Technology", "JPM": "Financials", ...},
-          "concentrated": ["Technology"],   # sectors >= 30% of invested equity
+          "concentrated": ["Technology"],   # sectors >= 30% of equity
           "total_invested": 1234.56,
+          "denominator": "equity" | "invested",
         }
     """
     if not positions:
         return {
             "by_sector": {}, "by_symbol": {},
             "concentrated": [], "total_invested": 0.0,
+            "denominator": "equity" if equity else "invested",
         }
 
     total_invested = sum(abs(p.get("market_value", 0)) for p in positions)
-    if total_invested == 0:
+    denom = equity if (equity and equity > 0) else total_invested
+    if denom == 0:
         return {
             "by_sector": {}, "by_symbol": {},
             "concentrated": [], "total_invested": 0.0,
+            "denominator": "equity" if equity else "invested",
         }
 
     by_symbol: dict[str, str] = {}
@@ -95,7 +108,7 @@ def sector_exposure(positions: list[dict]) -> dict:
         sector_totals[sector] = sector_totals.get(sector, 0.0) + abs(p.get("market_value", 0))
 
     by_sector = {
-        s: round(v / total_invested, 4)
+        s: round(v / denom, 4)
         for s, v in sorted(sector_totals.items(), key=lambda x: -x[1])
     }
     concentrated = [s for s, pct in by_sector.items() if pct >= 0.30]
@@ -105,4 +118,28 @@ def sector_exposure(positions: list[dict]) -> dict:
         "by_symbol": by_symbol,
         "concentrated": concentrated,
         "total_invested": round(total_invested, 2),
+        "denominator": "equity" if (equity and equity > 0) else "invested",
     }
+
+
+def sector_of(symbol: str) -> str:
+    """Public accessor for a single symbol's sector (cached)."""
+    return _fetch_sector(symbol.upper())
+
+
+def would_exceed_sector_cap(symbol: str, add_value: float,
+                            positions: list[dict], equity: float,
+                            cap: float = 0.30) -> bool:
+    """True if adding `add_value` of `symbol` would push its sector over `cap`
+    fraction of equity. Used as a hard buy gate in risk.vet_orders.
+
+    Pending buys queued earlier in the same cycle should be reflected by passing
+    them in `positions` (with 'symbol' and 'market_value') so the cap accounts
+    for cumulative same-cycle exposure.
+    """
+    if not equity or equity <= 0:
+        return False
+    sector = _fetch_sector(symbol.upper())
+    current = sum(abs(p.get("market_value", 0)) for p in positions
+                  if _fetch_sector(p["symbol"].upper()) == sector)
+    return (current + add_value) / equity > cap

@@ -929,3 +929,134 @@
 [2026-06-17T19:17:12.982288+00:00] publish: dashboard pushed to GitHub Pages
 [2026-06-17T21:52:33.664618+00:00] Market closed — skipping cycle.
 [2026-06-17T23:10:35.146003+00:00] Playbook updated (1 trades, 32 decisions today).
+[2026-06-18T14:35:07.128237+00:00] Equity $9699.33 | cash $8958.27 | 1 open positions
+[2026-06-18T14:35:08.965872+00:00] Regime: risk_on (SPY 745.82 vs 200d SMA 688.35) | VIX 18.4 (calm)
+[2026-06-18T14:35:09.300078+00:00] Sector concentration warning: ['Biotechnology'] >= 30% of invested equity
+[2026-06-18T14:35:10.006320+00:00] source[alpaca_news]: 145 ticker signals
+[2026-06-18T14:35:10.584959+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T14:35:11.636004+00:00] Live price overlay applied for 13 symbols.
+[2026-06-18T14:35:11.936074+00:00] Earnings within 5 days: ACN
+[2026-06-18T14:35:16.734999+00:00] Insider net buying (last 30d): INTU
+[2026-06-18T14:35:16.735292+00:00] 12 candidates -> brain
+[2026-06-18T14:35:35.205310+00:00] Market note: Risk-on regime, golden cross confirmed, VIX calm at 18.4. Holding NUVL (7.6% equity). Breadth neutral at 45% limits new position size. XLK two-close trigger not yet active — wait for confirmation before XLK sector entries. XLI/XLF remain priority hunting grounds but all candidates today fail on sector/technical/parabolic filters. No new entries this cycle; cash 92.6% is appropriately defensive given neutral breadth.
+[2026-06-18T14:35:35.219604+00:00] Cycle complete.
+[2026-06-18T14:35:35.631151+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T14:35:38.202693+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T15:35:06.244530+00:00] Equity $9698.82 | cash $8958.27 | 1 open positions
+[2026-06-18T15:35:07.942197+00:00] Regime: risk_on (SPY 745.55 vs 200d SMA 688.35) | VIX 18.4 (calm)
+[2026-06-18T15:35:08.245962+00:00] Sector concentration warning: ['Biotechnology'] >= 30% of invested equity
+[2026-06-18T15:35:08.951313+00:00] source[alpaca_news]: 111 ticker signals
+[2026-06-18T15:35:09.239689+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T15:35:10.028120+00:00] Live price overlay applied for 13 symbols.
+[2026-06-18T15:35:16.000224+00:00] 13 candidates -> brain
+[2026-06-18T15:35:36.059911+00:00] Market note: Risk-on regime intact (SPY above SMA200, golden_cross true, VIX calm at 18.4). INTC is the only new entry candidate with clean triple confirmation + momentum; NUVL holds on intact thesis. Sector concentration: Biotech is only 1.0% (NUVL), well below 30% threshold. Breadth neutral at 45% — no aggressive sizing. XLK two-close trigger is Day 0; watch for NVDA/sector confirmation before entry. Cash position (~92%) is appropriate given parabolic extremes (MU +54%, MRVL +73%) and weak volume across candidates.
+[2026-06-18T15:35:36.297552+00:00] BUY 6 INTC @~$131.66 (stop 12.0%) -> OrderStatus.PENDING_NEW
+[2026-06-18T15:35:36.297823+00:00] Cycle complete.
+[2026-06-18T15:35:36.708549+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T15:35:38.730497+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T16:35:02.699810+00:00] Equity $9711.57 | cash $8168.73 | 2 open positions
+[2026-06-18T16:35:04.247958+00:00] Regime: risk_on (SPY 746.55 vs 200d SMA 688.36) | VIX 18.4 (calm)
+[2026-06-18T16:35:04.910218+00:00] Sector concentration warning: ['Semiconductors', 'Biotechnology'] >= 30% of invested equity
+[2026-06-18T16:35:05.730603+00:00] source[alpaca_news]: 115 ticker signals
+[2026-06-18T16:35:06.618223+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T16:35:07.350149+00:00] Live price overlay applied for 13 symbols.
+[2026-06-18T16:35:13.394758+00:00] Insider net buying (last 30d): HOOD
+[2026-06-18T16:35:13.395098+00:00] 12 candidates -> brain
+[2026-06-18T16:35:31.087848+00:00] Market note: Risk-on regime intact (VIX 18.4, golden cross true, SPY above SMA200), but breadth weak (5/11 sectors), Semiconductors and Biotech overconcentrated (52% + 48%), and all attractive candidates are either parabolic, sectored-out, or below key SMAs. Best action: hold core INTC and NUVL, trim 50% of each at RSI >75, deploy cash only into Industrials (XLI above SMA200, +2.9% 5d) on full triple confirmation + MACD bullish + vol ≥1.5×. No new entries today; breadth and concentration require discipline.
+[2026-06-18T16:35:31.102579+00:00] Cycle complete.
+[2026-06-18T16:35:31.578078+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T16:35:33.568618+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T17:35:02.740930+00:00] Equity $9710.73 | cash $8168.73 | 2 open positions
+[2026-06-18T17:35:04.214573+00:00] Regime: risk_on (SPY 747.77 vs 200d SMA 688.36) | VIX 18.4 (calm)
+[2026-06-18T17:35:04.856975+00:00] Sector concentration warning: ['Semiconductors', 'Biotechnology'] >= 30% of invested equity
+[2026-06-18T17:35:05.627900+00:00] source[alpaca_news]: 172 ticker signals
+[2026-06-18T17:35:05.941819+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T17:35:06.861414+00:00] Live price overlay applied for 14 symbols.
+[2026-06-18T17:35:07.180685+00:00] Earnings within 5 days: ACN
+[2026-06-18T17:35:10.938275+00:00] 10 candidates -> brain
+[2026-06-18T17:35:29.982386+00:00] Market note: Risk-on regime intact (SPY +1.76% 1d, above SMA200, golden cross confirmed, VIX 18.4 calm). Concentration warning: Semiconductors 52% + Biotech 48% = 100% of invested equity. No new positions can be added to either sector per rule. XLK two-close trigger pending (Day 0); prep NVDA/AMAT for Tuesday entry IF XLK confirms. Breadth neutral at 45% (5/11) = conservative sizing. Hold INTC and NUVL; avoid parabolic traps (BFLY, MU) and sector-vetoed names (AMZN/SWBI = XLY, META = XLC). Cash 84% is appropriate given concentration and breadth headwind.
+[2026-06-18T17:35:29.995404+00:00] Cycle complete.
+[2026-06-18T17:35:30.377163+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T17:35:32.343399+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T18:35:04.878712+00:00] Equity $9712.86 | cash $8168.73 | 2 open positions
+[2026-06-18T18:35:06.450486+00:00] Regime: risk_on (SPY 746.39 vs 200d SMA 688.36) | VIX 18.4 (calm)
+[2026-06-18T18:35:07.262696+00:00] Sector concentration warning: ['Semiconductors', 'Biotechnology'] >= 30% of invested equity
+[2026-06-18T18:35:08.003481+00:00] source[alpaca_news]: 171 ticker signals
+[2026-06-18T18:35:08.316591+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T18:35:08.948561+00:00] Live price overlay applied for 14 symbols.
+[2026-06-18T18:35:09.264830+00:00] Earnings within 5 days: ACN
+[2026-06-18T18:35:13.047391+00:00] 11 candidates -> brain
+[2026-06-18T18:35:29.963292+00:00] Market note: Risk-on regime intact (VIX 18.4, SPY above SMA200, golden cross true), but XLK sector still below SMA200 — tech entry trigger not yet live. Semiconductors/Biotech concentrated at 58% of equity; must rebalance to avoid correlated losses. Hold existing INTC/NUVL; await XLK two-close confirmation before any new tech entries. Defend existing positions and avoid chasing parabolic setups (BFLY, MU, CIFR all extended today).
+[2026-06-18T18:35:29.980424+00:00] Cycle complete.
+[2026-06-18T18:35:30.362568+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T18:35:32.668602+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T19:35:03.886374+00:00] Equity $9712.35 | cash $8168.73 | 2 open positions
+[2026-06-18T19:35:05.348124+00:00] Regime: risk_on (SPY 746.19 vs 200d SMA 688.36) | VIX 18.4 (calm)
+[2026-06-18T19:35:05.971900+00:00] Sector concentration warning: ['Semiconductors', 'Biotechnology'] >= 30% of invested equity
+[2026-06-18T19:35:06.706659+00:00] source[alpaca_news]: 180 ticker signals
+[2026-06-18T19:35:07.045066+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T19:35:07.638004+00:00] Live price overlay applied for 14 symbols.
+[2026-06-18T19:35:07.941782+00:00] Earnings within 5 days: ACN
+[2026-06-18T19:35:11.962906+00:00] 12 candidates -> brain
+[2026-06-18T19:35:32.432833+00:00] Market note: Risk-on regime with golden_cross confirmed and VIX calm (18.4); breadth neutral at 45% caps new position sizing. Financials (XLF) and Industrials (XLI) are the primary hunting grounds; Tech (XLK) is a two-day trigger away if SPY momentum continues. Current holdings (INTC, NUVL) are concentrated in Semiconductors + Biotech (100.5% of invested equity)—sector ceiling reached. MS is the only new entry with clean conviction 3 setup; all others are blocked by technicals, sector rules, or extended valuation. Breadth must improve to 6+ sectors above SMA200 before aggressive new deployment. Cash (~84%) is correctly positioned.
+[2026-06-18T19:35:32.493292+00:00] BUY 4 MS @~$224.59 (stop 7.0%) -> OrderStatus.PENDING_NEW
+[2026-06-18T19:35:32.493513+00:00] Cycle complete.
+[2026-06-18T19:35:32.897392+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T19:35:35.187782+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T19:55:02.144685+00:00] Equity $9707.93 | cash $7269.09 | 3 open positions
+[2026-06-18T19:55:03.583486+00:00] Regime: risk_on (SPY 747.44 vs 200d SMA 688.36) | VIX 18.4 (calm)
+[2026-06-18T19:55:04.520131+00:00] Sector concentration warning: ['Financial Services', 'Semiconductors', 'Biotechnology'] >= 30% of invested equity
+[2026-06-18T19:55:05.223840+00:00] source[alpaca_news]: 180 ticker signals
+[2026-06-18T19:55:05.512616+00:00] source[finnhub]: 0 ticker signals
+[2026-06-18T19:55:06.282875+00:00] Live price overlay applied for 14 symbols.
+[2026-06-18T19:55:06.572262+00:00] Earnings within 5 days: ACN
+[2026-06-18T19:55:10.528123+00:00] 12 candidates -> brain
+[2026-06-18T19:55:27.535977+00:00] Market note: Risk-on regime intact (VIX 18.4, golden_cross true) but concentrated sector exposure (Financials 36.75%, Semiconductors 32.88%, Biotech 30.37%) blocks new entries. Breadth weak at 45% (5/11 sectors). All three open positions are overlapped in concentrated sectors — rebalance via RSI >75 trims before deploying new capital. No new buys until sector concentration decompresses below 30% or breadth improves to ≥6 sectors. Cash (75%) is the correct position.
+[2026-06-18T19:55:27.552685+00:00] Cycle complete.
+[2026-06-18T19:55:27.946547+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T19:55:29.921463+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T20:02:56.062863+00:00] Digest: day +0.06%, total -2.96%, 2 trades — sent to Slack: True
+[2026-06-18T20:02:56.477935+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T20:02:58.975733+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-18T20:03:55.698635+00:00] Playbook updated (2 trades, 82 decisions today).
+[2026-06-18T20:35:04.557051+00:00] Market closed — skipping cycle.
+[2026-06-18T21:31:16.033001+00:00] Playbook updated (2 trades, 82 decisions today).
+[2026-06-18T21:35:06.389268+00:00] Digest: day +0.11%, total -2.91%, 2 trades — sent to Slack: True
+[2026-06-18T21:35:06.767651+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-18T21:35:09.091656+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-19T13:35:10.162137+00:00] Market closed — skipping cycle.
+[2026-06-19T14:35:08.195375+00:00] Market closed — skipping cycle.
+[2026-06-19T15:35:03.889452+00:00] Market closed — skipping cycle.
+[2026-06-19T16:35:03.788549+00:00] Market closed — skipping cycle.
+[2026-06-19T17:35:07.666435+00:00] Market closed — skipping cycle.
+[2026-06-19T18:35:04.217754+00:00] Market closed — skipping cycle.
+[2026-06-19T19:35:06.595369+00:00] Market closed — skipping cycle.
+[2026-06-19T19:55:04.523420+00:00] Market closed — skipping cycle.
+[2026-06-19T20:35:03.828827+00:00] Market closed — skipping cycle.
+[2026-06-19T22:55:44.709918+00:00] No activity today — skipping reflection, playbook unchanged.
+[2026-06-19T22:55:47.889929+00:00] Digest: day +0.00%, total -2.94%, 0 trades — sent to Slack: True
+[2026-06-19T22:55:48.734673+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-19T22:55:51.020427+00:00] publish: dashboard pushed to GitHub Pages
+[2026-06-20T13:35:12.275118+00:00] Market closed — skipping cycle.
+[2026-06-20T15:35:05.232054+00:00] Market closed — skipping cycle.
+[2026-06-20T16:35:04.421985+00:00] Market closed — skipping cycle.
+[2026-06-20T17:35:10.198946+00:00] Market closed — skipping cycle.
+[2026-06-20T18:35:04.400618+00:00] Market closed — skipping cycle.
+[2026-06-20T19:35:12.870720+00:00] Market closed — skipping cycle.
+[2026-06-20T20:35:08.974413+00:00] Market closed — skipping cycle.
+[2026-06-21T03:34:00.107621+00:00] Equity $9706.28 | cash $7269.08 | 3 open positions
+[2026-06-21T03:34:01.577036+00:00] Regime: risk_on (SPY 746.74 vs 200d SMA 688.36) | VIX 16.8 (calm)
+[2026-06-21T03:34:03.170306+00:00] source[alpaca_news]: 39 ticker signals
+[2026-06-21T03:34:03.458317+00:00] source[finnhub]: 0 ticker signals
+[2026-06-21T03:34:03.742059+00:00] source[sector_rs]: leading sectors ['Tech/Semis', 'Industrials'] -> 4 leader signals
+[2026-06-21T03:34:03.742808+00:00] source[sector_rs]: 4 ticker signals
+[2026-06-21T03:34:04.011443+00:00] Live price overlay applied for 15 symbols.
+[2026-06-21T03:34:04.329452+00:00] Earnings within 5 days: MU
+[2026-06-21T03:34:08.901677+00:00] 13 candidates -> brain
+[2026-06-21T03:34:28.829801+00:00] Market note: Risk-on regime intact (SPY +1.76%, VIX 16.8, golden_cross true). Breadth 45% = narrow rally; limit new position size and prioritize XLF/XLI tailwinds. XLK sector rule violation must be purged (INTC + MS exit). JPM is the cleanest new entry. XLK two-close trigger protocol live — do not pre-empt. No new XLC/XLY/Energy entries.
+[2026-06-21T03:34:29.236889+00:00] EXIT INTC (brain_sell, +1.8%) -> OrderStatus.ACCEPTED
+[2026-06-21T03:34:29.314983+00:00] EXIT MS (brain_sell, -0.8%) -> OrderStatus.ACCEPTED
+[2026-06-21T03:34:29.359590+00:00] BUY 2 JPM @~$325.23 (stop 5.8%) -> OrderStatus.ACCEPTED
+[2026-06-21T03:34:29.359723+00:00] Cycle complete.
+[2026-06-21T03:34:29.729072+00:00] Dashboard written: D:\dev\trading-project\dashboard.html
+[2026-06-21T03:34:32.169264+00:00] publish: dashboard pushed to GitHub Pages

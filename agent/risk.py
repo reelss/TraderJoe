@@ -15,9 +15,16 @@ import json
 import math
 from datetime import datetime, timedelta, timezone
 
-from .config import HWM_PATH, LOGS_DIR, RISK, STRATEGY
+from . import logbook as log
+from .config import HWM_PATH, LOGS_DIR, PEAKS_PATH, RISK, STRATEGY
+from .sectors import would_exceed_sector_cap
 
 _TRADES = LOGS_DIR / "trades.jsonl"
+
+# Trailing take-profit: above this gain, replace the hard +15% exit with a
+# trailing stop — let winners run, but exit if they give back `_TP_GIVEBACK`.
+_TP_TRAIL_TRIGGER = 0.15   # only trail once a position is up 15%+
+_TP_GIVEBACK = 0.06        # exit if it falls 6% from its peak gain
 _STOP_REASONS = frozenset({"stop_loss", "trailing_stop_profit", "trailing_stop_breakeven"})
 
 # Trailing-stop floor levels (fraction of equity).
@@ -51,8 +58,25 @@ def _save_hwm(hwm: dict[str, float], open_symbols: set[str]) -> None:
     pruned = {k: v for k, v in hwm.items() if k in open_symbols}
     try:
         HWM_PATH.write_text(json.dumps(pruned), encoding="utf-8")
+    except Exception as exc:
+        log.info(f"hwm save failed: {exc!r}")
+
+
+def _load_peaks() -> dict[str, float]:
+    try:
+        if PEAKS_PATH.exists():
+            return json.loads(PEAKS_PATH.read_text(encoding="utf-8"))
     except Exception:
         pass
+    return {}
+
+
+def _save_peaks(peaks: dict[str, float], open_symbols: set[str]) -> None:
+    pruned = {k: v for k, v in peaks.items() if k in open_symbols}
+    try:
+        PEAKS_PATH.write_text(json.dumps(pruned), encoding="utf-8")
+    except Exception as exc:
+        log.info(f"peaks save failed: {exc!r}")
 
 
 def effective_stop_floor(peak_plpc: float, base_stop_pct: float) -> float:
@@ -112,18 +136,33 @@ def cooling_off_symbols(days: int | None = None) -> set[str]:
 
 def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
                tech_by_sym: dict[str, dict], opened_today: set[str],
-               risk_on: bool = True) -> list[dict]:
-    """Return safe order instructions (PDT/regime/volatility aware)."""
+               risk_on: bool = True,
+               meta_by_sym: dict[str, dict] | None = None) -> list[dict]:
+    """Return safe order instructions (PDT/regime/volatility aware).
+
+    meta_by_sym: per-candidate hard-gate data, keyed by upper-case symbol:
+        {"above_sma200": bool|None, "earnings_soon": bool, "sector": str}
+    Built by cycle.py from the candidate list. When None (e.g. the offline
+    self-test), the SMA200/earnings/sector hard gates are skipped — the legacy
+    risk/sizing path still runs unchanged.
+    """
+    meta_by_sym = meta_by_sym or {}
     held = {p["symbol"]: p for p in positions}
     decided = {d.get("symbol", "").upper(): d for d in decisions}
     orders: list[dict] = []
 
+    def _reject(sym: str, why: str) -> None:
+        log.info(f"vet_orders: rejected BUY {sym} — {why}")
+
     # 1) Exits — trailing-stop / take-profit / brain sell, on prior-day
     #    positions only (same-day exit = a PDT day trade).
-    #    Trailing logic: once a position peaks at 7.5%, the floor rises to
-    #    breakeven; at 10%, it locks in 5% profit. Peak is persisted across
-    #    cycles in logs/hwm.json so a pullback is never forgotten.
+    #    Ladder logic (below +15%): once a position peaks at 7.5%, the floor
+    #    rises to breakeven; at 10%, it locks in 5% profit.
+    #    Above +15%: the old hard take-profit is replaced by a TRAILING stop —
+    #    we track peak gain in logs/peaks.json and only exit if the position
+    #    gives back `_TP_GIVEBACK` (6%) from its peak. Winners are left to run.
     hwm = _load_hwm()
+    peaks = _load_peaks()
     open_syms = {p["symbol"] for p in positions}
     for p in positions:
         sym = p["symbol"]
@@ -132,6 +171,7 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
         plpc = p["unrealized_plpc"]
         base_stop_pct = stop_pct_for(tech_by_sym.get(sym, {}))
         hwm[sym] = max(hwm.get(sym, plpc), plpc)
+        peaks[sym] = max(peaks.get(sym, plpc), plpc)
         floor = effective_stop_floor(hwm[sym], base_stop_pct)
         d = decided.get(sym, {})
         hold_days = p.get("hold_days")  # injected by cycle.py from trade log
@@ -142,8 +182,9 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
                 reason = "trailing_stop_breakeven"
             else:
                 reason = "stop_loss"
-        elif plpc >= RISK.take_profit_pct:
-            reason = "take_profit"
+        elif plpc >= _TP_TRAIL_TRIGGER and (peaks[sym] - plpc) >= _TP_GIVEBACK:
+            # Up 15%+ and gave back 6% from the peak — bank the trailing winner.
+            reason = "trailing_take_profit"
         elif (hold_days is not None
               and hold_days >= RISK.stale_exit_days
               and plpc < RISK.stale_exit_max_gain_pct):
@@ -170,6 +211,7 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
                        "exit_fraction": exit_fraction,
                        "exit_qty": exit_qty})
     _save_hwm(hwm, open_syms)
+    _save_peaks(peaks, open_syms)
 
     # 2) Buys — blocked when PDT-locked, after the daily breaker, or risk-off.
     if pdt_locked(account) or daily_loss_tripped(account) or not risk_on:
@@ -178,6 +220,10 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
     equity, cash = account["equity"], account["cash"]
     open_count = len(positions)
     blocked = cooling_off_symbols()
+    # Track cumulative committed value (existing positions + this cycle's buys)
+    # so the deployment floor and sector cap reflect same-cycle accumulation.
+    committed = sum(abs(p.get("market_value", 0)) for p in positions)
+    pending_for_sector: list[dict] = list(positions)
     for d in decisions:
         sym = d.get("symbol", "").upper()
         if d.get("action", "").lower() != "buy" or sym in held:
@@ -186,22 +232,57 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
             continue
         if sym in blocked:
             continue  # recently stopped out — cooling-off period
+
+        meta = meta_by_sym.get(sym, {})
+        # --- Hard gates (T1-C): enforced in code, not left to the brain. ---
+        # 1) SMA200 trend gate.
+        if meta.get("above_sma200") is False:
+            _reject(sym, "below 200-day SMA (trend gate)")
+            continue
+        # 2) Earnings gate — no new position with earnings within 5 days.
+        if meta.get("earnings_soon"):
+            _reject(sym, "earnings within 5 days")
+            continue
+
         tech = tech_by_sym.get(sym, {})
         price = tech.get("price", 0) or 0
         if price <= 0:
             continue
+        # 3) Stop ceiling — stop_pct_for already clamps to max_stop_pct (0.09);
+        #    we read it through that path so the ceiling is always enforced.
         stop_pct = stop_pct_for(tech)
         stop_dist = price * stop_pct
-        # Volatility sizing: risk ~1% of equity to the stop ...
+
+        # Volatility sizing: risk ~risk_per_trade_pct of equity to the stop ...
         risk_qty = math.floor((equity * STRATEGY.risk_per_trade_pct) / stop_dist) if stop_dist else 0
         # ... but never exceed the position-size cap or available cash.
         cap_budget = min(equity * RISK.max_position_pct, cash)
         cap_qty = math.floor(cap_budget / price)
         qty = min(risk_qty, cap_qty)
+
+        # --- Deployment floor (T1-A): don't let the risk formula alone leave
+        #     capital idle when the regime is risk-on and there's room. If we're
+        #     under the deploy target, scale the size up toward the position cap
+        #     (still bounded by cash). Never forces beyond the 10% cap. ---
+        under_deployed = committed < equity * STRATEGY.min_deploy_pct
+        if under_deployed and open_count < RISK.max_open_positions and cap_qty >= 1:
+            qty = max(qty, cap_qty)
+
         if qty < 1:
             continue
+
+        # 4) Sector veto (T1-C): would this buy push its sector over 30% equity?
+        #    Only runs in the live path (meta present) — it makes a sector lookup,
+        #    which the offline self-test (meta_by_sym=None) must not trigger.
+        add_value = qty * price
+        if meta_by_sym and would_exceed_sector_cap(sym, add_value, pending_for_sector, equity):
+            _reject(sym, "would exceed 30% sector cap")
+            continue
+
         open_count += 1
-        cash -= qty * price
+        cash -= add_value
+        committed += add_value
+        pending_for_sector.append({"symbol": sym, "market_value": add_value})
         orders.append({"symbol": sym, "side": "buy", "qty": qty,
                        "reason": "brain_buy", "conviction": d.get("conviction"),
                        "reasoning": d.get("reasoning", ""),

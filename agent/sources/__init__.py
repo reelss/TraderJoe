@@ -19,6 +19,9 @@ def _enabled_sources() -> list:
     if SOURCES.enable_finnhub and CREDS.finnhub_key:
         from .finnhub_source import FinnhubSource
         sources.append(FinnhubSource())
+    if SOURCES.enable_sector_rs:
+        from .sector_rs import SectorRSSource
+        sources.append(SectorRSSource())
     if SOURCES.enable_stocktwits:
         from .stocktwits_source import StockTwitsSource
         sources.append(StockTwitsSource())

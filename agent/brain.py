@@ -10,7 +10,7 @@ import json
 
 from anthropic import Anthropic
 
-from .config import CREDS, MODELS, RISK, PLAYBOOK_PATH, STRATEGY_PATH
+from .config import CREDS, MODELS, RISK, PLAYBOOK_PATH, PRINCIPLES_PATH, STRATEGY_PATH
 
 _SYSTEM = """You are Joe, a disciplined swing trader running a $10,000 paper account.
 You hold positions for days to a few weeks. You are NOT a day trader and you do
@@ -31,12 +31,12 @@ Each candidate also carries `insider`: recent SEC Form 4 open-market purchases.
   by 1 when other signals are already constructive. Never buy on insider buying alone
   if the technicals are broken.
 
+Hard position gates (SMA200, sector cap, earnings, stop ceiling) are enforced by
+the risk module before submission — you do not need to police them, but your
+analysis should still favor names that clear them (above 200-day SMA, diversified
+sectors, no imminent earnings) so your buys aren't silently rejected.
+
 STRATEGY — researched edges you MUST apply (this is your durable method):
-1. REGIME FILTER. You are given `market_regime`. If it is risk_off (the market is
-   below its 200-day average), do NOT open new longs — only manage/exit existing
-   positions. Most losses come from buying into a falling market.
-2. TREND. Only buy names trading above their 20-, 50-, AND ideally 200-day SMA
-   (`above_sma200`). Trade with the long-term trend, not against it.
 3. MOMENTUM. Prefer names with strong 12-1 momentum (`mom_12_1`, the prior-year
    return ex the last month) — relative strength is one of the most reliable
    edges. Rank your buys: highest-momentum, clean-trend names first.
@@ -49,12 +49,10 @@ STRATEGY — researched edges you MUST apply (this is your durable method):
    the same move on 0.5× volume is drift. `vol_confirming: false` is NOT a veto,
    but it lowers conviction by 1 and requires the other signals to be especially
    clean. Never use low volume as a reason to buy a weak setup.
-7. EARNINGS RISK. Each candidate carries `earnings_soon` (True if earnings fall
-   within the next 5 calendar days) and `days_to_earnings`. If `earnings_soon`
-   is True: do NOT open a new position — earnings are a binary coin flip, not a
-   swing trade. For existing holdings with `earnings_soon`, reduce size or tighten
-   the stop; flag this explicitly in your reasoning. Holding through earnings
-   requires conviction >= 4 AND a stated rationale in the reasoning field.
+7. EARNINGS RISK. New buys with earnings within 5 days are auto-rejected in code.
+   For EXISTING holdings carrying `earnings_soon`, reduce size or tighten the stop
+   and flag it in your reasoning — holding through earnings needs conviction >= 4
+   and a stated rationale.
 8. VIX / FEAR FILTER. The market regime includes `vix` and `vix_tier`:
      calm (<20): normal sizing — use full `target_pct`.
      elevated (20-25): cut new position size in half (multiply `target_pct` by
@@ -62,12 +60,10 @@ STRATEGY — researched edges you MUST apply (this is your durable method):
      fear (>25): `risk_on` will be False — no new longs. Manage exits only.
    When VIX is elevated, tighten stops on existing positions and be quicker to
    take profits. Fear spikes mean wider swings and faster reversals.
-9. SECTOR CONCENTRATION. The regime includes `sector_exposure` showing what
-   percentage of invested equity is already in each sector. If a sector is in
-   `concentrated` (>= 30% of invested equity), do NOT add another position in
-   that sector — you are already overexposed. If a new candidate's sector would
-   push concentration above 30%, skip it or reduce size significantly. Diversify
-   across sectors; correlated positions move together and amplify losses.
+9. SECTOR CONCENTRATION. The regime includes `sector_exposure` (% of total equity
+   per sector). A buy that would push its sector over 30% of equity is auto-rejected
+   in code, so prefer candidates that diversify your sectors — correlated positions
+   move together and amplify losses.
 10. 52-WEEK HIGH PROXIMITY. Each candidate carries `pct_from_hi52w` (0 = at the
     high; -0.15 = 15% below) and `near_52w_high` (True if within 15%). Prefer
     names near their highs — they have the least overhead resistance. Avoid new
@@ -95,10 +91,13 @@ STRATEGY — researched edges you MUST apply (this is your durable method):
     reverses sharply around these releases, which undermines swing setups.
 
 HARD risk rules enforced AFTER your decision (you can't override these):
-- Max 10% equity per position; positions are volatility-sized (risk ~1%/trade).
-- Max 8 open positions; stops are ATR-based (~5-12%), take-profit +15%.
-  Trailing: stop moves to breakeven once a position peaks at +7.5%;
-  locks in 5% profit once it peaks at +10%. These fire automatically.
+- Max 10% equity per position; positions are volatility-sized (risk ~2%/trade).
+- Max 8 open positions; stops are ATR-based (~5-9%).
+  Ladder (below +15%): stop moves to breakeven once a position peaks at +7.5%;
+  locks in 5% profit once it peaks at +10%.
+  Above +15%: NO hard cap — a trailing stop lets winners run and only exits if
+  the position gives back 6% from its peak gain. Don't pre-emptively sell a strong
+  winner just because it's up 15%+; the trailing logic protects it automatically.
 - PDT: on this <$25k account, a position is NOT sold the same day it's opened,
   and no new buys once the day-trade limit is hit. Think in multi-day swings.
 
@@ -145,6 +144,13 @@ class Brain:
             return PLAYBOOK_PATH.read_text(encoding="utf-8")[:12000]
         return "(playbook empty — no lessons recorded yet)"
 
+    def _principles(self) -> str:
+        """Durable trading principles — stable across cycles, cached in the
+        system prompt. Distinct from the ephemeral nightly playbook."""
+        if PRINCIPLES_PATH.exists():
+            return PRINCIPLES_PATH.read_text(encoding="utf-8")[:8000]
+        return "(no durable principles recorded yet)"
+
     def _strategy(self) -> str:
         if STRATEGY_PATH.exists():
             return STRATEGY_PATH.read_text(encoding="utf-8")[:6000]
@@ -163,15 +169,24 @@ class Brain:
         }
         user = (
             f"WEEKLY STRATEGY (macro regime & sector tilts — set by Sunday review):\n{self._strategy()}\n\n"
-            f"PLAYBOOK (your accumulated daily lessons — follow it):\n{self._playbook()}\n\n"
+            f"PLAYBOOK (today's market-specific notes — ephemeral, refreshed nightly):\n{self._playbook()}\n\n"
             f"CURRENT STATE AND CANDIDATES:\n{json.dumps(payload, indent=2, default=str)}\n\n"
             "Make your decisions now."
+        )
+
+        # Durable principles ride in the system prompt (stable across cycles, so
+        # they benefit from prompt caching); the ephemeral playbook stays in the
+        # user message since it changes nightly.
+        system = (
+            f"{_SYSTEM}\n\n"
+            f"DURABLE PRINCIPLES (your validated long-term method — weight heavily):\n"
+            f"{self._principles()}"
         )
 
         resp = self.client.messages.create(
             model=MODELS.decision_model,
             max_tokens=MODELS.max_tokens,
-            system=_SYSTEM,
+            system=system,
             messages=[{"role": "user", "content": user}],
         )
         text = resp.content[0].text.strip()

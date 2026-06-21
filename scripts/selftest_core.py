@@ -61,18 +61,43 @@ decisions = [
     {"symbol": "VOLA", "action": "buy", "target_pct": 0.10, "conviction": 4, "reasoning": "v"},
     {"symbol": "PRICEY", "action": "buy", "target_pct": 0.10, "conviction": 5, "reasoning": "dear"},
 ]
+# Start each run from a clean peaks store so the trailing-exit assertions below
+# are deterministic regardless of prior live state.
+from agent.config import PEAKS_PATH
+PEAKS_PATH.write_text("{}", encoding="utf-8")
+
 orders = vet_orders(decisions, acct2, positions, tech, opened_today, risk_on=True)
 print("VETTED:", [(o["symbol"], o["side"], o.get("qty"), o.get("reason")) for o in orders])
-assert any(o["symbol"] == "WIN" and o["reason"] == "take_profit" for o in orders)
+# T1-D: a fresh +16% winner with no prior peak has NOT given back 6% — it HOLDS
+# (the old hard +15% take-profit was replaced by a trailing stop above +15%).
+assert not any(o["symbol"] == "WIN" for o in orders), "winner up 16% with no giveback should run, not exit"
 assert any(o["symbol"] == "OLD" and o["reason"] == "stop_loss" for o in orders)
 assert not any(o["symbol"] == "FRESH" for o in orders), "same-day position must not be sold (PDT)"
 nvda = next(o for o in orders if o["symbol"] == "NVDA")
 vola = next(o for o in orders if o["symbol"] == "VOLA")
-assert vola["qty"] < nvda["qty"], "jumpier VOLA should be sized smaller than steady NVDA"
-assert vola["stop_pct"] > nvda["stop_pct"], "jumpier VOLA should get a wider stop"
+# T1-A deployment floor: this account is mostly cash (~6.5% deployed), so sizing is
+# scaled toward the 10% position cap. Both NVDA and VOLA should clear $500 value.
+assert nvda["qty"] * tech["NVDA"]["price"] >= 500, "under-deployed account should size up toward cap"
+assert vola["qty"] * tech["VOLA"]["price"] >= 500, "under-deployed account should size up toward cap"
+assert vola["stop_pct"] > nvda["stop_pct"], "jumpier VOLA should still get a wider stop"
 assert not any(o["symbol"] == "PRICEY" for o in orders), "above position cap should be skipped"
-print(f"  vol-sizing: NVDA {nvda['qty']}sh stop {nvda['stop_pct']:.0%} | "
+print(f"  deploy-floor sizing: NVDA {nvda['qty']}sh stop {nvda['stop_pct']:.0%} | "
       f"VOLA {vola['qty']}sh stop {vola['stop_pct']:.0%}")
+
+# T1-D: trailing take-profit fires when a 15%+ winner gives back >= 6% from peak.
+PEAKS_PATH.write_text('{"WIN": 0.24}', encoding="utf-8")  # WIN peaked at +24%, now +16% (gave back 8%)
+orders_tp = vet_orders(decisions, acct2, positions, tech, opened_today, risk_on=True)
+assert any(o["symbol"] == "WIN" and o["reason"] == "trailing_take_profit" for o in orders_tp), \
+    "15%+ winner that gave back 6% from peak should trailing-exit"
+PEAKS_PATH.write_text("{}", encoding="utf-8")  # reset
+print("  trailing take-profit fires on 6% giveback from peak. OK")
+
+# Volatility STOP relationship is the durable volatility signal: jumpier VOLA gets
+# a wider stop than steady NVDA. (Position-quantity sizing is frequently bounded by
+# the 10% position cap under 2%-risk, so stop width — not qty — is the reliable test.)
+assert vola["stop_pct"] > nvda["stop_pct"], "jumpier VOLA should get a wider stop"
+assert nvda["stop_pct"] <= 0.09 and vola["stop_pct"] <= 0.09, "stop ceiling must hold at 9%"
+print(f"  stop ceiling enforced (<=9%): NVDA {nvda['stop_pct']:.0%} | VOLA {vola['stop_pct']:.0%}")
 
 # Regime risk-off: no new buys, but exits still run.
 roff = vet_orders(decisions, acct2, positions, tech, opened_today, risk_on=False)

@@ -51,6 +51,16 @@ def run_cycle(force: bool = False) -> None:
     # no-trade hours, so positions and P&L stay current.
     try:
         _trade(broker)
+    except Exception as e:
+        # Surface cycle failures immediately — a silent exception means Joe
+        # stopped trading without anyone knowing. Alert, then re-raise so the
+        # scheduler records a non-zero exit code.
+        try:
+            from .digest import send_to_slack
+            send_to_slack(f"🚨 Joe cycle FAILED: {type(e).__name__}: {e}")
+        except Exception as alert_exc:
+            log.info(f"Cycle-failure Slack alert also failed: {alert_exc!r}")
+        raise
     finally:
         _refresh_live_dashboard()
 
@@ -87,10 +97,12 @@ def _trade(broker: Broker) -> None:
     log.info(f"Regime: {regime['regime']} (SPY {regime.get('price')} vs "
              f"{regime.get('sma_window')}d SMA {regime.get('sma')}){vix_str}")
 
-    # Sector concentration across current holdings.
-    exposure = sector_exposure(positions)
+    # Sector concentration across current holdings, measured against TOTAL
+    # EQUITY (not invested-only) so cash doesn't make every sector read as
+    # concentrated and self-lock new deployment.
+    exposure = sector_exposure(positions, equity=account["equity"])
     if exposure["concentrated"]:
-        log.info(f"Sector concentration warning: {exposure['concentrated']} >= 30% of invested equity")
+        log.info(f"Sector concentration warning: {exposure['concentrated']} >= 30% of equity")
     regime["sector_exposure"] = exposure
 
     # Economic calendar — upcoming high-impact macro events (Fed, CPI, NFP).
@@ -233,8 +245,18 @@ def _trade(broker: Broker) -> None:
 
     # 4) Risk-vet (PDT-aware) and execute. Whole-share market buys; in-cycle
     #    stop/target/brain exits on prior-day positions only.
+    #    Build per-candidate hard-gate metadata so the risk module enforces the
+    #    SMA200 / earnings / sector gates in code (not just in the brain prompt).
+    meta_by_sym = {
+        c["symbol"].upper(): {
+            "above_sma200": c.get("technicals", {}).get("above_sma200"),
+            "earnings_soon": bool(c.get("earnings", {}).get("earnings_soon")),
+        }
+        for c in candidates
+    }
     orders = vet_orders(decisions, account, positions,
-                        tech_by_sym, opened_today, risk_on=regime["risk_on"])
+                        tech_by_sym, opened_today, risk_on=regime["risk_on"],
+                        meta_by_sym=meta_by_sym)
     for o in orders:
         try:
             if o["side"] == "buy":
