@@ -31,12 +31,21 @@ def _enabled_sources() -> list:
     return sources
 
 
-def scan_all() -> list[dict]:
-    """Aggregated, ranked ticker signals across all enabled sources."""
+def scan_all(broker=None) -> list[dict]:
+    """Aggregated, ranked ticker signals across all enabled sources.
+
+    broker: optional shared Broker from the cycle. Sources that need market
+    bars (currently sector_rs) reuse it instead of opening their own client and
+    re-fetching the same data. Sources that don't take a broker ignore it.
+    """
     all_signals: list[TickerSignal] = []
     for src in _enabled_sources():
         try:
-            sigs = src.discover()
+            # Only sector_rs consumes a broker today; pass it where accepted.
+            if broker is not None and src.name == "sector_rs":
+                sigs = src.discover(broker=broker)
+            else:
+                sigs = src.discover()
             all_signals.extend(sigs)
             log.info(f"source[{src.name}]: {len(sigs)} ticker signals")
         except Exception as exc:

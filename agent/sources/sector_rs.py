@@ -55,13 +55,16 @@ class SectorRSSource:
     name = "sector_rs"
     weight = _RS_WEIGHT
 
-    def discover(self) -> list[TickerSignal]:
-        try:
-            from ..broker import Broker
-            broker = Broker()
-        except Exception as exc:
-            log.info(f"source[sector_rs]: broker init failed ({exc!r})")
-            return []
+    def discover(self, broker=None) -> list[TickerSignal]:
+        # Reuse the cycle's broker when given (avoids a second Alpaca client +
+        # duplicate daily_bars fetch); build a local one only when standalone.
+        if broker is None:
+            try:
+                from ..broker import Broker
+                broker = Broker()
+            except Exception as exc:
+                log.info(f"source[sector_rs]: broker init failed ({exc!r})")
+                return []
 
         etfs = [v["etf"] for v in _SECTORS.values()]
         try:

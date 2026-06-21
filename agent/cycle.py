@@ -42,7 +42,7 @@ def _refresh_live_dashboard() -> None:
         log.info(f"Dashboard refresh/publish failed: {exc!r}")
 
 
-def run_cycle(force: bool = False) -> None:
+def run_cycle(force: bool = False, eod_mode: bool = False) -> None:
     broker = Broker()
     if not force and not broker.is_market_open():
         log.info("Market closed — skipping cycle.")
@@ -50,7 +50,7 @@ def run_cycle(force: bool = False) -> None:
     # Always refresh the live dashboard after a market-hours cycle, even on
     # no-trade hours, so positions and P&L stay current.
     try:
-        _trade(broker)
+        _trade(broker, eod_mode=eod_mode)
     except Exception as e:
         # Surface cycle failures immediately — a silent exception means Joe
         # stopped trading without anyone knowing. Alert, then re-raise so the
@@ -65,7 +65,9 @@ def run_cycle(force: bool = False) -> None:
         _refresh_live_dashboard()
 
 
-def _trade(broker: Broker) -> None:
+def _trade(broker: Broker, eod_mode: bool = False) -> None:
+    if eod_mode:
+        log.info("EOD mode: exits and management only — no new buys")
     account = broker.account()
     positions = broker.positions()
     log.log_equity(account["equity"], account["cash"], len(positions))
@@ -133,7 +135,9 @@ def _trade(broker: Broker) -> None:
         log.info(f"Re-entry cooldown active: {', '.join(sorted(cooling_off))}")
 
     # 1) Discover candidates across all sources (news + Reddit + Finnhub).
-    trending = scan_all()[: UNIVERSE.max_candidates]
+    #    Pass the existing broker so sources needing bars (e.g. sector_rs) reuse
+    #    it rather than opening a second Alpaca client + duplicate bar fetch.
+    trending = scan_all(broker)[: UNIVERSE.max_candidates]
     signal_by_sym = {t["symbol"]: t for t in trending}
     symbols = sorted(set([t["symbol"] for t in trending]
                          + [p["symbol"] for p in positions]))
@@ -256,7 +260,7 @@ def _trade(broker: Broker) -> None:
     }
     orders = vet_orders(decisions, account, positions,
                         tech_by_sym, opened_today, risk_on=regime["risk_on"],
-                        meta_by_sym=meta_by_sym)
+                        meta_by_sym=meta_by_sym, eod_mode=eod_mode)
     for o in orders:
         try:
             if o["side"] == "buy":

@@ -3,6 +3,7 @@
 Usage:
   python -m agent.main cycle        # one trading cycle (skips if market closed)
   python -m agent.main cycle --force  # run even if market is closed (testing)
+  python -m agent.main cycle --eod  # end-of-day: manage exits only, no new buys
   python -m agent.main reflect      # nightly reflection / playbook update
 """
 from __future__ import annotations
@@ -26,12 +27,15 @@ def main() -> None:
     parser.add_argument("mode", choices=["cycle", "reflect", "digest", "weekly"])
     parser.add_argument("--force", action="store_true",
                         help="run a cycle even when the market is closed")
+    parser.add_argument("--eod", action="store_true",
+                        help="end-of-day cycle: process exits and management "
+                             "only — no new buys (avoids unprotected late buys)")
     args = parser.parse_args()
 
     try:
         if args.mode == "cycle":
             from .cycle import run_cycle
-            run_cycle(force=args.force)
+            run_cycle(force=args.force, eod_mode=args.eod)
         elif args.mode == "reflect":
             from .reflect import run_reflection
             run_reflection()

@@ -105,6 +105,12 @@ def sector_exposure(positions: list[dict], equity: float | None = None) -> dict:
         sym = p["symbol"]
         sector = _fetch_sector(sym)
         by_symbol[sym] = sector
+        # "Unknown" = lookup failure / unmapped symbol, not a real sector.
+        # Multiple unrelated "Unknown" names summed together can falsely trip
+        # the 30% cap and block diversifying buys, so they don't count toward
+        # any sector's concentration total.
+        if sector == "Unknown":
+            continue
         sector_totals[sector] = sector_totals.get(sector, 0.0) + abs(p.get("market_value", 0))
 
     by_sector = {
@@ -140,6 +146,10 @@ def would_exceed_sector_cap(symbol: str, add_value: float,
     if not equity or equity <= 0:
         return False
     sector = _fetch_sector(symbol.upper())
+    # Can't measure an unmapped/failed-lookup sector — don't block a buy against
+    # a cap it can't be assessed against (a lookup timeout shouldn't be a veto).
+    if sector == "Unknown":
+        return False
     current = sum(abs(p.get("market_value", 0)) for p in positions
                   if _fetch_sector(p["symbol"].upper()) == sector)
     return (current + add_value) / equity > cap

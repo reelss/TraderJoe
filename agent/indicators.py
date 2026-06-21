@@ -164,6 +164,10 @@ def snapshot(df: pd.DataFrame, spy_ret_20d: float | None = None) -> dict:
         "ret_5d": round(ret_5, 4) if not np.isnan(ret_5) else None,
         "ret_20d": round(ret_20, 4) if not np.isnan(ret_20) else None,
         "mom_12_1": round(mom_12_1, 4) if not np.isnan(mom_12_1) else None,
+        # True only when the name has >= 252 bars so 12-1 momentum is real.
+        # When False the brain is ranking this name without its core momentum
+        # signal and should say so rather than treat absence as neutral.
+        "has_momentum_data": not np.isnan(mom_12_1),
         "avg_dollar_vol_20d": round(avg_dollar_vol, 0),
         # Volume confirmation
         "vol_ratio": vol_ratio,          # today / 20d avg; >1.5 = high-volume move

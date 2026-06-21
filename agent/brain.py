@@ -40,6 +40,10 @@ STRATEGY — researched edges you MUST apply (this is your durable method):
 3. MOMENTUM. Prefer names with strong 12-1 momentum (`mom_12_1`, the prior-year
    return ex the last month) — relative strength is one of the most reliable
    edges. Rank your buys: highest-momentum, clean-trend names first.
+   `has_momentum_data: false` means this name has < 252 bars of history, so
+   `mom_12_1` is unavailable — you are ranking it WITHOUT the momentum signal.
+   Don't treat that as neutral momentum; say so in your reasoning and lean on
+   the other signals (trend, RS vs SPY, volume) for that candidate.
 4. DON'T CHASE. RSI > 80 or 20-day return > 50% = parabolic; wait for a base.
 5. VOLATILITY-AWARE. High `atr_pct` names are riskier; they get smaller size and
    wider stops automatically. Favor steady trends over erratic ones.

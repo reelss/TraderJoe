@@ -137,7 +137,8 @@ def cooling_off_symbols(days: int | None = None) -> set[str]:
 def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
                tech_by_sym: dict[str, dict], opened_today: set[str],
                risk_on: bool = True,
-               meta_by_sym: dict[str, dict] | None = None) -> list[dict]:
+               meta_by_sym: dict[str, dict] | None = None,
+               eod_mode: bool = False) -> list[dict]:
     """Return safe order instructions (PDT/regime/volatility aware).
 
     meta_by_sym: per-candidate hard-gate data, keyed by upper-case symbol:
@@ -145,7 +146,20 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
     Built by cycle.py from the candidate list. When None (e.g. the offline
     self-test), the SMA200/earnings/sector hard gates are skipped — the legacy
     risk/sizing path still runs unchanged.
+
+    eod_mode: end-of-day cycle (fires ~5 min before close). When True, the
+    new-buy path is skipped entirely — only exits and stop/management run.
+    A buy placed minutes before close can't get a same-day protective stop
+    (PDT), so it would gap unprotected into the next session.
     """
+    # Deployment-floor invariant (T3-D): the `qty = max(qty, cap_qty)` floor
+    # below is only safe while a single trade's stop loss can't exceed the
+    # per-trade risk budget. max_stop_pct must stay <= risk_per_trade / max_pos.
+    # If anyone raises max_stop_pct past this, the floor would silently blow
+    # through the per-trade risk limit — fail loud at the boundary instead.
+    assert STRATEGY.max_stop_pct <= STRATEGY.risk_per_trade_pct / RISK.max_position_pct, \
+        "max_stop_pct would allow deployment floor to exceed per-trade risk budget"
+
     meta_by_sym = meta_by_sym or {}
     held = {p["symbol"]: p for p in positions}
     decided = {d.get("symbol", "").upper(): d for d in decisions}
@@ -213,8 +227,9 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
     _save_hwm(hwm, open_syms)
     _save_peaks(peaks, open_syms)
 
-    # 2) Buys — blocked when PDT-locked, after the daily breaker, or risk-off.
-    if pdt_locked(account) or daily_loss_tripped(account) or not risk_on:
+    # 2) Buys — blocked at EOD (no unprotected late entries), when PDT-locked,
+    #    after the daily breaker, or risk-off.
+    if eod_mode or pdt_locked(account) or daily_loss_tripped(account) or not risk_on:
         return orders
 
     equity, cash = account["equity"], account["cash"]
