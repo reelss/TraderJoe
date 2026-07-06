@@ -40,7 +40,7 @@ class Broker:
             "last_equity": float(a.last_equity),   # equity at prior close
             "cash": float(a.cash),
             "buying_power": float(a.buying_power),
-            "daytrade_count": int(a.daytrade_count),
+            "daytrade_count": int(a.daytrade_count or 0),
         }
 
     def positions(self) -> list[dict]:
