@@ -102,7 +102,7 @@
       </div>
       <div class="rule">
         <div class="rule-num">06</div>
-        <div class="rule-text"><strong>Volume confirmation.</strong> Entries are preferred when today's volume is 1.5&times; the 20-day average. A breakout on low volume is suspect.</div>
+        <div class="rule-text"><strong>Graduated volume sizing.</strong> Volume sizes conviction rather than gating entries: 1.5&times; the 20-day average earns full position size; 0.8&ndash;1.5&times; earns half size when every other signal confirms; below 0.8&times; is drift &mdash; no entry. Breakouts to new highs still demand the full 1.5&times;. (Joe originally learned volume as a hard gate &mdash; it froze the account in cash and was retrained into this graduated rule.)</div>
       </div>
       <div class="rule">
         <div class="rule-num">07</div>
@@ -114,11 +114,11 @@
       </div>
       <div class="rule">
         <div class="rule-num">09</div>
-        <div class="rule-text"><strong>ATR-based risk sizing.</strong> Each position is sized so entry-to-stop risk equals ~1% of equity. Volatile names get smaller positions and wider stops automatically.</div>
+        <div class="rule-text"><strong>ATR-based risk sizing.</strong> Each position is sized so entry-to-stop risk equals ~2% of equity, with stops clamped to a 5&ndash;9% band. Volatile names get smaller positions and wider stops automatically. A deployment floor scales sizes up when the account is under-invested in a healthy market.</div>
       </div>
       <div class="rule">
         <div class="rule-num">10</div>
-        <div class="rule-text"><strong>Trailing stops.</strong> Once a position peaks at +7.5%, the stop rises to breakeven — the trade becomes zero-risk. Once it peaks at +10%, the floor locks in +5% profit. Winners are protected automatically without giving back all the gains.</div>
+        <div class="rule-text"><strong>Trailing stops — let winners run.</strong> Once a position peaks at +7.5%, the stop rises to breakeven; at +10% the floor locks in +5% profit. Above +15% there is no profit cap — a trailing exit only fires if the position gives back 6% from its peak gain, so a runner can keep running.</div>
       </div>
       <div class="rule">
         <div class="rule-num">11</div>
@@ -160,16 +160,38 @@
         <div class="rule-num">20</div>
         <div class="rule-text"><strong>Re-entry cooldown.</strong> When a position is stopped out, Joe cannot re-enter that same stock for 5 days. A failed breakout reveals something about the stock's supply and demand — re-buying immediately is often buying the same weakness twice. The pause forces Joe to wait for the stock to build a new base before re-entering.</div>
       </div>
+      <div class="rule">
+        <div class="rule-num">21</div>
+        <div class="rule-text"><strong>Sector trend veto — absolute.</strong> No new longs in any sector whose ETF trades below its 200-day SMA, no matter how strong the individual name looks. No signal overrides it — not volume, not momentum, not a news catalyst. Joe learned this the hard way (an XLY-sector buy during a sector downtrend) and the rule is now enforced in code, not just in his head.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">22</div>
+        <div class="rule-text"><strong>Sector relative-strength discovery.</strong> Beyond news-driven candidates, Joe screens the two strongest sectors versus SPY each cycle and surfaces their momentum leaders — so capital flows toward where the market's strength actually is, not just where the headlines are.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">23</div>
+        <div class="rule-text"><strong>Deployment accountability.</strong> Holding cash is a decision, not a default. When Joe is deployed below his ~50% target in a healthy market, he must name exactly which rule is blocking capital — and that rule must be provably earning its keep (see how Joe learns, below).</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">24</div>
+        <div class="rule-text"><strong>End-of-day discipline.</strong> The final cycle before the close is exits-and-management only — no new buys minutes before the bell that would sit unprotected overnight.</div>
+      </div>
     </div>
   </section>
 
   <section>
     <h2>How Joe Learns</h2>
-    <p>Joe has two learning loops running in parallel, both fed with structured performance data:</p>
+    <p>Joe's memory is split into two layers: <strong>durable principles</strong> — slowly-earned rules that
+    change only on multi-trade evidence — and an ephemeral <strong>daily playbook</strong> of tactical notes
+    rewritten every night. Both feed every decision. Three learning loops keep them honest:</p>
     <div class="card">
       <div class="rule">
         <div class="rule-num" style="font-size:10px;padding-top:3px">DAILY</div>
-        <div class="rule-text"><strong>Nightly reflection.</strong> After every market close, Sonnet reviews the day's decisions and trade outcomes — including entry price, exit price, and hold time — plus rolling 30-day win rate, P&amp;L distributions, and exit-reason breakdowns. It also reviews <strong>counterfactual lessons</strong>: names Joe passed on and what they did afterward (missed gains and correct passes). The output is a rewritten <strong>playbook</strong> Joe reads before every hourly decision.</div>
+        <div class="rule-text"><strong>Nightly reflection.</strong> After every market close, Sonnet reviews the day's decisions and trade outcomes — including entry price, exit price, and hold time — plus rolling 30-day win rate, P&amp;L distributions, and exit-reason breakdowns. It rewrites the playbook and, rarely, amends the durable principles.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num" style="font-size:10px;padding-top:3px">LEDGER</div>
+        <div class="rule-text"><strong>Missed-trade ledger &amp; blocker scoreboard.</strong> Every candidate Joe passes on is logged with the exact rule that blocked it, then scored days later against what the stock actually did. Each rule accumulates a track record: rules that keep saving money get reinforced; rules that keep costing money get loosened. An <strong>anti-ratchet guardrail</strong> forbids tightening any rule without scoreboard evidence — so Joe learns symmetrically from opportunities missed, not just mistakes made. Without this, a cautious trader only ever gets more cautious.</div>
       </div>
       <div class="rule">
         <div class="rule-num" style="font-size:10px;padding-top:3px">WEEKLY</div>
@@ -208,7 +230,7 @@
       <span class="tag">Alpaca Markets API</span>
       <span class="tag green">Claude (Anthropic)</span>
       <span class="tag">Finnhub</span>
-      <span class="tag">GitHub Actions</span>
+      <span class="tag">Windows Task Scheduler</span>
       <span class="tag">GitHub Pages</span>
       <span class="tag">Slack</span>
     </div>
