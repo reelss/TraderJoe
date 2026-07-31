@@ -118,7 +118,11 @@
       </div>
       <div class="rule">
         <div class="rule-num">10</div>
-        <div class="rule-text"><strong>Trailing stops — let winners run.</strong> Once a position peaks at +7.5%, the stop rises to breakeven; at +10% the floor locks in +5% profit. Above +15% there is no profit cap — a trailing exit only fires if the position gives back 6% from its peak gain, so a runner can keep running.</div>
+        <div class="rule-text"><strong>Trailing stops — let winners run.</strong> Once a position peaks at +3.5%, the stop rises to breakeven; at +5% the floor locks in +2% profit; above +7% it trails, exiting only on a 3% giveback from the peak. These thresholds were rebuilt from Joe's own trade record: the original targets were set so high that in 54 trades not one ever reached them, so the entire ladder sat dormant while every winner was closed early by hand.</div>
+      </div>
+      <div class="rule">
+        <div class="rule-num">25</div>
+        <div class="rule-text"><strong>Overnight gap protection.</strong> Joe's decision cycle only runs hourly during market hours, so a stock that gaps down at the open can blow straight through its intended exit — one early position closed at &minus;14% against a 9% stop for exactly this reason. Every position held longer than a day now carries a resting stop order at the broker that fires on the opening gap, and it ratchets tighter as a winner runs but never loosens.</div>
       </div>
       <div class="rule">
         <div class="rule-num">11</div>
