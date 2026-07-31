@@ -10,15 +10,16 @@ from datetime import datetime, timezone
 from . import logbook as log
 from .brain import Brain
 from .broker import Broker
-from .config import UNIVERSE
+from .config import STRATEGY, UNIVERSE
 from .earnings import earnings_context
 from .economic import upcoming_macro_events
 from .indicators import snapshot
 from .insider import insider_signal
 from .counterfactual import log_passes, resolve_pending
-from .risk import vet_orders, daily_loss_tripped, pdt_locked, cooling_off_symbols
+from .risk import (vet_orders, daily_loss_tripped, pdt_locked,
+                   cooling_off_symbols, desired_stops)
 from .regime import market_regime
-from .sectors import sector_exposure
+from .sectors import sector_exposure, is_sector_etf
 from .sources import scan_all
 
 
@@ -107,6 +108,20 @@ def _trade(broker: Broker, eod_mode: bool = False) -> None:
         log.info(f"Sector concentration warning: {exposure['concentrated']} >= 30% of equity")
     regime["sector_exposure"] = exposure
 
+    # Deployment context: idle cash in a risk-on regime is a decision with a
+    # cost, not a neutral default. Surface it so the brain (and the nightly
+    # reflection) treat under-deployment as something to justify.
+    invested = sum(p["market_value"] for p in positions)
+    deployed_pct = round(invested / account["equity"], 3) if account["equity"] else 0.0
+    regime["deployment"] = {
+        "deployed_pct": deployed_pct,
+        "target_pct": STRATEGY.min_deploy_pct,
+        "under_target": regime["risk_on"] and deployed_pct < STRATEGY.min_deploy_pct,
+    }
+    if regime["deployment"]["under_target"]:
+        log.info(f"Deployment {deployed_pct:.0%} < {STRATEGY.min_deploy_pct:.0%} target (risk-on) "
+                 "— brain should name what's blocking capital")
+
     # Economic calendar — upcoming high-impact macro events (Fed, CPI, NFP).
     # Surfaced in regime so the brain factors them into sizing and risk.
     try:
@@ -137,7 +152,16 @@ def _trade(broker: Broker, eod_mode: bool = False) -> None:
     # 1) Discover candidates across all sources (news + Reddit + Finnhub).
     #    Pass the existing broker so sources needing bars (e.g. sector_rs) reuse
     #    it rather than opening a second Alpaca client + duplicate bar fetch.
-    trending = scan_all(broker)[: UNIVERSE.max_candidates]
+    ranked = scan_all(broker)
+    trending = ranked[: UNIVERSE.max_candidates]
+    # Guaranteed seats past the news-driven cap. Attention-ranked discovery buries
+    # both of these — watchlist names and sector ETFs carry no headline volume, so
+    # they land in the 30s while news names fill the top 12. A priority Joe can't
+    # see is a priority he can't buy, and the ETF can't close the deployment gap
+    # from outside the candidate list.
+    trending += [t for t in ranked[UNIVERSE.max_candidates:]
+                 if "watchlist" in t.get("sources", {})
+                 or is_sector_etf(t["symbol"])]
     signal_by_sym = {t["symbol"]: t for t in trending}
     symbols = sorted(set([t["symbol"] for t in trending]
                          + [p["symbol"] for p in positions]))
@@ -260,15 +284,22 @@ def _trade(broker: Broker, eod_mode: bool = False) -> None:
     }
     orders = vet_orders(decisions, account, positions,
                         tech_by_sym, opened_today, risk_on=regime["risk_on"],
-                        meta_by_sym=meta_by_sym, eod_mode=eod_mode)
+                        meta_by_sym=meta_by_sym, eod_mode=eod_mode,
+                        pending_buys=broker.pending_buys())
     for o in orders:
         try:
             if o["side"] == "buy":
                 res = broker.buy_market(o["symbol"], o["qty"])
                 px = tech_by_sym.get(o["symbol"], {}).get("price")
+                # Record which discovery source(s) surfaced this name so the
+                # weekly review can measure which signals actually make money —
+                # source weights were guesses until now.
+                srcs = sorted(signal_by_sym.get(o["symbol"], {})
+                              .get("sources", {}).keys())
                 log.log_trade(o["symbol"], "buy", o["qty"], None, res["status"],
                               reason=o["reason"], conviction=o.get("conviction"),
-                              stop_pct=o.get("stop_pct"))
+                              stop_pct=o.get("stop_pct"),
+                              sources=srcs or ["held_or_unknown"])
                 log.info(f"BUY {o['qty']} {o['symbol']} @~${px:.2f} "
                          f"(stop {o.get('stop_pct', 0):.1%}) -> {res['status']}")
             else:
@@ -305,4 +336,67 @@ def _trade(broker: Broker, eod_mode: bool = False) -> None:
                           "error", error=str(exc))
             log.info(f"Order FAILED {o['symbol']}: {exc}")
 
+    _sync_protective_stops(broker, tech_by_sym, opened_today)
+
     log.info("Cycle complete.")
+
+
+def _sync_protective_stops(broker: Broker, tech_by_sym: dict[str, dict],
+                           opened_today: set[str]) -> None:
+    """Keep a resting GTC stop at the broker for every prior-day position.
+
+    Joe's in-cycle stop check only runs hourly during market hours, so an
+    overnight gap-down blows straight through the intended exit — that's how
+    AVGO closed at -14% against a 9% stop ceiling (2026-06-04). A resting stop
+    fires at the open instead. The price tracks the same ladder the in-cycle
+    logic uses, so it ratchets up as a winner runs.
+
+    Best-effort throughout: protection failures are logged, never fatal.
+    """
+    try:
+        positions = broker.positions()          # re-read: exits may have closed some
+        if not positions:
+            return
+        want = desired_stops(positions, tech_by_sym, opened_today)
+        have = broker.resting_stops()
+        qty_by_sym = {p["symbol"]: int(float(p["qty"])) for p in positions}
+
+        px_by_sym = {p["symbol"]: p.get("current_price") for p in positions}
+        for sym, stop_price in want.items():
+            qty = qty_by_sym.get(sym, 0)
+            if qty < 1:
+                continue
+            # A sell-stop must sit below the market. If the position has already
+            # traded through its stop level, a resting order is invalid (broker
+            # rejects it) and the wrong tool anyway — the in-cycle exit check
+            # closes it on this same pass.
+            cur = px_by_sym.get(sym)
+            if cur and stop_price >= cur:
+                log.info(f"{sym} already below stop level "
+                         f"(${cur:.2f} <= ${stop_price:.2f}) — exit handles it, "
+                         "no resting stop placed")
+                continue
+            existing = have.get(sym)
+            if existing:
+                px, eqty = existing.get("stop_price"), existing.get("qty")
+                # RATCHET INVARIANT: a protective stop only ever moves UP.
+                # Never widen it — missing/degraded technicals would otherwise
+                # compute a looser stop and silently reduce protection on a
+                # position that is already protected.
+                if px and stop_price < px and eqty == qty:
+                    continue
+                # Otherwise replace only on meaningful upward drift (>0.5%) or a
+                # qty mismatch after a partial exit — avoids per-cycle churn.
+                if (px and abs(px - stop_price) / stop_price < 0.005
+                        and eqty == qty):
+                    continue
+                broker.cancel_order(existing["id"])
+            if broker.place_stop(sym, qty, stop_price):
+                log.info(f"protective stop {sym} @ ${stop_price:.2f} ({qty}sh)")
+
+        # Drop stale stops for symbols no longer held.
+        for sym, o in have.items():
+            if sym not in qty_by_sym:
+                broker.cancel_order(o["id"])
+    except Exception as exc:
+        log.info(f"Protective stop sync failed (non-fatal): {exc!r}")

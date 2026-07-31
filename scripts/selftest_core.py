@@ -3,6 +3,7 @@
 Validates indicators.snapshot and the risk guardrails with synthetic data.
 """
 import sys
+import tempfile
 from pathlib import Path
 
 import numpy as np
@@ -11,7 +12,18 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from agent.indicators import snapshot
+from agent import risk as _risk
 from agent.risk import vet_orders, daily_loss_tripped
+
+# Redirect persisted state to a throwaway dir BEFORE any vet_orders call.
+# vet_orders prunes hwm/peaks to whatever symbols it was handed, so running
+# this test against the real files replaced the live positions' high-water
+# marks with the fixtures below — silently dropping every ratcheted stop
+# (e.g. a position holding a +2% profit lock fell back to its base ATR stop).
+_TMP = Path(tempfile.mkdtemp(prefix="joe-selftest-"))
+_risk.HWM_PATH = _TMP / "hwm.json"
+_risk.PEAKS_PATH = _TMP / "peaks.json"
+PEAKS_PATH = _risk.PEAKS_PATH   # the test writes peaks directly too
 
 # --- indicators on a synthetic uptrend ---
 n = 120
@@ -62,8 +74,8 @@ decisions = [
     {"symbol": "PRICEY", "action": "buy", "target_pct": 0.10, "conviction": 5, "reasoning": "dear"},
 ]
 # Start each run from a clean peaks store so the trailing-exit assertions below
-# are deterministic regardless of prior live state.
-from agent.config import PEAKS_PATH
+# are deterministic. PEAKS_PATH points at the temp dir set up at import time —
+# do NOT re-import it from agent.config here, that would write to live state.
 PEAKS_PATH.write_text("{}", encoding="utf-8")
 
 orders = vet_orders(decisions, acct2, positions, tech, opened_today, risk_on=True)

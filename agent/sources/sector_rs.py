@@ -95,6 +95,22 @@ class SectorRSSource:
             return []
 
         signals: list[TickerSignal] = []
+        # The sector ETF itself, as a deployment vehicle. Joe's gates are all
+        # trend-lagging, so in a recovering market almost no single name clears
+        # them and capital sits idle — measured correlation between deployment
+        # and market direction was -0.13 (2026-07-31), i.e. deployment ignored
+        # the market. An ETF is far less noisy than its constituents, so more of
+        # them clear SMA200 as breadth improves; that makes deployment scale
+        # with the market instead of flatlining. The ETF still faces every hard
+        # gate (SMA200, vol, earnings, sector cap) like any other candidate.
+        if SOURCES.enable_sector_etf:
+            for sector in top:
+                signals.append(TickerSignal(
+                    symbol=_SECTORS[sector]["etf"], source=self.name,
+                    weight=SOURCES.weight_sector_etf, mentions=2, sentiment=0.0,
+                    samples=[f"[sector_etf] {sector} leading SPY — "
+                             "diversified deployment vehicle"],
+                ))
         for sector in top:
             for sym in _SECTORS[sector]["names"]:
                 # mentions=2 so weighted (2 x 1.2 = 2.4) clears the aggregator's

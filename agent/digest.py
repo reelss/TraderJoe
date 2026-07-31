@@ -13,6 +13,7 @@ from datetime import datetime, timezone
 import requests
 
 from . import logbook as log
+from .billing import estimate_runway, log_usage
 from .broker import Broker
 from .config import CREDS, MODELS, RISK
 
@@ -62,6 +63,7 @@ def _narrative(facts: dict) -> dict:
             system=sys,
             messages=[{"role": "user", "content": json.dumps(facts, default=str)}],
         )
+        log_usage(MODELS.decision_model, resp.usage)
         text = resp.content[0].text.strip()
         if "```" in text:
             text = text.split("```")[1].lstrip("json").strip()
@@ -107,6 +109,7 @@ def build_digest() -> dict:
         "n_decisions": len(decisions),
     }
     facts["narrative"] = _narrative(facts)
+    facts["runway"] = estimate_runway()
     facts["_account"] = account
     facts["_positions"] = positions
     facts["_trades"] = trades
@@ -123,6 +126,16 @@ def _slack_text(f: dict) -> str:
         f"*Equity:* ${f['equity']:,.2f}  |  *Cash:* ${f['cash']:,.2f}",
         f"<{DASHBOARD_URL}|📊 View live dashboard>",
     ]
+
+    rw = f.get("runway", {})
+    if rw.get("available") and rw.get("warn"):
+        days = f"~{rw['days_remaining']:.1f}d" if rw.get("days_remaining") is not None else "unknown"
+        lines = [
+            f"⚠️ *API credit running low: ~${rw['remaining_usd']:.2f} left (est. {days} at current burn).* "
+            f"Top up at console.anthropic.com/settings/billing, then run "
+            f"`python -m agent.main billing --set <new balance>`.",
+            "",
+        ] + lines
     if f["narrative"].get("summary"):
         lines += ["", f"_{f['narrative']['summary']}_"]
 
@@ -180,3 +193,11 @@ def run_digest() -> None:
         publish_dashboard()
     except Exception as exc:
         log.info(f"Dashboard refresh/publish failed: {exc!r}")
+
+    # Self-audit last: assert Joe's own invariants and alert on any break.
+    # Never let an audit failure take down the digest.
+    try:
+        from .audit import run_audit
+        run_audit()
+    except Exception as exc:
+        log.info(f"Self-audit failed to run: {exc!r}")

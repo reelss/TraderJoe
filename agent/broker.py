@@ -17,6 +17,7 @@ from alpaca.trading.requests import (
     GetOrdersRequest,
     MarketOrderRequest,
     StopLossRequest,
+    StopOrderRequest,
     TakeProfitRequest,
 )
 
@@ -40,7 +41,7 @@ class Broker:
             "last_equity": float(a.last_equity),   # equity at prior close
             "cash": float(a.cash),
             "buying_power": float(a.buying_power),
-            "daytrade_count": int(a.daytrade_count),
+            "daytrade_count": int(a.daytrade_count or 0),
         }
 
     def positions(self) -> list[dict]:
@@ -151,6 +152,79 @@ class Broker:
                         and o.filled_at.date() == today
                         and float(o.filled_qty or 0) > 0):
                     out.add(o.symbol)
+        except Exception:
+            pass
+        return out
+
+    def resting_stops(self) -> dict[str, dict]:
+        """Open GTC stop orders keyed by symbol: {symbol: {id, stop_price, qty}}.
+
+        These are Joe's overnight gap protection — a resting stop at the broker
+        fires on a gap-down at the open, whereas Joe's in-cycle stop check only
+        runs hourly during market hours. Returns {} on any error.
+        """
+        out: dict[str, dict] = {}
+        try:
+            orders = self.trading.get_orders(
+                GetOrdersRequest(status=QueryOrderStatus.OPEN, limit=200)
+            )
+            for o in orders:
+                if str(o.order_type).lower().endswith("stop") and str(o.side).endswith("SELL"):
+                    out[o.symbol] = {
+                        "id": str(o.id),
+                        "stop_price": float(o.stop_price) if o.stop_price else None,
+                        "qty": float(o.qty) if o.qty else None,
+                    }
+        except Exception:
+            pass
+        return out
+
+    def place_stop(self, symbol: str, qty: int, stop_price: float) -> dict | None:
+        """Place a GTC sell-stop as overnight protection. None on failure.
+
+        Safe under PDT: only called for positions opened on a PRIOR day, so a
+        fill can never create a same-day round trip.
+        """
+        try:
+            order = StopOrderRequest(
+                symbol=symbol, qty=qty, side=OrderSide.SELL,
+                time_in_force=TimeInForce.GTC,
+                stop_price=round(stop_price, 2),
+            )
+            o = self.trading.submit_order(order)
+            return {"id": str(o.id), "symbol": symbol, "status": str(o.status)}
+        except Exception as exc:
+            # Never silent: an unplaced protective stop means an unprotected
+            # position, which is exactly the failure this system exists to stop.
+            from . import logbook as log
+            log.info(f"place_stop FAILED {symbol} @ ${stop_price:.2f}: {exc!r}")
+            return None
+
+    def cancel_order(self, order_id: str) -> bool:
+        try:
+            self.trading.cancel_order_by_id(order_id)
+            return True
+        except Exception:
+            return False
+
+    def pending_buys(self) -> dict[str, float]:
+        """Unfilled BUY quantities by symbol: {symbol: qty}.
+
+        Alpaca does not decrement `cash` until an order fills, so without this
+        two cycles can commit the same dollars — and stack a position past its
+        size cap, since the cap is measured against filled positions only.
+        Returns {} on any error.
+        """
+        out: dict[str, float] = {}
+        try:
+            orders = self.trading.get_orders(
+                GetOrdersRequest(status=QueryOrderStatus.OPEN, limit=200)
+            )
+            for o in orders:
+                if str(o.side).endswith("BUY"):
+                    qty = float(o.qty or 0) - float(o.filled_qty or 0)
+                    if qty > 0:
+                        out[o.symbol] = out.get(o.symbol, 0.0) + qty
         except Exception:
             pass
         return out

@@ -139,9 +139,13 @@ class SourceConfig:
     enable_alpaca_news: bool = True
     enable_finnhub: bool = True           # only fires if FINNHUB_API_KEY is set
     enable_sector_rs: bool = True         # momentum-leader screen from top RS sectors
+    enable_watchlist: bool = True         # playbook priority names re-enter candidates
+    enable_sector_etf: bool = True        # leading sector ETFs as deployment vehicles
 
     weight_alpaca_news: float = 1.5       # professional newswire (Benzinga)
     weight_sector_rs: float = 1.2         # sector momentum leaders (not news-reactive)
+    weight_watchlist: float = 1.1         # Joe's own playbook priorities
+    weight_sector_etf: float = 1.0        # fallback vehicle — ranks below single names
     weight_finnhub: float = 1.4           # structured news + insider sentiment
     weight_stocktwits: float = 1.0        # purpose-built, user bull/bear tags
     weight_reddit: float = 0.6            # noisiest, most hype-prone
@@ -154,11 +158,16 @@ class SourceConfig:
 
 @dataclass(frozen=True)
 class ModelConfig:
-    # Cheap, fast model for the per-cycle decisions; everything is logged either way.
-    decision_model: str = "claude-haiku-4-5-20251001"
+    # Sonnet for per-cycle decisions (upgraded from Haiku 2026-07-06): one bad
+    # hourly judgment costs more than a month of the API-fee difference.
+    decision_model: str = "claude-sonnet-4-6"
     # Stronger model for the nightly reflection that rewrites the playbook.
     reflection_model: str = "claude-sonnet-4-6"
     max_tokens: int = 4_000
+    # Reflection/weekly emit two full documents in one response; 4k truncated
+    # the principles file mid-sentence on 2026-07-30 and silently dropped four
+    # sections of durable rules.
+    reflection_max_tokens: int = 12_000
 
 
 CREDS = Credentials()

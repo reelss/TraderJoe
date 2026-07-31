@@ -26,6 +26,50 @@ def _read_jsonl(path) -> list[dict]:
     return out
 
 
+def _spy_benchmark(curve: list[dict], start_equity: float) -> list[float]:
+    """SPY buy-and-hold, normalized to start_equity and aligned to `curve`.
+
+    Returns a value per curve point (same length), or [] if unavailable.
+    Each curve point maps to SPY's close on that calendar date, carried
+    forward across weekends/holidays.
+    """
+    try:
+        from .broker import Broker
+        dates = []
+        for p in curve:
+            t = p.get("t", "")
+            dates.append(t[:10] if len(t) >= 10 and t != "start" else None)
+        real = [d for d in dates if d]
+        if not real:
+            return []
+        bars = Broker().daily_bars(["SPY"], lookback_days=400).get("SPY")
+        if bars is None or bars.empty:
+            return []
+        closes = {str(ix)[:10]: float(c) for ix, c in bars["close"].items()}
+        if not closes:
+            return []
+        ordered = sorted(closes)
+        first = next((closes[d] for d in ordered if d >= real[0]), None)
+        if not first:
+            return []
+
+        out, last = [], first
+        for d in dates:
+            if d:
+                # exact date, else most recent close on/before it
+                if d in closes:
+                    last = closes[d]
+                else:
+                    prior = [dd for dd in ordered if dd <= d]
+                    if prior:
+                        last = closes[prior[-1]]
+            out.append(round(start_equity * last / first, 2))
+        return out
+    except Exception as exc:
+        log.info(f"dashboard: SPY benchmark unavailable ({exc!r})")
+        return []
+
+
 def _gather() -> dict:
     equity_log = _read_jsonl(log.EQUITY)
     trades = _read_jsonl(log.TRADES)
@@ -81,6 +125,11 @@ def _gather() -> dict:
         curve.append({"t": e.get("ts", ""), "v": e.get("equity", start)})
     if account:
         curve.append({"t": datetime.now(timezone.utc).isoformat(), "v": equity})
+
+    # SPY benchmark, normalized to the same starting capital — the honest
+    # question is not "did Joe make money" but "did he beat just buying the
+    # index". Best-effort: on any failure the curve renders without it.
+    bench = _spy_benchmark(curve, start)
 
     winners = sum(1 for p in positions if p["unrealized_plpc"] > 0)
     win_rate = (winners / len(positions)) if positions else None
@@ -164,6 +213,7 @@ def _gather() -> dict:
             } for p in positions
         ],
         "curve": curve,
+        "bench": bench,
         "trades": enriched_trades[:25],
         "decisions": list(reversed(decisions))[:30],
     }
@@ -243,6 +293,14 @@ _TEMPLATE = r"""<!DOCTYPE html>
   .item .meta{font-family:var(--mono);font-size:11px;color:var(--muted);margin-top:3px}
   .empty{color:var(--muted);font-size:13px;padding:8px 2px}
   .chartwrap{position:relative;width:100%}
+  .benchrow{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:10px;
+      font-size:12px;color:var(--muted)}
+  .bkey{display:flex;align-items:center;gap:6px}
+  .swatch{width:14px;height:0;border-top-width:2px;border-top-style:solid;display:inline-block}
+  .swatch.joe{border:none;height:3px;border-radius:2px}
+  .swatch.spy{border-top-color:#94a3b8;border-top-style:dashed}
+  .bdiff{margin-left:auto;font-weight:600}
+  .bdiff.pos{color:var(--pos)} .bdiff.neg{color:var(--neg)}
   svg{width:100%;height:auto;display:block}
   .axis{fill:var(--muted);font-family:var(--mono);font-size:11px}
   @media(max-width:560px){.kpi .value{font-size:20px}h1{font-size:24px}}
@@ -324,7 +382,10 @@ function drawChart(){
   let pts = D.curve.map(p=>p.v);
   if(pts.length<2) pts = pts.length? [pts[0],pts[0]] : [D.start_equity,D.start_equity];
   const base = D.start_equity;
-  let lo=Math.min(base,...pts), hi=Math.max(base,...pts);
+  // SPY buy-and-hold overlay — the benchmark that actually matters. Scaled
+  // together with Joe so both series share one y-axis.
+  const bp = (D.bench||[]).length===pts.length ? D.bench : [];
+  let lo=Math.min(base,...pts,...bp), hi=Math.max(base,...pts,...bp);
   if(hi===lo){hi=lo+1;lo=lo-1;}
   const pad=(hi-lo)*0.12; lo-=pad; hi+=pad;
   const x=i=>padL+(i/(pts.length-1))*(W-padL-padR);
@@ -342,6 +403,14 @@ function drawChart(){
   const up = pts[pts.length-1] >= base;
   const stroke = up? 'var(--pos)':'var(--neg)';
   const baseY=y(base).toFixed(1);
+
+  let benchPath='', benchLabel='', benchCls='muted';
+  if(bp.length>1){
+    benchPath=bp.map((v,i)=>`${i?'L':'M'}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join('');
+    const diff=(pts[pts.length-1]/base-1)*100-(bp[bp.length-1]/base-1)*100;
+    benchLabel=`Joe ${diff>=0?'+':''}${diff.toFixed(2)} pts vs S&P 500`;
+    benchCls = diff>=0 ? 'pos' : 'neg';
+  }
   document.getElementById('chart').innerHTML=`
   <svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Equity curve">
     <defs>
@@ -353,8 +422,14 @@ function drawChart(){
     <line x1="0" y1="${baseY}" x2="${W}" y2="${baseY}" stroke="var(--line)" stroke-width="1" stroke-dasharray="4 5"/>
     <text class="axis" x="6" y="${(+baseY-6)}">baseline ${usd(base)}</text>
     <path d="${area}" fill="url(#fill)"/>
+    ${benchPath?`<path d="${benchPath}" fill="none" stroke="#94a3b8" stroke-width="1.75" stroke-dasharray="6 5" stroke-linecap="round" opacity="0.85"/>`:''}
     <path d="${d}" fill="none" stroke="${stroke}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-  </svg>`;
+  </svg>
+  ${benchLabel?`<div class="benchrow">
+    <span class="bkey"><span class="swatch joe" style="background:${up?'var(--pos)':'var(--neg)'}"></span>Joe</span>
+    <span class="bkey"><span class="swatch spy"></span>S&amp;P 500 buy &amp; hold</span>
+    <span class="bdiff ${benchCls}">${benchLabel}</span>
+  </div>`:''}`;
 }
 drawChart();
 

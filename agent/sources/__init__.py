@@ -22,6 +22,9 @@ def _enabled_sources() -> list:
     if SOURCES.enable_sector_rs:
         from .sector_rs import SectorRSSource
         sources.append(SectorRSSource())
+    if SOURCES.enable_watchlist:
+        from .watchlist import WatchlistSource
+        sources.append(WatchlistSource())
     if SOURCES.enable_stocktwits:
         from .stocktwits_source import StockTwitsSource
         sources.append(StockTwitsSource())
