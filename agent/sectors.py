@@ -31,9 +31,66 @@ _KNOWN = {
     "XLK": "Tech ETF",
     "XLE": "Energy ETF",
     "XLV": "Healthcare ETF",
+    "XLI": "Industrial ETF",
+    "XLY": "Consumer Discretionary ETF",
+    "XLP": "Consumer Staples ETF",
+    "XLC": "Communication ETF",
+    "XLU": "Utilities ETF",
+    "XLB": "Materials ETF",
+    "XLRE": "Real Estate ETF",
     "GLD": "Commodity ETF",
     "TLT": "Bond ETF",
 }
+
+# Sector ETFs get their own sector label above, so the 30%-of-equity cap treats
+# each as its own bucket. That is NOT enough on its own: Finnhub classifies
+# single names granularly ("Managed Health Care", "Pharmaceuticals"), so holding
+# UNH *and* XLV would read as two unrelated sectors while actually doubling one
+# bet. These keyword sets detect that overlap so the risk module can block it.
+_ETF_INDUSTRY_KEYWORDS: dict[str, tuple[str, ...]] = {
+    "XLV":  ("health", "pharma", "biotech", "medic", "drug", "life science"),
+    "XLF":  ("bank", "financ", "insur", "capital market", "asset manage"),
+    "XLK":  ("software", "semiconductor", "technolog", "hardware", "it service",
+             "electronic"),
+    "XLI":  ("industrial", "machinery", "aerospace", "defense", "transport",
+             "airline", "construct", "engineering"),
+    "XLE":  ("oil", "gas", "energy", "petroleum", "refin"),
+    "XLY":  ("retail", "auto", "restaurant", "discretionary", "apparel",
+             "leisure", "hotel", "e-commerce"),
+    "XLP":  ("beverage", "food", "tobacco", "household", "staple", "personal product"),
+    "XLC":  ("media", "telecom", "entertainment", "interactive", "communicat"),
+    "XLU":  ("utilit", "electric", "water"),
+    "XLB":  ("chemical", "metal", "mining", "material", "paper", "steel"),
+    "XLRE": ("reit", "real estate", "propert"),
+}
+
+
+def is_sector_etf(symbol: str) -> bool:
+    return symbol.upper() in _ETF_INDUSTRY_KEYWORDS
+
+
+def etf_overlaps_holdings(etf: str, positions: list[dict]) -> str | None:
+    """Symbol of a held position in the same sector as `etf`, else None.
+
+    Buying a sector ETF while already holding names from that sector concentrates
+    a single bet behind two labels the concentration cap reads as unrelated.
+    """
+    keys = _ETF_INDUSTRY_KEYWORDS.get(etf.upper())
+    if not keys:
+        return None
+    for p in positions:
+        sym = p.get("symbol", "")
+        if sym.upper() == etf.upper():
+            continue
+        if is_sector_etf(sym):
+            # Two sector ETFs overlap only if they're the same one.
+            continue
+        industry = sector_of(sym).lower()
+        if industry == "unknown":
+            continue
+        if any(k in industry for k in keys):
+            return sym
+    return None
 
 
 @lru_cache(maxsize=256)

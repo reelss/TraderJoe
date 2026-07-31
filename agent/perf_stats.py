@@ -29,6 +29,55 @@ def _read_jsonl(path: Path) -> list[dict]:
     return out
 
 
+def process_scorecard(window_days: int = 7, spy_ret: float | None = None) -> dict:
+    """Weekly PROCESS scorecard — grades how Joe traded, not just what he made.
+
+    Process goals beat P&L goals on a swing account: hit the process and the
+    P&L follows; miss the P&L while hitting the process and the market was
+    simply hostile that week. Targets:
+      deployment  — average % of equity deployed >= 50%
+      win_rate    — >= 45% of completed trades profitable
+      win_loss    — average winner >= 1.5x average loser
+      vs_spy      — equity change beats SPY over the window
+    Each KPI reports {value, target, pass}; "pass" is None when unmeasurable
+    (too few trades / no benchmark) so the coach never grades on noise.
+    """
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=window_days)).isoformat()
+
+    # Deployment from the per-cycle equity log: deployed = (equity - cash) / equity.
+    eq = [e for e in _read_jsonl(LOGS_DIR / "equity.jsonl")
+          if e.get("ts", "") >= cutoff and e.get("equity")]
+    dep = [(e["equity"] - e.get("cash", 0)) / e["equity"] for e in eq if e["equity"] > 0]
+    avg_deployed = round(mean(dep), 3) if dep else None
+
+    stats = compute_stats(window_days)
+    win_rate = stats.get("win_rate")
+    avg_w, avg_l = stats.get("avg_plpc_winners"), stats.get("avg_plpc_losers")
+    wl_ratio = round(abs(avg_w / avg_l), 2) if avg_w and avg_l else None
+
+    # Equity change straight from the equity log — compute_stats withholds it
+    # below 3 completed trades, but the account curve is measurable regardless.
+    eq_chg = (round(eq[-1]["equity"] / eq[0]["equity"] - 1, 4)
+              if len(eq) >= 2 and eq[0]["equity"] > 0 else None)
+
+    def kpi(value, target, ok):
+        # ok=None means unmeasurable this window — never grade on noise.
+        return {"value": value, "target": target, "pass": ok}
+
+    return {
+        "window_days": window_days,
+        "deployment":  kpi(avg_deployed, ">= 0.50 when risk-on",
+                           avg_deployed >= 0.50 if avg_deployed is not None else None),
+        "win_rate":    kpi(win_rate, ">= 0.45",
+                           win_rate >= 0.45 if win_rate is not None else None),
+        "win_loss_ratio": kpi(wl_ratio, ">= 1.5x",
+                              wl_ratio >= 1.5 if wl_ratio is not None else None),
+        "vs_spy":      kpi({"joe": eq_chg, "spy": spy_ret}, "beat SPY",
+                           eq_chg > spy_ret
+                           if eq_chg is not None and spy_ret is not None else None),
+    }
+
+
 def compute_stats(window_days: int = 30) -> dict:
     """Compute rolling performance stats for the last window_days calendar days.
 

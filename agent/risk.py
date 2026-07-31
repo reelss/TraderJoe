@@ -17,19 +17,34 @@ from datetime import datetime, timedelta, timezone
 
 from . import logbook as log
 from .config import HWM_PATH, LOGS_DIR, PEAKS_PATH, RISK, STRATEGY
-from .sectors import would_exceed_sector_cap
+from .sectors import (would_exceed_sector_cap, is_sector_etf,
+                      etf_overlaps_holdings)
 
 _TRADES = LOGS_DIR / "trades.jsonl"
 
-# Trailing take-profit: above this gain, replace the hard +15% exit with a
-# trailing stop — let winners run, but exit if they give back `_TP_GIVEBACK`.
-_TP_TRAIL_TRIGGER = 0.15   # only trail once a position is up 15%+
-_TP_GIVEBACK = 0.06        # exit if it falls 6% from its peak gain
+# Trailing take-profit: above this gain, replace a hard exit with a trailing
+# stop — let winners run, but exit if they give back `_TP_GIVEBACK`.
+#
+# CALIBRATION (2026-07-30): the original 15%/7.5%/10% thresholds were set for a
+# swing profile Joe does not actually have. Across 54 completed trades, ZERO
+# ever reached +7.5% — so the entire ladder was dead code and every winner was
+# closed by brain discretion at +0.4% to +5.0%, while losers ran to -2.2% avg.
+# Thresholds are now set to Joe's observed winner distribution so the machinery
+# actually engages and protects gains.
+_TP_TRAIL_TRIGGER = 0.07   # start trailing once a position is up 7%+
+_TP_GIVEBACK = 0.03        # exit if it falls 3% from its peak gain
 _STOP_REASONS = frozenset({"stop_loss", "trailing_stop_profit", "trailing_stop_breakeven"})
 
 # Trailing-stop floor levels (fraction of equity).
 _BREAKEVEN_FLOOR = 0.005   # ~0.5% above entry — effectively breakeven
-_PROFIT_FLOOR    = 0.05    # protect 5% profit
+_PROFIT_FLOOR    = 0.02    # protect 2% profit
+
+# Let-winners-run guard: the brain may not close a modest winner on discretion
+# alone. Below this gain, a brain SELL needs high conviction (a real thesis
+# break); otherwise the position is held so the ladder above can do its job.
+# This directly targets the cut-winners-early pattern found in the trade log.
+_WINNER_PROTECT_BELOW = 0.05   # applies to positions up between 0% and +5%
+_WINNER_OVERRIDE_CONVICTION = 4
 
 PDT_DAYTRADE_LIMIT = 3  # day trades allowed per 5 business days under $25k
 
@@ -82,14 +97,15 @@ def _save_peaks(peaks: dict[str, float], open_symbols: set[str]) -> None:
 def effective_stop_floor(peak_plpc: float, base_stop_pct: float) -> float:
     """Returns the exit threshold (as a plpc fraction) based on the best gain seen.
 
-    Stages:
-      peak >= 10%  → protect 5% profit    (stop at +5%)
-      peak >= 7.5% → protect breakeven    (stop at +0.5%)
+    Stages (recalibrated 2026-07-30 to Joe's observed winner distribution —
+    the old 7.5%/10% gates never once triggered in 54 trades):
+      peak >= 5%   → protect 2% profit    (stop at +2%)
+      peak >= 3.5% → protect breakeven    (stop at +0.5%)
       otherwise    → normal ATR stop      (stop at -base_stop_pct)
     """
-    if peak_plpc >= 0.10:
+    if peak_plpc >= 0.05:
         return _PROFIT_FLOOR
-    if peak_plpc >= 0.075:
+    if peak_plpc >= 0.035:
         return _BREAKEVEN_FLOOR
     return -base_stop_pct
 
@@ -134,11 +150,35 @@ def cooling_off_symbols(days: int | None = None) -> set[str]:
     return cooling
 
 
+def desired_stops(positions: list[dict], tech_by_sym: dict[str, dict],
+                  opened_today: set[str]) -> dict[str, float]:
+    """Stop PRICE per symbol for broker-side overnight protection.
+
+    Mirrors the in-cycle ladder: the same effective floor (ATR stop, breakeven,
+    or profit lock) expressed as an absolute price off the entry. Positions
+    opened today are excluded — a same-day stop fill would be a PDT day trade.
+    """
+    hwm = _load_hwm()
+    out: dict[str, float] = {}
+    for p in positions:
+        sym = p["symbol"]
+        if sym in opened_today:
+            continue
+        entry = p.get("avg_entry")
+        if not entry:
+            continue
+        peak = max(hwm.get(sym, p["unrealized_plpc"]), p["unrealized_plpc"])
+        floor = effective_stop_floor(peak, stop_pct_for(tech_by_sym.get(sym, {})))
+        out[sym] = entry * (1.0 + floor)
+    return out
+
+
 def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
                tech_by_sym: dict[str, dict], opened_today: set[str],
                risk_on: bool = True,
                meta_by_sym: dict[str, dict] | None = None,
-               eod_mode: bool = False) -> list[dict]:
+               eod_mode: bool = False,
+               pending_buys: dict[str, float] | None = None) -> list[dict]:
     """Return safe order instructions (PDT/regime/volatility aware).
 
     meta_by_sym: per-candidate hard-gate data, keyed by upper-case symbol:
@@ -204,6 +244,18 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
               and plpc < RISK.stale_exit_max_gain_pct):
             reason = "stale_position"
         elif d.get("action", "").lower() == "sell":
+            # Let-winners-run guard: don't let discretion cut a modest winner.
+            # The trade log shows every winner was closed this way at +0.4% to
+            # +5.0% while losers ran to -2.2%, capping the win/loss ratio at
+            # 1.28x. A genuine thesis break (conviction >= 4) still gets through;
+            # routine "it wobbled" selling does not.
+            conv = d.get("conviction")
+            if (0 < plpc < _WINNER_PROTECT_BELOW
+                    and (conv is None or int(conv) < _WINNER_OVERRIDE_CONVICTION)):
+                log.info(f"HOLD {sym}: winner +{plpc:.1%} below "
+                         f"{_WINNER_PROTECT_BELOW:.0%} floor, brain conviction "
+                         f"{conv} < {_WINNER_OVERRIDE_CONVICTION} — letting it run")
+                continue
             reason = "brain_sell"
         else:
             continue
@@ -233,6 +285,21 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
         return orders
 
     equity, cash = account["equity"], account["cash"]
+
+    # Unfilled buys from earlier cycles still consume capital, but Alpaca leaves
+    # `cash` untouched until they fill — so without this a second cycle spends
+    # the same dollars again and can stack a position past its size cap. Treat
+    # pending buys as if already filled: reserve the cash and count the shares.
+    pending_buys = pending_buys or {}
+    if pending_buys:
+        reserved = 0.0
+        for psym, pqty in pending_buys.items():
+            ppx = tech_by_sym.get(psym, {}).get("price") or 0.0
+            reserved += pqty * ppx
+        if reserved:
+            cash = max(0.0, cash - reserved)
+            log.info(f"Reserved ${reserved:,.0f} for {len(pending_buys)} "
+                     "unfilled buy order(s)")
     open_count = len(positions)
     blocked = cooling_off_symbols()
     # Track cumulative committed value (existing positions + this cycle's buys)
@@ -242,6 +309,12 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
     for d in decisions:
         sym = d.get("symbol", "").upper()
         if d.get("action", "").lower() != "buy" or sym in held:
+            continue
+        # A symbol with an unfilled buy is effectively already held — Joe does
+        # not pyramid, and stacking a second order was how RTX reached 8 shares
+        # (~17% of equity) against a 10% position cap on 2026-07-31.
+        if sym in pending_buys:
+            _reject(sym, "already has an unfilled buy order pending")
             continue
         if open_count >= RISK.max_open_positions:
             continue
@@ -293,6 +366,17 @@ def vet_orders(decisions: list[dict], account: dict, positions: list[dict],
         if meta_by_sym and would_exceed_sector_cap(sym, add_value, pending_for_sector, equity):
             _reject(sym, "would exceed 30% sector cap")
             continue
+
+        # 4b) Sector-ETF overlap veto. A sector ETF carries its own sector label,
+        #     so the cap above reads XLV and UNH as unrelated buckets while they
+        #     are the same bet twice. Block the ETF when the sector is already
+        #     held directly — the ETF exists to deploy into sectors Joe is NOT
+        #     already in, not to double an existing position.
+        if meta_by_sym and is_sector_etf(sym):
+            clash = etf_overlaps_holdings(sym, positions + pending_for_sector)
+            if clash:
+                _reject(sym, f"sector ETF overlaps existing holding {clash}")
+                continue
 
         open_count += 1
         cash -= add_value

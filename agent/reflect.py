@@ -12,9 +12,10 @@ from datetime import datetime, timezone
 from anthropic import Anthropic, RateLimitError
 
 from . import logbook as log
+from .billing import log_usage
 from .broker import Broker
-from .config import CREDS, MODELS, PLAYBOOK_PATH, PRINCIPLES_PATH
-from .counterfactual import recent_resolved
+from .config import CREDS, MODELS, PLAYBOOK_PATH, PRINCIPLES_PATH, STRATEGY
+from .counterfactual import blocker_scoreboard, recent_resolved
 from .digest import send_to_slack
 from .llm_retry import create_with_retry
 from .perf_stats import compute_stats
@@ -40,12 +41,43 @@ Produce TWO clearly delimited Markdown sections in your response:
 - Update watchlist notes (which sectors/names have the wind at their back).
 - Sections: "What's working", "Mistakes to avoid", "Market context & sector
   notes", "Watchlist notes". Keep under ~50 lines.
+- END the playbook with one machine-readable line (it feeds tomorrow's
+  candidate discovery, so these names are guaranteed to reach the brain):
+    WATCHLIST: TICK1, TICK2, TICK3
+  List 3-8 tickers Joe actively wants to BUY when their entry conditions are
+  met. NEVER include names in vetoed sectors or on the avoid list.
 
 <<<PRINCIPLES>>>
 (The durable principles. In MOST nightly runs, return the EXISTING principles
 UNCHANGED — copy them through verbatim. Only revise when today's evidence,
 combined with the rolling stats, validates or breaks a durable rule across
 multiple trades. Never drop below 20 lines; never delete a core risk rule.)
+
+STRUCTURAL REQUIREMENT — you MUST return the complete file, every section,
+every time: "## Risk limits", "## Entry criteria", "## Position management",
+"## Exit discipline", "## Conviction & sizing", "## PDT rules",
+"## Diversification & deployment". Copying unchanged sections through verbatim
+IS the expected behavior — a rewrite that omits a section will be rejected.
+Keep it TIGHT: scoreboard notes are ONE line each, not paragraphs. Verbose
+commentary crowds out the actual rules and risks truncating the file.
+
+ANTI-RATCHET GUARDRAIL (critical). Rules must be able to loosen as well as
+tighten, or Joe converges on never trading:
+  • You may only make a rule STRICTER (convert a graduated preference into a
+    hard veto, raise a threshold) when the BLOCKER SCOREBOARD shows that rule's
+    passes were net correct (correct_pass clearly outweighing missed_gain over
+    multiple resolutions). An avoided-loss anecdote alone NEVER hardens a rule.
+  • When the scoreboard shows a rule is costing money (missed_gain dominating),
+    you MUST note it in the playbook and consider loosening it.
+  • The volume-ratio rule is GRADUATED SIZING (>=1.5x full size, 0.8-1.5x half
+    size on an otherwise-clean setup, <0.8x no entry). NEVER rewrite it as a
+    binary 1.5x gate — the binary version froze the account at 93% cash and
+    blocked every A-grade setup for a week (July 2026).
+
+DEPLOYMENT ACCOUNTABILITY. The record includes deployment (deployed % vs
+target). Under-deployment in a risk-on regime is itself a decision with a
+cost. If Joe is far below target, the playbook MUST name which rule blocked
+capital and whether the scoreboard evidence justifies it.
 
 Return ONLY these two delimited sections, no preamble."""
 
@@ -100,10 +132,22 @@ def run_reflection() -> None:
     except Exception as exc:
         log.info(f"Reflection: counterfactual data unavailable ({exc!r}).")
         cf_lessons = []
+    try:
+        scoreboard = blocker_scoreboard(days=30)
+    except Exception as exc:
+        log.info(f"Reflection: blocker scoreboard unavailable ({exc!r}).")
+        scoreboard = {}
 
+    invested = sum(p.get("market_value", 0) for p in positions)
+    deployed_pct = round(invested / account["equity"], 3) if account.get("equity") else 0.0
     payload = {
         "date": today,
         "account": account,
+        "deployment": {
+            "deployed_pct": deployed_pct,
+            "target_pct": STRATEGY.min_deploy_pct,
+            "under_target": deployed_pct < STRATEGY.min_deploy_pct,
+        },
         "open_positions": positions,
         "todays_decisions": decisions,
         "todays_trades": trades,
@@ -115,6 +159,9 @@ def run_reflection() -> None:
         f"ROLLING PERFORMANCE (last 30 days):\n{json.dumps(stats, indent=2, default=str)}\n\n"
         f"COUNTERFACTUAL LESSONS (names passed on — what happened):\n"
         f"{json.dumps(cf_lessons, indent=2, default=str)}\n\n"
+        f"BLOCKER SCOREBOARD (per-rule cost of passes, last 30 days — the evidence\n"
+        f"required before hardening OR loosening any rule):\n"
+        f"{json.dumps(scoreboard, indent=2, default=str)}\n\n"
         f"TODAY'S RECORD:\n{json.dumps(payload, indent=2, default=str)}\n\n"
         "Produce the <<<PLAYBOOK>>> and <<<PRINCIPLES>>> sections now."
     )
@@ -124,7 +171,9 @@ def run_reflection() -> None:
         resp = create_with_retry(
             client,
             model=MODELS.reflection_model,
-            max_tokens=MODELS.max_tokens,
+            # Reflection emits TWO documents (playbook + full principles), so it
+            # needs far more headroom than a single decision call.
+            max_tokens=MODELS.reflection_max_tokens,
             system=_SYSTEM,
             messages=[{"role": "user", "content": user}],
         )
@@ -132,6 +181,20 @@ def run_reflection() -> None:
         log.info(f"Reflection: Anthropic rate limit after retries ({exc!r}) — skipping update.")
         send_to_slack(":warning: Joe nightly reflection failed: Anthropic rate limit (429) after retries. Playbook unchanged.")
         return
+    log_usage(MODELS.reflection_model, resp.usage)
+
+    # Truncation guard. On 2026-07-30 a reflection hit the max_tokens ceiling
+    # mid-sentence and wrote a principles file that had silently lost the entire
+    # exit-discipline, PDT, sizing, and deployment sections — the line-count
+    # guard below passed because the truncated file was still >20 lines. A
+    # response that ran out of tokens is never safe to persist.
+    if getattr(resp, "stop_reason", None) == "max_tokens":
+        log.info("Reflection hit max_tokens — output truncated, NOT writing "
+                 "playbook or principles.")
+        send_to_slack(":warning: Joe nightly reflection truncated (hit token "
+                      "limit) — playbook and principles left unchanged.")
+        return
+
     raw = resp.content[0].text.strip()
     new_playbook, new_principles = _split_sections(raw)
 
@@ -146,7 +209,18 @@ def run_reflection() -> None:
     # truncated or wiped by a malformed/lazy nightly response.
     if new_principles:
         line_count = len([ln for ln in new_principles.splitlines() if ln.strip()])
-        if line_count >= 20:
+        # Structural check: the durable sections must all survive a rewrite.
+        # Line count alone is not enough — a truncated file can still be long
+        # while having silently dropped exit discipline and PDT rules entirely.
+        required = ("## Risk limits", "## Entry criteria", "## Exit discipline",
+                    "## PDT rules")
+        missing = [h for h in required if h not in new_principles]
+        if missing:
+            log.info(f"Principles rewrite dropped required section(s) {missing} "
+                     "— keeping existing principles.")
+            send_to_slack(f":warning: Joe reflection dropped principles section(s) "
+                          f"{', '.join(missing)} — principles left unchanged.")
+        elif line_count >= 20:
             PRINCIPLES_PATH.write_text(new_principles + "\n", encoding="utf-8")
             log.info(f"Principles updated ({line_count} lines).")
         else:

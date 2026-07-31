@@ -19,11 +19,12 @@ from datetime import datetime, timedelta, timezone
 from anthropic import Anthropic, RateLimitError
 
 from . import logbook as log
+from .billing import log_usage
 from .broker import Broker
 from .config import CREDS, MODELS, PLAYBOOK_PATH, STRATEGY_PATH
 from .digest import send_to_slack
 from .llm_retry import create_with_retry
-from .perf_stats import compute_stats
+from .perf_stats import compute_stats, process_scorecard
 from .attribution import compute_attribution
 from .regime import macro_context
 
@@ -42,6 +43,13 @@ You are given:
 Produce an UPDATED strategy.md in Markdown. Be direct and opinionated.
 
 Sections to include:
+0. **Process scorecard** — grade the week against the PROCESS KPIs provided
+   (deployment vs 50% target, win rate vs 45%, win/loss ratio vs 1.5x, return
+   vs SPY) plus rule adherence (scan the week's decisions for hard-rule
+   violations — sector veto breaches, duplicate orders). One line per KPI:
+   PASS/FAIL/N-A and what to do about a miss. A missed P&L KPI on a passing
+   process is acceptable; a process failure is not. KPIs marked null are
+   unmeasurable this week — say so, never grade on noise.
 1. **Market regime summary** — what kind of market is this? (trending, choppy,
    risk-on/off, rotation, sector-specific). One short paragraph.
 2. **Factor performance** — which edges are working right now? Is momentum
@@ -53,9 +61,15 @@ Sections to include:
 4. **Strategy adjustments** — concrete changes to Joe's approach for next week.
    Examples: tighten stops in choppy tape, be more patient on entries, take
    profits faster in low-momentum environment, etc.
-5. **Signal attribution** — based on the conviction/outcome data, is Joe's
-   conviction calibrated correctly? Is he overconfident at certain levels?
-   Which exit reason is most/least profitable? One concise observation.
+5. **Signal attribution** — read `conviction_calibration` and `by_source`:
+   - State the conviction verdict plainly (calibrated / uninformative /
+     INVERTED). If inverted, say so bluntly — Joe is overconfident and high
+     conviction should be treated as a caution flag, not a reason to size up.
+   - Name which discovery sources are earning their weight and which are not,
+     using ONLY sources marked `reliable: true` (>= 8 trades). Explicitly say
+     when a source has too few trades to judge rather than reading noise.
+   - Note the best and worst exit reasons.
+   Recommend a concrete weight change only when the evidence is reliable.
 6. **Watchlist for next week** — 3-5 specific names or ETFs that set up well
    given the current regime and sector tilts. With brief rationale.
 
@@ -125,6 +139,14 @@ def run_weekly_review() -> None:
         log.info(f"Weekly review: attribution unavailable ({exc!r}).")
         attribution = {}
 
+    # Process scorecard — deployment, win rate, win/loss ratio, return vs SPY.
+    try:
+        spy_ret = mctx.get("indices", {}).get("SPY", {}).get("ret_5d")
+        scorecard = process_scorecard(window_days=7, spy_ret=spy_ret)
+    except Exception as exc:
+        log.info(f"Weekly review: process scorecard unavailable ({exc!r}).")
+        scorecard = {}
+
     payload = {
         "account": account,
         "open_positions": positions,
@@ -133,6 +155,8 @@ def run_weekly_review() -> None:
     }
 
     user = (
+        f"PROCESS SCORECARD (this week's KPIs — grade these in section 0):\n"
+        f"{json.dumps(scorecard, indent=2, default=str)}\n\n"
         f"CURRENT TACTICAL PLAYBOOK:\n{current_playbook}\n\n"
         f"CURRENT STRATEGY DOCUMENT (your prior output):\n{current_strategy}\n\n"
         f"MACRO MARKET CONTEXT:\n{json.dumps(mctx, indent=2, default=str)}\n\n"
@@ -157,6 +181,7 @@ def run_weekly_review() -> None:
         log.info(f"Weekly review: Anthropic rate limit after retries ({exc!r}) — skipping update.")
         send_to_slack(":warning: Joe weekly strategy review failed: Anthropic rate limit (429) after retries. Strategy unchanged.")
         return
+    log_usage(MODELS.reflection_model, resp.usage)
     new_strategy = resp.content[0].text.strip()
     if not new_strategy:
         log.info("Weekly review: model returned empty — strategy.md unchanged.")
@@ -166,10 +191,44 @@ def run_weekly_review() -> None:
     log.info(f"Weekly strategy updated ({len(trades)} trades, {len(decisions)} decisions over 7 days).")
 
     # Post a summary to Slack
-    _post_slack_summary(mctx, new_strategy, len(trades), account)
+    _post_slack_summary(mctx, new_strategy, len(trades), account, scorecard)
+
+    # Self-audit before the week starts — the daily digest skips weekends, so
+    # this is the pre-week health check (credit runway especially).
+    try:
+        from .audit import run_audit
+        run_audit()
+    except Exception as exc:
+        log.info(f"Self-audit failed to run: {exc!r}")
 
 
-def _post_slack_summary(mctx: dict, strategy: str, n_trades: int, account: dict) -> None:
+def _scorecard_lines(scorecard: dict) -> list[str]:
+    """Render the process KPIs as compact Slack lines."""
+    if not scorecard:
+        return []
+    icons = {True: "✅", False: "❌", None: "▫️"}
+    labels = {"deployment": "Deployment", "win_rate": "Win rate",
+              "win_loss_ratio": "Win/loss", "vs_spy": "vs SPY"}
+    lines = ["*Process scorecard (7d):*"]
+    for key, label in labels.items():
+        k = scorecard.get(key)
+        if not isinstance(k, dict):
+            continue
+        v = k.get("value")
+        if isinstance(v, dict):  # vs_spy carries {joe, spy}
+            joe, spy = v.get("joe"), v.get("spy")
+            v_str = (f"Joe {joe*100:+.1f}% / SPY {spy*100:+.1f}%"
+                     if joe is not None and spy is not None else "n/a")
+        elif isinstance(v, float):
+            v_str = f"{v*100:.0f}%" if v <= 1 else f"{v:.2f}x"
+        else:
+            v_str = "n/a"
+        lines.append(f"{icons[k.get('pass')]} {label}: {v_str} (target {k.get('target')})")
+    return lines
+
+
+def _post_slack_summary(mctx: dict, strategy: str, n_trades: int, account: dict,
+                        scorecard: dict | None = None) -> None:
     """Send a compact weekly strategy update to Slack."""
     indices = mctx.get("indices", {})
     spy = indices.get("SPY", {})
@@ -189,6 +248,8 @@ def _post_slack_summary(mctx: dict, strategy: str, n_trades: int, account: dict)
     lines = [
         "*📋 Joe's Weekly Strategy Review*",
         f"Equity: ${equity:,.2f} | Total P&L: ${total_pl:+,.2f} ({total_pct:+.1f}%)",
+        "",
+        *_scorecard_lines(scorecard or {}),
         "",
         f"*Market (5d):* SPY {spy_str} | QQQ {qqq_str} | VIX {vix_str}",
         f"*Sector leaders:* {leaders}",
