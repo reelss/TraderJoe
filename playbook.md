@@ -1,52 +1,46 @@
 > **GRADUATED VOL RULE (permanent):** ≥1.5× = full size; 0.8–1.5× = HALF size when setup is otherwise clean; <0.8× = no entry (hard floor, not a graduated zone).
 
 ## What's working
-- **THC ⭐ (Day 4):** +8.2% unrealized. RSI 69.7 — approaching trim trigger. MACD bullish, rs_vs_spy +33%, near 52w high. Trim 50% ONE order the moment RSI closes >75. Best position in the book.
-- **LMT ⭐ (Day 5):** RSI 71.6 at EOD and climbing — ONE strong session fires the >75 trim trigger. MACD bullish, XLI intact. Be ready to trim 50% in ONE order tomorrow.
-- **KO (Day 2):** −1.6% unrealized, but above all SMAs, MACD bullish, RSI 62.7, rs_vs_spy +9.2%. Thesis intact. Let it develop; trim 50% ONE order at RSI >75.
-- **WAB ⭐ (Day 1 — NEW ENTRY):** Entered today at ~$290.26 (3 shares). RSI pulled back cleanly from 84+ parabolic to ~69.5. MACD bullish, XLI above SMA200, rs_vs_spy +11%. Vol was 0.37–0.65× intraday — **order was placed at 16:36 when reasoning noted vol <0.8×.** This entry needs scrutiny: WAB's buy decision at 16:36 cited vol 0.37× as a hard floor violation and self-blocked, but the trade executed. Treat as a HELD position, not a validated clean entry. Hold with ATR stop (8.22%), no adds unless vol ≥0.8× on a fresh signal.
-- **MEDP (Day 2, flagged):** −2.9% unrealized. Rules-violation entry. Structurally intact (above all SMAs, MACD bullish, RSI 60.7). Hold with ATR stop, no adds.
-- **XLK +5.5% today:** Huge tech bounce — MSFT +16%, AAPL +6%, AMD +14%, MU +18%, LRCX +23%. XLK now at 175.73. **Check tomorrow: is today Day 1 of the two-close protocol?** XLK SMA200 level needs confirmation. If XLK closes above SMA200 tomorrow, the veto lifts for Day 3+.
-- **Sector veto validation continues:** META −11.15% (XLC), TSLA ongoing collapse — every vetoed sector punished exposure today.
+- **WAB (Day 8, +0.5%):** RSI ~72, approaching 75 trim trigger. Strong RS +10%, near 52w high, MACD bullish. ONE trim order if RSI closes >75. Let the ladder work.
+- **RTX (1 share, +4.0%):** RSI ~86, ATR trailing stop running. Zero manual sells — let the stop fire. Do not touch.
+- **XLK (Day 3, +0.5%):** Above SMA200, MACD bullish, RSI ~63. Tech sector deployment vehicle — two-close protocol complete, thesis intact.
+- **KO (Day 10, −3.1%):** Above all SMAs, MACD bullish, RSI ~70, approaching trim trigger. Thesis intact; 21-day flag arrives 2026-08-26. Hold.
+- **DLR (Day 7, −1.1%):** Above all SMAs, MACD bullish, RSI ~66. Structural vol drought for this name; ATR stop governs.
+- **Vol discipline held today:** NVDA (violation exit) and JPM (violation exit) were correctly sold at open. No new violations submitted. Day-trade count: 0 of 3 used.
 
 ## Mistakes to avoid
-- **WAB entry discipline unclear:** The 16:36 decision block showed buy reasoning with vol <0.8×, then a self-block, then a hold — yet the trade executed. This is the MEDP/KO pattern repeating. Tomorrow: verify WAB position is being managed as a hold, not as a fresh buy signal. If WAB was entered below the <0.8× floor, document it as a third vol-floor violation. Do NOT add to WAB.
-- **Deployment at 40.5% vs 50% target:** Still under-deployed. XLK bounce today may unlock 1–2 new entries if the two-close protocol confirms tomorrow. Do not rush — wait for sector confirmation, not FOMO off today's pop.
-- **XLK FOMO risk is highest tomorrow:** MSFT, AAPL, AMD, LRCX all surged. Do not enter XLK names until two consecutive closes above SMA200 are confirmed. Today is Day 1 (if XLK closed above SMA200 — verify). Entry would be Day 3 earliest.
-- **GS vol at 0.88× EOD — approaching threshold:** MACD remains bearish. Do not enter until MACD flips bullish AND vol ≥0.8× simultaneously. Vol alone is not enough.
-- **DLR and RTX continue to be clean setups blocked only by vol.** Do not lower the floor. Wait for vol ≥0.8× — both remain top redeployment candidates.
-- **XLP reversal:** KO entered at $89.89, XLP −2.16% today. Watch sector closely. If XLP breaks below SMA200, KO thesis weakens materially.
+- **Broad vol drought persists:** ANET (0.04–0.65×), BMY (0.03–0.31×), NVDA (0.06–0.61×), USFD (0.02–0.58×), LMT (0.12–0.39×) — all below hard floor all day. The market-wide low-vol environment is structural right now. Do NOT anticipate vol arriving; confirm ≥0.8× numerically at order submission.
+- **Do not re-enter NVDA or JPM same-session after exit.** The pattern of exiting a vol-violation position correctly, then re-entering sub-0.8× is documented six times. After any exit for vol violation, treat the name as off-limits until vol is confirmed ≥0.8× at the next submission moment.
+- **RTX: zero manual sells.** One share, RSI ~86, trailing stop handles exit. Duplicate-sell violations are on record.
+- **Parabolic names today — do not chase:** TEAM (+36%), DOCS (+39%), TWLO (+25%), PLTR (+39% 5d), SPCX (+12% intraday), USFD (RSI 81). These are traps, not setups.
+- **Vetoed sectors remain off:** XLC (GOOG, GOOGL, META, TWLO), XLY (AMZN, TSLA), XLE, XLB, XLU — absolute veto until two consecutive closes above their SMA200.
+- **ETN new watchlist candidate** — strong XLI name (RSI 65, above all SMAs, MACD bullish, rs_vs_spy +8%) blocked only by vol (0.32×). Add to watchlist.
 
 ## Market context & sector notes
-- **Broad market:** SPY +1.68%, QQQ +3.3%, IWM +1.39%. All three major indices up strong. SPY above SMA200 — regime firmly risk-on. VIX 20.7 (elevated tier, up from 18.7 yesterday — watch for continuation of tech squeeze vs. mean reversion).
-- **XLK ⚠️ → WATCHLIST (not yet active):** +5.5% today, price 175.73. Potentially Day 1 of two-close protocol. Verify whether XLK closed above its SMA200. If yes, one more close above SMA200 tomorrow = veto lifts for Day 3. AAPL and MSFT are the leading candidates, but wait for confirmation.
-- **XLI ⭐:** +0.98% today, 5d −1.95% drag, above SMA200. LMT and WAB both held. RTX clean setup, vol still sub-floor.
-- **XLF ⭐:** +0.56% today, 5d +2.10%, above SMA200. GS approaching vol threshold but MACD bearish — patience.
-- **XLV:** −1.64% today, 5d +1.29%, above SMA200. THC and MEDP held. Sector pulled back — monitor THC stop. XLV cap: THC (~10.1%) + MEDP (~5.9%) + potential new = ~16%. Room for one more if clean.
-- **XLP:** −2.16% today, 5d +2.72%, above SMA200. KO took a hit. Sector above SMA200 but momentum reversed today — watch closely.
-- **XLRE:** −1.44% today, 5d +0.78%, above SMA200. DLR vol drought persists.
-- **XLC ⚠️ VETOED:** −2.68% today. META continuing destruction. Veto validated again.
-- **XLY ⚠️ VETOED:** +0.70% today, still below SMA200. TSLA RSI 14.
-- **XLE ⚠️ VETOED:** +0.53%, still below SMA200.
-- **XLB ⚠️ VETOED:** −0.19%, still below SMA200.
-- **XLU ⚠️ VETOED:** −0.56%, still below SMA200.
-- **Deployment:** 40.5% vs 50% target — gap ~9.5pp. Smaller gap than yesterday but still under. Priority: RTX or DLR on vol recovery, and potentially one XLK name if two-close protocol confirms tomorrow.
+- **Broad market:** SPY +0.61%, QQQ +1.17%, IWM +1.11% — strong risk-on day. VIX 15.2, calm. All three indices above SMA200. Risk-on regime firmly intact.
+- **XLK ⭐ LEADER:** +1.42% today, 5d +7.2%, above SMA200. Individual tech names (NVDA, ANET) eligible when vol ≥0.8×. Priority sector.
+- **XLI ⭐:** +0.23% today, above SMA200. WAB and RTX running. ETN and USFD on watchlist (vol-blocked).
+- **XLV ⭐:** +0.75% today, above SMA200. BMY ideal setup but vol drought persists (0.03–0.31×). Highest-priority new entry when vol clears.
+- **XLF ⭐:** −0.36% today, above SMA200. JPM exited (violation); vol drought continues. Watchlist only.
+- **XLRE:** +0.38% today, above SMA200. DLR held.
+- **XLP:** +0.01% today, above SMA200. KO held.
+- **XLC ⚠️ VETOED:** +0.06% today, below SMA200. GOOG/GOOGL/META — absolute veto.
+- **XLY ⚠️ VETOED:** +1.49% today, 13% below SMA200. AMZN/TSLA — absolute veto.
+- **XLE ⚠️ VETOED:** −1.13%, below SMA200.
+- **XLB ⚠️ VETOED:** +1.32%, below SMA200. GDX parabolic (+20% 5d) — no entry despite XLB; also GDX falls under XLB veto.
+- **XLU ⚠️ VETOED:** +0.53%, below SMA200.
+- **Deployment:** 40.1% deployed vs 50% target — 10 points under. Blocking rule is vol floor (<0.8×), which shows net_verdict "rule_saving_money" (51 correct_pass vs 16 missed_gain). Under-deployment is justified by the vol drought; the rule is earning its keep. Priority: add ANET or NVDA at half size the moment vol clears 0.8×, then BMY or ETN.
+- **sector_veto scoreboard:** 155 missed_gain vs 191 correct_pass, avg_return +0.67%, "inconclusive." The two-close re-entry protocol is appropriate. Monitor: XLC and XLY are generating significant missed_gain on GOOG/AMZN/MSFT — watch whether sectors recover their SMA200 and be ready to deploy quickly via two-close protocol.
+- **Day-trade count:** 0 of 3 used.
 
 ## Watchlist notes
-- **THC ⭐ (held, Day 4):** +8.2% unrealized, RSI 69.7. Trim 50% ONE order at RSI >75. No adds.
-- **LMT ⭐ (held, Day 5):** RSI 71.6 — trim imminent. ONE order 50% at RSI >75 tomorrow.
-- **KO (held, Day 2):** −1.6% unrealized, XLP weakness is a watch item. Thesis holds while XLP above SMA200.
-- **WAB (held, Day 1 — monitor entry validity):** ATR stop at 8.22%. RSI 69.5 constructive. No adds until vol ≥0.8× confirmed on a fresh signal. Trim 50% ONE order if RSI >75.
-- **MEDP (held, rules violation):** Hold with stop, no adds.
-- **RTX (XLI top redeployment candidate):** RSI 72.6 EOD — slightly above ideal 65–72 window. Vol 0.63× sole blocker. Entry: RSI pulls back to 65–72 AND vol ≥0.8× simultaneously = half-size entry.
-- **DLR (XLRE):** RSI 61.2, MACD bullish. Vol 0.51× sole blocker. Trigger: vol ≥0.8× with RSI 60–70 = half-size entry.
-- **GS (XLF):** Vol 0.88× at EOD — approaching floor. MACD still bearish — this is the binding blocker. No entry until MACD flips bullish AND vol ≥0.8× simultaneously.
-- **MSFT/AAPL (XLK — conditional):** Do not consider until two-close protocol confirmed (check XLK vs SMA200 at open tomorrow). If today was Day 1, earliest entry is Day 3. Both would be half-size given vol below 1.5× typical for trend-continuation.
-- **JPM (XLF post-trim):** MACD bearish, vol 0.51×. No re-entry until both clear.
+- **NVDA (XLK, eligible):** Above all SMAs, MACD bullish, RSI ~65, near 52w high. Vol 0.06–0.61× all day — hard floor blocks. Half size entry when vol ≥0.8× confirmed at submission. Top priority.
+- **ANET (XLK, eligible):** Vol 0.04–0.65× all day — hard floor blocks. RSI ~63, above all SMAs, MACD bullish, mom +34%. Co-top priority with NVDA.
+- **BMY (XLV):** Vol 0.03–0.31× all day. RSI ~71 (cool to below 70 before entry ideal). Near 52w high, MACD bullish, RS +9.7%. Half size at 0.8–1.5×.
+- **ETN (XLI):** New priority add — above all SMAs, MACD bullish, RSI ~65, rs_vs_spy +8%, near 52w high. Vol 0.32× today — blocked. Half size when vol ≥0.8×.
+- **USFD (XLI):** RSI ~81 parabolic and vol 0.02–0.58× — both gates blocked. Wait for RSI pullback to 55–70 AND vol ≥0.8× before entry.
+- **LMT (XLI):** RSI ~79 extended. Wait for pullback to RSI 55–68 with vol ≥0.8×.
+- **WAB (held, Day 8):** ONE trim if RSI closes >75. Let rest ride.
+- **KO (held, Day 10):** 21-day flag = 2026-08-26. Trim trigger RSI >75.
 
-**Deployment:** ~40.5% deployed vs 50% target — gap ~9.5pp. RTX and DLR are the cleanest paths to close the gap. XLK conditional on two-close confirmation.
-**Day-trade count:** 0 of 3 used.
-**XLV cap:** THC (~10.1%) + MEDP (~5.9%) ≈ ~16.0%. Under 30% — room for one more XLV name.
-**CRITICAL TOMORROW:** (1) LMT RSI >75 trim alert — fire ONE order at open if confirmed. (2) THC RSI watch — approaching 75. (3) XLK SMA200 check — is today Day 1 of two-close? If yes, one more day to potential sector unlock. (4) WAB Day 1 — monitor ATR stop; verify entry was clean. (5) RTX vol recovery — top redeployment candidate. (6) DLR vol recovery. (7) GS MACD flip watch. (8) KO/XLP — sector momentum reversed; watch for stop trigger.
-
-WATCHLIST: THC, LMT, KO, WAB, RTX, DLR, GS, AAPL
+WATCHLIST: NVDA, ANET, BMY, ETN, USFD, WAB, KO, DLR
