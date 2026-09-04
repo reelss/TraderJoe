@@ -101,6 +101,18 @@ def _check_principles() -> list[tuple[str, str]]:
     return out
 
 
+def _pending_sell_symbols(broker) -> set[str]:
+    """Symbols with an unfilled SELL — i.e. already on their way out."""
+    try:
+        from alpaca.trading.requests import GetOrdersRequest
+        from alpaca.trading.enums import QueryOrderStatus
+        orders = broker.trading.get_orders(
+            GetOrdersRequest(status=QueryOrderStatus.OPEN, limit=200))
+        return {o.symbol for o in orders if str(o.side).endswith("SELL")}
+    except Exception:
+        return set()
+
+
 def _check_stop_coverage(broker) -> list[tuple[str, str]]:
     """Every position opened before today must have a resting broker stop.
     Without one, an overnight gap runs past the intended exit (AVGO, -14%)."""
@@ -110,8 +122,14 @@ def _check_stop_coverage(broker) -> list[tuple[str, str]]:
             return []
         opened_today = broker.symbols_bought_today()
         stops = broker.resting_stops()
+        # A position with a pending SELL is being liquidated — its shares are
+        # held for that order, so it neither can nor should carry a stop.
+        # Flagging it "unprotected" is noise that would mask a real gap.
+        exiting = _pending_sell_symbols(broker)
         naked = [p["symbol"] for p in positions
-                 if p["symbol"] not in opened_today and p["symbol"] not in stops]
+                 if p["symbol"] not in opened_today
+                 and p["symbol"] not in stops
+                 and p["symbol"] not in exiting]
         if naked:
             return [("CRITICAL",
                      f"{len(naked)} position(s) have NO protective stop: "
@@ -157,10 +175,21 @@ def _check_deployment(broker) -> list[tuple[str, str]]:
 def _check_runway() -> list[tuple[str, str]]:
     """API credit. Reaching zero stops Joe trading outright (2026-07-09)."""
     rw = estimate_runway()
+    if rw.get("exhausted"):
+        return [("CRITICAL",
+                 "API credit is EXHAUSTED — the API refused a call in the last "
+                 "24h. Joe cannot trade until you top up at "
+                 "console.anthropic.com/settings/billing, then run: "
+                 "python -m agent.main billing --set <balance>")]
     if not rw.get("available"):
         return [("WARN",
                  "API credit runway unknown — no balance checkpoint set. "
                  "Run: python -m agent.main billing --set <console balance>")]
+    if rw.get("low_confidence"):
+        return [("WARN",
+                 f"API credit estimate is low-confidence (too few logged calls). "
+                 f"Tracked remaining ~${rw['remaining_usd']:.2f}, but verify "
+                 "against console.anthropic.com/settings/billing")]
     if rw.get("warn"):
         days = (f"~{rw['days_remaining']:.1f}d" if rw.get("days_remaining") is not None
                 else "unknown")

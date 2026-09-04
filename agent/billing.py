@@ -82,6 +82,52 @@ def _read_usage_since(cutoff_iso: str) -> list[dict]:
     return out
 
 
+def credit_exhausted(hours: int = 24) -> bool:
+    """Has the API refused a call for lack of credit recently?
+
+    This is GROUND TRUTH and overrides any estimate. The estimate alone is
+    structurally blind here: when credit runs out, calls fail, failed calls log
+    no usage, measured burn collapses to ~0, and the projected runway shoots to
+    infinity — precisely when the balance is actually zero. That is exactly what
+    happened on 2026-09-04 (7 straight cycles dead while the estimator reported
+    857 days remaining).
+    """
+    try:
+        from . import logbook as log
+        if not log.RUN_LOG.exists():
+            return False
+        cutoff = (datetime.now(timezone.utc) - timedelta(hours=hours)).isoformat()
+        last_error = ""
+        for line in reversed(log.RUN_LOG.read_text(encoding="utf-8",
+                                                   errors="replace").splitlines()):
+            if not line.startswith("["):
+                continue
+            ts = line[1:line.find("]")] if "]" in line else ""
+            if ts < cutoff:
+                break          # log is chronological; older lines can't match
+            if "credit balance is too low" in line:
+                last_error = ts
+                break
+        if not last_error:
+            return False
+        # A successful, billed call AFTER the last refusal means the balance has
+        # been topped up — clear the flag instead of nagging for a full 24h.
+        if USAGE_LOG.exists():
+            for line in reversed(USAGE_LOG.read_text(encoding="utf-8").splitlines()):
+                if not line.strip():
+                    continue
+                try:
+                    if json.loads(line).get("ts", "") > last_error:
+                        return False
+                except json.JSONDecodeError:
+                    continue
+                break
+        return True
+    except Exception:
+        pass
+    return False
+
+
 def estimate_runway() -> dict:
     """Estimated remaining balance and days-of-runway since the last checkpoint.
 
@@ -90,6 +136,14 @@ def estimate_runway() -> dict:
       remaining_usd, avg_daily_burn_usd (trailing 7d), days_remaining, warn.
     days_remaining is None when burn rate is 0 (nothing spent yet this week).
     """
+    # Ground truth first: a refusal from the API beats any projection, and is
+    # reported even when no checkpoint has ever been set.
+    if credit_exhausted():
+        return {"available": True, "exhausted": True, "remaining_usd": 0.0,
+                "days_remaining": 0.0, "warn": True,
+                "note": "API refused a call for lack of credit in the last 24h — "
+                        "balance is EXHAUSTED regardless of the estimate below. "
+                        "Top up, then re-run: agent.main billing --set <balance>"}
     if not CHECKPOINT_PATH.exists():
         return {"available": False}
     try:
@@ -109,8 +163,14 @@ def estimate_runway() -> dict:
     )
     avg_daily_burn = sum(r["cost_usd"] for r in recent) / span_days if recent else 0.0
 
-    days_remaining = (remaining / avg_daily_burn) if avg_daily_burn > 0 else None
-    warn = remaining <= WARN_DOLLARS or (days_remaining is not None and days_remaining <= WARN_DAYS)
+    # Too few logged calls to trust a burn rate. Reporting "857 days remaining"
+    # off a handful of samples is worse than reporting nothing, so withhold the
+    # projection and flag the estimate as low-confidence instead.
+    sparse = len(recent) < 5
+    days_remaining = (remaining / avg_daily_burn) if (avg_daily_burn > 0 and not sparse) else None
+    warn = (remaining <= WARN_DOLLARS
+            or (days_remaining is not None and days_remaining <= WARN_DAYS)
+            or sparse)
 
     return {
         "available": True,
@@ -120,5 +180,6 @@ def estimate_runway() -> dict:
         "remaining_usd": round(remaining, 4),
         "avg_daily_burn_usd": round(avg_daily_burn, 4),
         "days_remaining": round(days_remaining, 1) if days_remaining is not None else None,
+        "low_confidence": sparse,
         "warn": warn,
     }

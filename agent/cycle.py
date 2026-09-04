@@ -341,6 +341,18 @@ def _trade(broker: Broker, eod_mode: bool = False) -> None:
     log.info("Cycle complete.")
 
 
+def _pending_sell_symbols(broker: Broker) -> set[str]:
+    """Symbols with an unfilled SELL order — already on their way out."""
+    try:
+        from alpaca.trading.requests import GetOrdersRequest
+        from alpaca.trading.enums import QueryOrderStatus
+        orders = broker.trading.get_orders(
+            GetOrdersRequest(status=QueryOrderStatus.OPEN, limit=200))
+        return {o.symbol for o in orders if str(o.side).endswith("SELL")}
+    except Exception:
+        return set()
+
+
 def _sync_protective_stops(broker: Broker, tech_by_sym: dict[str, dict],
                            opened_today: set[str]) -> None:
     """Keep a resting GTC stop at the broker for every prior-day position.
@@ -360,6 +372,11 @@ def _sync_protective_stops(broker: Broker, tech_by_sym: dict[str, dict],
         want = desired_stops(positions, tech_by_sym, opened_today)
         have = broker.resting_stops()
         qty_by_sym = {p["symbol"]: int(float(p["qty"])) for p in positions}
+        # Skip anything with a pending SELL: this cycle's exits still show as
+        # open positions, but their shares are reserved for the sell order, so
+        # a stop is both impossible ("insufficient qty available") and pointless.
+        for sym in _pending_sell_symbols(broker):
+            want.pop(sym, None)
 
         px_by_sym = {p["symbol"]: p.get("current_price") for p in positions}
         for sym, stop_price in want.items():
